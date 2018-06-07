@@ -107,6 +107,7 @@ function ekiline_csscolors() {
     $menu = get_option('menu_color');
     $mgradient = get_option('menu_gradient');
     $footer = get_option('footer_color');
+    $ftxt = get_option('ftext_color');
     $inverse = get_theme_mod('ekiline_inversemenu');
     // custom rounded elements
     $rangeLmnts = get_theme_mod('ekiline_range_lmnts');
@@ -115,6 +116,7 @@ function ekiline_csscolors() {
     if ( !$texto ) : $texto = '#333333'; endif;
     if ( !$enlaces ) : $enlaces = '#007bff'; endif;
     if ( !$footer ) : $footer = '#eeeeee'; endif;
+    if ( !$ftxt ) : $ftxt = '#333333'; endif;
     if ( $inverse ) : $inverse = '#ffffff;' ; endif;
     if ( $rangeLmnts == '' || '0' ) : $rangeLmnts = '0' ; endif;
         
@@ -131,7 +133,7 @@ function ekiline_csscolors() {
         .navbar-light .navbar-nav .show .dropdown-menu>.active>a, .navbar-light .navbar-nav .show .dropdown-menu>.active>a:focus, .navbar-light .navbar-nav .show .dropdown-menu>.active>a:hover,.bg-link{background-color:'.$enlaces.';}
         .page-item.active .page-link, .btn-primary, .btn-outline-primary:hover{background-color:'.$enlaces.';border-color:'.$enlaces.';}
         .btn-outline-primary{border-color:'.$enlaces.';color:'.$enlaces.';}
-        .site-footer { background-color: '.$footer.';}         
+        .site-footer { background-color: '.$footer.';color: '.$ftxt.';}         
         .cat-thumb{background:url("'.get_site_icon_url().'") no-repeat center center / 100px;}
         .toggle-sidebars.left-on #secondary,.toggle-sidebars.right-on #third,.bg-footer{background:'.$footer.';}
         #pageLoad {width: 100%;height: 100%;position: fixed;text-align: center;z-index: 5000;top: 0;left: 0;right: 0;background-color:'.$bgcolor.';}  
