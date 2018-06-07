@@ -43,7 +43,7 @@ if( true === get_theme_mod('ekiline_sitemap') && is_admin() ) {
 	add_action( 'admin_footer', 'ekiline_sitemap_action_js' );
 	
 	function ekiline_sitemap_action_js() { ?>
-	  <script type="text/javascript" >
+	  <script>
 	     jQuery("li#wp-admin-bar-ekiline-sitemap .ab-item").on( "click", function() {
 	        var data = { 'action': 'ekiline_sitemap_write' };
 	        /* since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php */
@@ -51,8 +51,7 @@ if( true === get_theme_mod('ekiline_sitemap') && is_admin() ) {
 	           alert( response );
                //jQuery('#wpbody-content .wp-header-end').after('<div class="notice notice-success is-dismissible sitemap-notice"><p>'+response+'</p></div>');
 	        });		        	                	
-	      });
-	      
+	      });	      
 	  </script> <?php
 	}
 	

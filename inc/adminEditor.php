@@ -1243,8 +1243,9 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 		$json = wp_json_encode($list);
 		
 		// Prueba como la documentacion de wordpress.
-		echo '<script type="text/javascript">'	."\n".
-				// 'var my_plugin = { "url" : "'. $plugin_url .'" };'	."\n".
+		// echo '<script type="text/javascript">'	."\n".
+		echo '<script>'	."\n".
+						// 'var my_plugin = { "url" : "'. $plugin_url .'" };'	."\n".
 				'var tinyCatList =' . $json . ';'	."\n".
 			 '</script>'."\n";
 		}

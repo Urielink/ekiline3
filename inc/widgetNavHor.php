@@ -41,7 +41,7 @@ class HorizontalNavbarWidget extends WP_Widget {
                 
         // variable contenedora        
                 
-        echo '<nav id="site-navigation-horizontal"  class="navbar navbar-expand-md navbar-light bg-light" role="navigation">';
+        echo '<nav id="site-navigation-horizontal"  class="navbar navbar-expand-md navbar-light bg-light">';
         
 			echo '<div class="container-fluid">';	 
 		                       

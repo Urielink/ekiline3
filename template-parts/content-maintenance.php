@@ -20,12 +20,12 @@ if ( $offBg ) : $offBg = '.cover-wrapper { background-image: url("' . strip_tags
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
         <meta name="description" content="<?php ekiline_description(); ?>" />
-        <link href="<?php echo get_template_directory_uri() . '/css/bootstrap.min.css'; ?>" rel="stylesheet" type="text/css">   
-        <link href="<?php echo get_template_directory_uri() . '/css/fontawesome-all.min.css'; ?>" rel="stylesheet" type="text/css">    
-        <link href="<?php echo get_template_directory_uri() . '/css/ekiline.min.css'; ?>" rel="stylesheet" type="text/css">  
-        <link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet" type="text/css">  
+        <link href="<?php echo get_template_directory_uri() . '/css/bootstrap.min.css'; ?>" rel="stylesheet">   
+        <link href="<?php echo get_template_directory_uri() . '/css/fontawesome-all.min.css'; ?>" rel="stylesheet">    
+        <link href="<?php echo get_template_directory_uri() . '/css/ekiline.min.css'; ?>" rel="stylesheet">  
+        <link href="<?php echo get_stylesheet_uri(); ?>" rel="stylesheet">  
         <?php ekiline_csscolors(); ?>
-        <?php echo '<style type="text/css" id="wp-custom-css">' . strip_tags( wp_get_custom_css() ) . "\n" . $offBg . '</style>' . "\n" ;?>        
+        <?php echo '<style id="wp-custom-css">' . strip_tags( wp_get_custom_css() ) . "\n" . $offBg . '</style>' . "\n" ;?>        
     </head>
     <body class="page-maintenance"> 
         <header id="masthead" class="cover-wrapper">

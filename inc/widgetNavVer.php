@@ -44,7 +44,7 @@ class VerticalMenuWidget extends WP_Widget {
 		if ( !empty($instance['title']) ) echo '<h4>'. $instance['title'] .'</h4>';   
 		
         // variable contenedora
-        echo '<nav id="site-navigation-vertical"  class="navbar navbar-default sidebar-nav" role="navigation">';
+        echo '<nav id="site-navigation-vertical"  class="navbar navbar-default sidebar-nav">';
                 
                         
                                         

@@ -15,8 +15,10 @@
             onclick: function (e) {
             	
 //mi html previo CSS y HTML
-				var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" type="text/css" media="all" />'; 
-					uiCss += '<style type="text/css">';
+				// var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" type="text/css" media="all" />'; 
+				var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" media="all" />'; 
+					// uiCss += '<style type="text/css">';
+					uiCss += '<style>';
 					uiCss += '.mce-window.mce-container.mce-fontawesome-panel .mce-container-body.mce-abs-layout{overflow: hidden;}';
 					uiCss += '#iconCat-body ul{width:840px;max-width:840px;min-height:600px;list-style:none;}';
 					uiCss += '#iconCat-body ul,#iconCat-body ul li{padding:0px;margin:0px;}';

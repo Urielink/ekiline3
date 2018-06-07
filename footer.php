@@ -24,7 +24,7 @@
 
 </div><!-- #page -->
 
-	<footer id="colophon" class="site-footer py-2" role="contentinfo">
+	<footer id="colophon" class="site-footer py-2">
 	    	    
 	    <!--widgets-->
 	    <div class="container">
@@ -37,7 +37,7 @@
                 <br/>                
                 <!--small class="float-left"><?php printf( esc_html__( 'Proudly powered by %s', 'ekiline' ), '<a href="https://wordpress.org/">WordPress</a>' ); ?> <?php printf( esc_html__( 'and %s', 'ekiline' ), '<a href="'.__('http://ekiline.com','ekiline').'" target="_blank">Ekiline</a>' ); ?></small-->                
 				<small class="tooltip-default float-left my-2 d-inline-block" tabindex="0" data-toggle="tooltip" data-html="true" title="<small><?php printf( esc_html__( 'Proudly powered by %s', 'ekiline' ), '<a href=\'https://wordpress.org/\'>WordPress</a>' ); ?> <?php printf( esc_html__( 'and %s', 'ekiline' ), '<a href=\''.__('http://ekiline.com','ekiline').'\' >Ekiline</a>' ); ?></small>">
-				  <img src="<?php echo get_template_directory_uri() . '/img/ico-ekiline.png' ?>" style="pointer-events: none;" />
+				  <img src="<?php echo get_template_directory_uri() . '/img/ico-ekiline.png' ?>" style="pointer-events: none;" alt="<?php _e('fund the development','ekiline'); ?>" />
 				</small>
 
 

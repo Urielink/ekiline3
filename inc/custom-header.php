@@ -64,7 +64,7 @@ if ( ! function_exists( 'ekiline_header_style' ) ) :
     
     	// If we get this far, we have custom styles. Let's do this.
     	?>
-    	<style type="text/css">
+    	<style>
     	<?php
     		// Has the text been hidden?
     		if ( ! display_header_text() ) :
@@ -159,9 +159,9 @@ function customHeader() {
 			// Set the range for height value and format image as bootstrap jumbotron			
 			if ( $rangeHead <= '95' && empty( $setVideo ) ) {
 
-				$customHeader .= '<header id="masthead" class="site-header container-fluid" role="banner">';
+				$customHeader .= '<header id="masthead" class="site-header container-fluid">';
 				    
-					$customHeader .= '<div class="site-branding jumbotron"'.$headerStyle.'>';
+					$customHeader .= '<div class="site-branding jumbotron" '.$headerStyle.'>';
 
                         $customHeader .= $coverLogo;
 
@@ -253,7 +253,7 @@ function customHeader() {
 
                 function ekiline_headervideo() { 
                 
-                    echo '<script type="text/javascript">
+                    echo '<script>
                     
                         var vid = document.getElementById("bgvid");
                         pauseButton = document.getElementById("vidpause");

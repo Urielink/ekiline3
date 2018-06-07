@@ -290,8 +290,9 @@ function ekilineNoscript(){
     $noScripts = '<noscript>'."\n";
     $noScripts .= '<link rel="stylesheet" href="'. get_template_directory_uri() . '/css/bootstrap.min.css" media="all" />'."\n";
     $noScripts .= '<link rel="stylesheet" href="'. get_stylesheet_uri() . '" media="all" />'."\n";    
-    $noScripts .= '<style type="text/css">#pageLoad{display:none;}</style>'."\n";
-    if( true === get_theme_mod('ekiline_fontawesome') ) {
+    // $noScripts .= '<style type="text/css">#pageLoad{display:none;}</style>'."\n";
+    $noScripts .= '<style>#pageLoad{display:none;}</style>'."\n";
+        if( true === get_theme_mod('ekiline_fontawesome') ) {
         $noScripts .= '<link rel="stylesheet" href="'. get_template_directory_uri() . '/css/fontawesome-all.min.css" media="all" />'."\n";  
     }      
     if ($gfont != '') {

@@ -36,7 +36,7 @@ function my_privacy_js() {
 		
 ?>	
 	
-<script type='text/javascript'>
+<script>
 jQuery(document).ready(function($){
 	
 	var alert = '<?php echo $alert; ?>';

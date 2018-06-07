@@ -71,7 +71,7 @@ function topNavbar(){
 		
 	if ( has_nav_menu( 'top' ) ) : ?>
 	
-	<nav id="site-navigation-top"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md top-navbar<?php echo $navAction;?>" role="navigation">
+	<nav id="site-navigation-top"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md top-navbar<?php echo $navAction;?>">
 	    <div class="container">
 
             <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a>
@@ -150,7 +150,7 @@ function primaryNavbar(){
     	
     if ( has_nav_menu( 'primary' ) ) : ?>
     
-            <nav id="site-navigation-primary"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md primary-navbar<?php echo $navAction;?>" role="navigation">
+            <nav id="site-navigation-primary"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md primary-navbar<?php echo $navAction;?>">
                 <div class="container">
 
 		            <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a>
@@ -219,7 +219,7 @@ function modalNavbar(){
         
     if ( has_nav_menu( 'modal' ) ) : ?>
     
-    <div id="site-navigation-modal"  class="navbar <?php echo $inverseMenu;?> modal-navbar<?php echo $navAction;?>" role="navigation">
+    <div id="site-navigation-modal"  class="navbar <?php echo $inverseMenu;?> modal-navbar<?php echo $navAction;?>">
         
         <div class="container">
         	

@@ -166,7 +166,8 @@ function ekiline_csscolors() {
                 
     }        
 
-    echo '<style id="ekiline-inline" type="text/css" media="all">'.$miestilo.'</style>'."\n";
+    // echo '<style id="ekiline-inline" type="text/css" media="all">'.$miestilo.'</style>'."\n";
+    echo '<style id="ekiline-inline" media="all">'.$miestilo.'</style>'."\n";
 
 }
 add_action('wp_head','ekiline_csscolors');
@@ -698,7 +699,7 @@ global $pagenow;
 $pages = array('index.php','edit.php','post.php','themes.php','tools.php');
 if ( in_array( $pagenow, $pages, true ) ) { ?>	
 	
-<script type='text/javascript'>
+<script>
 	jQuery(document).ready(function($){
 		//$('.ekiline-notice').show(1).delay(1000).hide(1);
 		$('.ekiline-notice').delay(2000).show(100);

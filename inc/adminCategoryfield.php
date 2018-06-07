@@ -75,7 +75,7 @@ function ekiline_catimage_js() {
 	global $pagenow;
 	if ($pagenow=='term.php' ) { ?>	
 		
-	<script type='text/javascript'>
+	<script>
 		jQuery(document).ready(function($){
 			
 		  $('.image-upload-button').click(function(e) {

@@ -16,7 +16,7 @@ get_header(); ?>
 	
 		<?php dynamic_sidebar( 'content-w1' ); ?>
 
-		<main id="main" class="site-main woocommerce-main" role="main">
+		<main id="main" class="site-main woocommerce-main">
 
         <?php woocommerce_content(); ?>
 

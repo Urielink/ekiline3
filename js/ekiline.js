@@ -52,7 +52,8 @@ jQuery(document).ready(function($){
 			var $cssinline = $head.find("style:last");
 			var $ultimocss = $head.find("link[rel='stylesheet']:last");
 			// var linkCss = "<link id='"+ value.id +"' rel='stylesheet' href='"+ value.src +"' type='text/css' media='"+ value.media +"'>";
-			var linkCss = $('<link/>',{'rel':'stylesheet','id':value.id,'href':value.src,'type':'text/css','media':value.media});
+			// var linkCss = $('<link/>',{'rel':'stylesheet','id':value.id,'href':value.src,'type':'text/css','media':value.media});
+			var linkCss = $('<link/>',{'rel':'stylesheet','id':value.id,'href':value.src,'media':value.media});
 		
 		  // En caso de de encontrar una etiqueta de estilo ó link ó nada inserta el otro estilo css, 
 		

@@ -171,7 +171,8 @@ function ekiline_postcss(){
        if ( ! empty( $myCss ) ){
            // Si utilizan nuestro custom field
            // here is our custom field
-           echo '<style type="text/css" id="custom-css-'.$postid.'">'.$myCss.'</style>';
+           // echo '<style type="text/css" id="custom-css-'.$postid.'">'.$myCss.'</style>';
+          echo '<style id="custom-css-'.$postid.'">'.$myCss.'</style>';
        } 
      
     } 
@@ -196,7 +197,8 @@ function ekiline_postjs(){
     wp_reset_query();
             
        if ( ! empty( $myJs ) ){
-           echo '<script type="text/javascript" id="custom-js-'.$postid.'">'.$myJs.'</script>'."\n";
+           // echo '<script type="text/javascript" id="custom-js-'.$postid.'">'.$myJs.'</script>'."\n";
+           echo '<script id="custom-js-'.$postid.'">'.$myJs.'</script>'."\n";
        } 
      
     } 
@@ -275,7 +277,8 @@ function wsds_defer_scripts( $tag, $handle, $src ) {
 		
 	// para que se inicialicen mis funciones correctamente.
     if ( in_array( $handle, $defer_scripts ) ) {
-        return '<script type="text/javascript" src="' . $src . '" defer="defer" async="async"></script>' . "\n";
+        // return '<script type="text/javascript" src="' . $src . '" defer="defer" async="async"></script>' . "\n";
+        return '<script src="' . $src . '" defer="defer" async="async"></script>' . "\n";
     }    
     return $tag;
 } 
