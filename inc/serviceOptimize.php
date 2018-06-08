@@ -285,8 +285,6 @@ function wsds_defer_scripts( $tag, $handle, $src ) {
 //add_filter( 'script_loader_tag', 'wsds_defer_scripts', 10, 3 );
 if ( ! is_admin() ) add_filter( 'script_loader_tag', 'wsds_defer_scripts', 10, 3 );
 
-
-
 /**
  * OPTIMIZACIoN: Registrar google analytics (customizer.php)
  * Add google analyitcs script
@@ -345,3 +343,9 @@ function iosfeatures() {
 }
 add_action( 'wp_head', 'iosfeatures', 2);
 
+/** Limpiar las etiquetas **/
+function myplugin_remove_type_attr($tag, $handle) {
+    return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
+}
+add_filter('style_loader_tag', 'myplugin_remove_type_attr', 10, 3);
+add_filter('script_loader_tag', 'myplugin_remove_type_attr', 10, 3);

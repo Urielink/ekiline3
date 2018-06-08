@@ -20,14 +20,14 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class();?>>	
-    
 <?php ekiline_loader(); ?>
-
 <?php topWidgets(); ?>  
+
+<header>
+<?php customHeader(); ?>
 <?php topNavbar(); ?>  
 <?php modalNavbar(); ?>  
-<?php customHeader(); ?>
-
+</header>
 <div id="page" class="site <?php ekiline_pagewidth(); ?>">
     
 <?php primaryNavbar(); ?>  

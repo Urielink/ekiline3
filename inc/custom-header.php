@@ -159,7 +159,7 @@ function customHeader() {
 			// Set the range for height value and format image as bootstrap jumbotron			
 			if ( $rangeHead <= '95' && empty( $setVideo ) ) {
 
-				$customHeader .= '<header id="masthead" class="site-header container-fluid">';
+				$customHeader .= '<div id="masthead" class="site-header container-fluid">';
 				    
 					$customHeader .= '<div class="site-branding jumbotron" '.$headerStyle.'>';
 
@@ -174,7 +174,7 @@ function customHeader() {
 						
 					$customHeader .= '</div><!-- .site-branding -->
 			
-				</header><!-- #masthead -->'; 
+				</div><!-- #masthead -->'; 
 			
 			} else {
 			     
@@ -187,7 +187,7 @@ function customHeader() {
                 
                 // Formato Cover HTML - Set cover HTML   
                             			    																				
-				$customHeader = '<header id="masthead"  class="cover-wrapper" style="background-image:url(' . get_header_image() . ');">
+				$customHeader = '<div id="masthead"  class="cover-wrapper" style="background-image:url(' . get_header_image() . ');">
 							      <div class="cover-wrapper-inner">
 							        <div class="cover-container">
 							          <div class="cover-header clearfix">
@@ -213,7 +213,7 @@ function customHeader() {
 							          </div>
 							        </div>
 							      </div>
-							    </header>';	
+							    </div>';	
 			}
 			
 			// Agregar video - Set video in header 
@@ -221,7 +221,7 @@ function customHeader() {
             if ( ! empty( $setVideo ) ) {
                  
                 $customHeader = '<!--[if lt IE 9]><script>document.createElement("video");</script><![endif]-->'.
-                                '<header class="video-container" style="background-image: url('. get_header_image() .');background-size:cover;">
+                                '<div class="video-container" style="background-image: url('. get_header_image() .');background-size:cover;">
                                     <div class="video-text">
                                         '.$coverLogo;
 
@@ -239,7 +239,7 @@ function customHeader() {
                                         </video>
                                         <button id="vidpause" class="btn btn-secondary btn-sm">'. __( 'Pause', 'ekiline' ) .'</button>
                                     </div>
-                                 </header>';
+                                 </div>';
                                  
                 /**
                  * Agregar script para el video // Add inline script
@@ -307,17 +307,17 @@ function customHeader() {
                 								
                 if ( $rangeHead >= '95' ) {
                     
-                    $customHeader .= '<header id="masthead" class="site-header">';
+                    $customHeader .= '<div id="masthead" class="site-header">';
                     $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
                     $customHeader .= '<div class="inner"><h1 class="entry-title text-center" >'.$titulo.'</h1></div>';
-                    $customHeader .= '</div></header>';
+                    $customHeader .= '</div></div>';
                     
                 } else {
                     
-                    $customHeader .= '<header id="masthead" class="site-header container-fluid">';
+                    $customHeader .= '<div id="masthead" class="site-header container-fluid">';
                     $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
                     $customHeader .= '<h1 class="entry-title" >'.$titulo.'</h1>';
-                    $customHeader .= '</div></header>';
+                    $customHeader .= '</div></div>';
                     
                 }
 
@@ -343,17 +343,17 @@ function customHeader() {
 
                 if ( $rangeHead >= '95' ) {
                     
-                    $customHeader .= '<header id="masthead" class="site-header">';
+                    $customHeader .= '<div id="masthead" class="site-header">';
                     $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
                     $customHeader .= '<div class="inner"><h1 class="entry-title text-center" >'.$titulo.'</h1></div>';
-                    $customHeader .= '</div></header>';
+                    $customHeader .= '</div></div>';
                     
                 } else {
                     
-                    $customHeader .= '<header id="masthead" class="site-header container-fluid">';
+                    $customHeader .= '<div id="masthead" class="site-header container-fluid">';
                     $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
                     $customHeader .= '<h1 class="entry-title" >'.$titulo.'</h1>';
-                    $customHeader .= '</div></header>';
+                    $customHeader .= '</div></div>';
                     
                 }
 								
