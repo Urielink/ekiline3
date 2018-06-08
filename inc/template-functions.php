@@ -356,6 +356,7 @@ function ekiline_pages_navigation(){
  **/
 
 function ekiline_posts_navigation( $args = array() ) {
+	if( is_front_page() ){ return; }
     $navigation = '';
  
     // Don't print empty markup if there's only one page.
@@ -377,7 +378,7 @@ function ekiline_posts_navigation( $args = array() ) {
             $navigation .= '<li class="next page-item page-link">' . $next_link . '</li>';
         }
         
-        $navigation = '<ul class="pagination justify-content-center">'.$navigation.'</ul>';
+        $navigation = '<nav id="page-navigation" class="small" aria-label="Page navigation"><ul class="pagination justify-content-center">'.$navigation.'</ul></nav>';
  
         $navigation = _navigation_markup( $navigation, 'posts-navigation', $args['screen_reader_text'] );
     }
@@ -415,7 +416,7 @@ function ekiline_archive_pagination() {
         
         $current_page = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
         
-        $pagination .= '<ul class="pagination">';
+        $pagination .= '<nav id="page-navigation" class="small" aria-label="Page navigation"><ul class="pagination">';
         
         foreach ($pages as $i => $page) {
             //27 10 17 add CSS B4 pagination
@@ -440,7 +441,7 @@ function ekiline_archive_pagination() {
             
         }
         
-        $pagination .= '</ul>';
+        $pagination .= '</ul></nav>';
         
     }
     
