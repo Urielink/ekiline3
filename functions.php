@@ -108,8 +108,8 @@ function ekiline_widgets_init() {
 		'name'          => esc_html__( 'Left sidebar', 'ekiline' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
@@ -119,8 +119,8 @@ function ekiline_widgets_init() {
         'name'          => esc_html__( 'Right sidebar', 'ekiline' ),
         'id'            => 'sidebar-2',
         'description'   => '',
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
         'before_title'  => '<h3 class="widget-title">',
         'after_title'   => '</h3>',
     ) );
@@ -130,8 +130,8 @@ function ekiline_widgets_init() {
         'name'          => esc_html__( 'Footer widgets', 'ekiline' ),
         'id'            => 'footer-w1',
         'description'   => '',
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
         'before_title'  => '<h5 class="widget-title">',
         'after_title'   => '</h5>',
     ) );
@@ -141,8 +141,8 @@ function ekiline_widgets_init() {
         'name'          => esc_html__( 'In page at top of content', 'ekiline' ),
         'id'            => 'content-w1',
         'description'   => '',
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
         'before_title'  => '<h4 class="widget-title">',
         'after_title'   => '</h4>',
     ) );
@@ -151,8 +151,8 @@ function ekiline_widgets_init() {
         'name'          => esc_html__( 'In page on bottom of content', 'ekiline' ),
         'id'            => 'content-w2',
         'description'   => '',
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
         'before_title'  => '<h4 class="widget-title">',
         'after_title'   => '</h4>',
     ) );
@@ -162,10 +162,10 @@ function ekiline_widgets_init() {
         'name'          => esc_html__( 'Top first over all content', 'ekiline' ),
         'id'            => 'toppage-w1',
         'description'   => '',
-        'before_widget' => '<section id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h5>',
-        'after_title'   => '</h5>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<p>',
+        'after_title'   => '</p>',
     ) );   
             
 // Widget positions for each menu
