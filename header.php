@@ -23,11 +23,11 @@
 <?php ekiline_loader(); ?>
 <?php topWidgets(); ?>  
 
-<header>
+<header id="masthead" class="site-header">
 <?php customHeader(); ?>
 <?php topNavbar(); ?>  
 <?php modalNavbar(); ?>  
-</header>
+</header><!-- #masthead -->
 <div id="page" class="site <?php ekiline_pagewidth(); ?>">
     
 <?php primaryNavbar(); ?>  
