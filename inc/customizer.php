@@ -197,6 +197,23 @@ function ekiline_theme_customizer( $wp_customize ) {
     
 //Show/hide header image on single, pages or categories.
     $wp_customize->add_setting( 
+        'ekiline_showFrontPageHeading', array(
+    				'default' => '',
+    				'sanitize_callback' => 'ekiline_sanitize_checkbox'
+        )
+    );
+    
+    $wp_customize->add_control(
+    	'ekiline_showFrontPageHeading', array(
+    				'label'          => __( 'Show front page heading', 'ekiline' ),
+    				'section'        => 'header_image',
+    				'settings'       => 'ekiline_showFrontPageHeading',
+    				'type'           => 'checkbox',
+	                'priority' 		 => 100
+        )
+    ); 
+	
+    $wp_customize->add_setting( 
         'ekiline_showPageHeading', array(
     				'default' => '',
     				'sanitize_callback' => 'ekiline_sanitize_checkbox'

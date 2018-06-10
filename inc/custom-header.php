@@ -91,401 +91,161 @@ endif;  // ekiline_admin_header_image
  * Works by choosing an image, and setting it in customizer. 
  */
 
-function ekiline_header_styles() {
-	
-	// if ( !get_header_image() )
-	// return;		
-		
-    $rangeHead = get_theme_mod('ekiline_range_header');
-
-	if($rangeHead == '0' || $rangeHead == '100' || !is_front_page() ){
-		$rangeHead = '30';
+function ekiline_addCssHeader() {
+	$headerImage = get_header_image();
+	if ( is_single() || is_page() && has_post_thumbnail() ) {
+		$medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+		$headerImage = $medium_image_url[0];
+	}
+	if ( is_category() ) {
+		$cat_id = get_query_var('cat');
+		$cat_data = get_option("category_$cat_id");
+		// si tiene imagen
+		if ( $cat_data['img'] ) $headerImage = $cat_data['img'];
 	}		
+    $rangeHead = get_theme_mod('ekiline_range_header');
+	if ( $rangeHead == '0' ) $rangeHead = '30';
+	$setVideo = get_theme_mod('ekiline_video');
 
-	
-	$extracss = '.cover-wrapper,.jumbotron{background-image:url("' . get_header_image() . '");}'; 		
-	$extracss .= '.jumbotron{height:' . $rangeHead . 'vh;}';
+	$extracss = '';
+	if ( is_front_page() && empty( $setVideo ) ) $extracss .= '.cover-wrapper,.jumbotron{height:' . $rangeHead . 'vh;}';
+	if ( is_front_page() && !empty( $setVideo ) ) $extracss .= '.cover-wrapper-inner,.cover-header,.cover-footer{position:relative;}.cover-container{position: absolute;z-index:100;left: 0;right: 0;height:100%;}';
+	if ( get_header_image() ) $extracss .= '.cover-wrapper,.jumbotron{background-image:url("' . $headerImage . '");}';		
 			    	
     wp_add_inline_style( 'ekiline-style', $extracss );
 }
-add_action( 'wp_enqueue_scripts', 'ekiline_header_styles'); 
+add_action( 'wp_enqueue_scripts', 'ekiline_addCssHeader'); 
 
+function customHeader(){
 
-function  customHeader(){
-
-	// if ( !get_header_image() )
-	// return;		
-	
 	//datos del sitio
     $siteName = get_bloginfo( 'name', 'display' );
-    $siteDescription = get_bloginfo( 'description', 'display'  );
-	$headerType = 'site-branding jumbotron';
+    $siteDescription = '<i>' . get_bloginfo( 'description', 'display'  ) . '</i>';
+    // agregar brand image // add brand image
+    $coverLogo = get_theme_mod( 'ekiline_logo_min' );            
+    if ( $coverLogo ) $coverLogo = '<img class="cover-header-brand author img-fluid" src="' . get_theme_mod( 'ekiline_logo_min' ) . '" alt="' . get_bloginfo( 'name' ) . '"/>';
+	//variables para la información del tema
+	$headerSwitch = 'site-branding jumbotron m-0';
 	$headerTitle = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home">'.$siteName.'</a>';
-
+	//Personalizaciones
     $rangeHead = get_theme_mod('ekiline_range_header');
-	
-	if ( is_front_page() ){		
-		if ( $rangeHead == '100' ) $headerType = 'inner cover';
+	$setVideo = get_theme_mod('ekiline_video');
+    $headerText = get_theme_mod( 'ekiline_headertext', '' );
+	// Condiciones
+	if ( is_front_page() && true === get_theme_mod('ekiline_showFrontPageHeading') ){		
+		if ( $rangeHead == '100' ) $headerSwitch = 'inner cover';
 	}
-	else if ( is_single() || is_page() ) {
-	// else if ( is_single() && true === get_theme_mod('ekiline_showEntryHeading') || is_page() && true === get_theme_mod('ekiline_showPageHeading') ) {
+	else if ( is_single() && true === get_theme_mod('ekiline_showEntryHeading') || is_page() && true === get_theme_mod('ekiline_showPageHeading') ) {
+		$siteDescription = $headerTitle . ' '. $siteDescription;
 		$headerTitle = get_the_title();
 	}
-	else if ( is_category() ){
-	// else if ( is_category() && true === get_theme_mod('ekiline_showCategoryHeading') ){
+	else if ( is_category() && true === get_theme_mod('ekiline_showCategoryHeading') ){
+		$siteDescription = $headerTitle . ' ' . $siteDescription;
 		$headerTitle = single_cat_title('', false);
 	}
+	else if ( get_post_type( get_the_ID() ) == 'product' && !is_front_page() ){
+		//cancelar si es producto de woocommerce
+		return;
+	}
 	else return;
-
-	
+	// Header y cambios
 	{ ?>
 	
 		<?php if ( is_front_page() && $rangeHead == '100' ) { ?>
 			<div class="cover-wrapper">
 		      <div class="cover-wrapper-inner">
 		        <div class="cover-container">
+		        	
 		          <div class="cover-header clearfix">
 		            <div class="inner">
-		              <div class="nav cover-header-nav justify-content-md-end justify-content-center">El menu</div>
-		              El logo
+		              <?php echo $coverLogo; ?>
+		              <div class="nav cover-header-nav justify-content-md-end justify-content-center">El menu</div>		              
 		            </div>
 		          </div>
+		          
 		<?php } ;?>
 		
-		          <div class="<?php echo $headerType;?>">
+		          <div class="<?php echo $headerSwitch;?>">
 		
-					<h1 class="site-title entry-title"><?php echo $headerTitle ;?></h1>                              														
-			    	<p class="site-description"> <?php echo $siteDescription ;?> </p>
+
+				    	<?php 
+				    	if( $headerText && is_front_page() ) {
+				    		 echo $headerText ; 
+						} else { ?>				    		
+							<h1 class="site-title entry-title"><?php echo $headerTitle ;?></h1>                              														
+					    	<p class="site-description"> <?php echo $siteDescription ;?> </p>				    		
+				    	<?php } ?>
+			    	
+			    	
 		
 				  </div>
 		
 		<?php if ( is_front_page() && $rangeHead == '100' ) { ?>
+			
 		          <div class="cover-footer text-right">
 		            <div class="inner">
-		             <small class="author">&copy; Copyright </small>
+		             <small class="author">&copy; Copyright <?php echo $siteName ;?></small>
 		            </div>
 		          </div>
+			       
 		        </div>
-		      </div>
-		    </div>	
+
+			<?php if ( ! empty( $setVideo ) ) { ?>                 
+                <!--[if lt IE 9]><script>document.createElement("video");</script><![endif]-->
+				<div class="video-media embed-responsive embed-responsive-16by9">
+                    <video autoplay loop poster="<?php echo get_header_image() ;?>" id="bgvid">
+                        <source src="<?php echo $setVideo ;?>" type="video/mp4">
+                    </video>
+                    <button id="vidpause" class="btn btn-secondary btn-sm"><?php echo __( 'Pause', 'ekiline' ) ;?></button>
+                </div>
+            <?php } ?>
+
+
+			  </div><!-- cover-wrapper-inner -->
+		    </div><!-- cover-wrapper -->	    
 		<?php } ;?>
 		
 	<?php }
 	
 } // Fin customHeader();
  
- 
-function customHeader2() {
-    
-    // Variables 
-    $customHeader = '';
-    $siteName = get_bloginfo( 'name', 'display' );
-    $siteDescription = get_bloginfo( 'description', 'display'  );
-    // Tamaño de imagen 
-    // Background image size
-    $rangeHead = get_theme_mod('ekiline_range_header');
-	$setVideo = get_theme_mod('ekiline_video');
- 		
-/**
- * Imagen para frontpage, singles y categories
- * Heading image for frontpage, singles or categories
- */ 
-		if ( is_front_page() && get_header_image() ){
-		        
-            // Variables - Values // reset range 0 a 30
-			if ($rangeHead == '0') {
-			     $rangeHead = '30'; 
-            }
-            						
-			// agregar background image // add background image
-			$headerStyle = 'style="background-image:url(' . get_header_image() . ');height:' . $rangeHead . 'vh;"';
-			
-            // agregar brand image // add brand image
-            $coverLogo = get_theme_mod( 'ekiline_logo_min' );            
-            if ( $coverLogo ){
-                $coverLogo = '<img class="cover-header-brand author img-fluid" src="' . get_theme_mod( 'ekiline_logo_min' ) . '" alt="' . get_bloginfo( 'name' ) . '"/>';
-            }
-            
-            // Mensaje personalizado // custom message
-            $headerText = get_theme_mod( 'ekiline_headertext', '' );
-            
-            // Permitir el uso de HTML a la vista // Alllow html on output
-            $headerText = wp_kses( $headerText, array( 
-                'a' => array(
-                    'class' => array(),
-                    'href' => array(),
-                    'title' => array(),
-                    'target' => array()
-                ),
-                'br' => array(),
-                'p' => array(
-                    'class' => array(),
-                ),
-                'span' => array(
-                    'class' => array(),
-                ),
-                'small' => array(
-                    'class' => array(),
-                ),                                                                
-                'strong' => array(),
-                'h1' => array(
-                    'class' => array(),
-                ),
-                'h2' => array(
-                    'class' => array(),
-                ),
-                'h3' => array(
-                    'class' => array(),
-                ),
-            ) );               
-            						
-            // Establece la altura de la imagen en formato jumbotron           
-			// Set the range for height value and format image as bootstrap jumbotron			
-			if ( $rangeHead <= '95' && empty( $setVideo ) ) {
 
-					$customHeader .= '<div class="site-branding jumbotron" '.$headerStyle.'>';
+function ekiline_addJsHeader() {
 
-                        $customHeader .= $coverLogo;
-
-                        if ( !$headerText ){																																						
-    						$customHeader .= '<h1 class="site-title entry-title"><a href="'.esc_url( home_url( '/' ) ).'" rel="home">'. $siteName .'</a></h1>';                                														
-                            $customHeader .= '<p class="site-description">'. $siteDescription.'</p>';
-						} else {
-						    $customHeader .= $headerText;
-						}
-						
-					$customHeader .= '</div><!-- .site-branding -->'; 
-			
-			} else {
-			     
-                // Si range es 100 el formato debe ser cover                         
-                // If image range is biggest (100) format image as bootstrap cover   			           
-                // Variables para los menus de socialmedia, se habilitan al ser llenados sus campos  
-			    // Values for socialmedia menu in cover, works with user social media accounts   
-			    // do_shortcode("[socialmenu]") es un widget que se puede utilizar en cualquier parte del sitio
-			    // do_shortcode("[socialmenu]") is a widget that can use in any space
-                
-                // Formato Cover HTML - Set cover HTML   
-                            			    																				
-				$customHeader = '<div class="cover-wrapper" style="background-image:url(' . get_header_image() . ');">
-							      <div class="cover-wrapper-inner">
-							        <div class="cover-container">
-							          <div class="cover-header clearfix">
-							            <div class="inner">
-							              <div class="nav cover-header-nav justify-content-md-end justify-content-center">'. do_shortcode("[socialmenu]") .'</div>
-							              '. $coverLogo .'
-							            </div>
-							          </div>
-							          <div class="inner cover">';
-
-                                    if ( !$headerText ){                                                                                                                                                        
-                                        $customHeader .= '<h1 class="cover-title entry-title"><a href="'.esc_url( home_url( '/' ) ).'" rel="home">'. $siteName .'</a></h1>';                                                                                     
-                                        $customHeader .= '<p class="cover-description">'. $siteDescription.'</p>';
-                                    } else {
-                                        $customHeader .= $headerText;
-                                    }
-
-				$customHeader .=    '</div>
-				                      <div class="cover-footer text-right">
-							            <div class="inner">
-							             <small class="author">&copy; Copyright '. esc_attr( date('Y') ) .' '. $siteName .'</small>
-							            </div>
-							          </div>
-							        </div>
-							      </div>
-							    </div>';	
-			}
-			
-			// Agregar video - Set video in header 
-			
-            if ( ! empty( $setVideo ) ) {
-                 
-                $customHeader = '<!--[if lt IE 9]><script>document.createElement("video");</script><![endif]-->'.
-                                '<div class="video-container" style="background-image: url('. get_header_image() .');background-size:cover;">
-                                    <div class="video-text">
-                                        '.$coverLogo;
-
-                                    if ( !$headerText ){                                                                                                                                                        
-                                        $customHeader .= '<h1 class="cover-title entry-title"><a href="'.esc_url( home_url( '/' ) ).'" rel="home">'. $siteName .'</a></h1>';                                                                                     
-                                        $customHeader .= '<p class="cover-description">'. $siteDescription.'</p>';
-                                    } else {
-                                        $customHeader .= $headerText;
-                                    }
-                                        
-                $customHeader .= '</div>                                                                
-                                    <div class="video-media embed-responsive embed-responsive-16by9">
-                                        <video autoplay loop poster="'. get_header_image() .'" id="bgvid">
-                                            <source src="'. $setVideo  .'" type="video/mp4">
-                                        </video>
-                                        <button id="vidpause" class="btn btn-secondary btn-sm">'. __( 'Pause', 'ekiline' ) .'</button>
-                                    </div>
-                                 </div>';
-                                 
-                /**
-                 * Agregar script para el video // Add inline script
-                 * @link https://developer.wordpress.org/reference/functions/wp_add_inline_script/
-                 * @link https://make.wordpress.org/core/2016/11/26/video-headers-in-4-7/
-                 * @link https://wordpress.stackexchange.com/questions/33008/how-to-add-a-javascript-snippet-to-the-footer-that-requires-jquery
-                 * @link https://wordpress.stackexchange.com/questions/24851/wp-enqueue-inline-script-due-to-dependancies
-                 */                                                                   
-
-                add_action( 'wp_footer', 'ekiline_headervideo', 110 );
-
-                function ekiline_headervideo() { 
-                
-                    echo '<script>
-                    
-                        var vid = document.getElementById("bgvid");
-                        pauseButton = document.getElementById("vidpause");
-                        
-                        if (window.matchMedia("(prefers-reduced-motion)").matches) {
-                            vid.removeAttribute("autoplay");
-                            vid.pause();
-                            pauseButton.innerHTML = "'. __( 'Pause', 'ekiline' ) .'";
-                        }
-                        
-                        function vidFade() {
-                            vid.classList.add("stopfade");
-                        }
-                        
-                        vid.addEventListener("ended", function() {
-                            vid.pause();
-                            vidFade();
-                        });
-                        
-                        pauseButton.addEventListener("click", function() {
-                            vid.classList.toggle("stopfade");
-                            if (vid.paused) {
-                                vid.play();
-                                pauseButton.innerHTML = "'. __( 'Pause', 'ekiline' ) .'";
-                            } else {
-                                vid.pause();
-                                pauseButton.innerHTML = "'. __( 'Play', 'ekiline' ) .'";
-                            }
-                        });
-                        
-                    </script>';
-                    
-                    }
-                                 
-            }       
-									
-				
-		} elseif ( is_single() && true === get_theme_mod('ekiline_showEntryHeading') || is_page() && true === get_theme_mod('ekiline_showPageHeading') ){
-					    
-            /**
-             * Imagenes para el resto de las páginas
-             * Heading image for pages and singles
-             */ 
-
-            $titulo = get_the_title();
-						
-			if ( has_post_thumbnail() ) {
-
-                  $medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
-                  $url = $medium_image_url[0];
-                								
-                if ( $rangeHead >= '95' ) {
-                    
-                    $customHeader .= '<div id="masthead" class="site-header">';
-                    $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
-                    $customHeader .= '<div class="inner"><h1 class="entry-title text-center" >'.$titulo.'</h1></div>';
-                    $customHeader .= '</div></div>';
-                    
-                } else {
-                    
-                    $customHeader .= '<div id="masthead" class="site-header container-fluid">';
-                    $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
-                    $customHeader .= '<h1 class="entry-title" >'.$titulo.'</h1>';
-                    $customHeader .= '</div></div>';
-                    
-                }
-
-			}
-			
-		} elseif ( is_category() && true === get_theme_mod('ekiline_showCategoryHeading') ){
-		    
-            /**
-             * Imagenes para categories
-             * Heading image for categories
-             * addon-categoryfield.php
-             */ 
-
-			$titulo = single_cat_title("", false);			
-			$cat_id = get_query_var('cat');
-			$cat_data = get_option("category_$cat_id");
-							
-			// si tiene imagen
-			if ( $cat_data['img'] ) {
-		
-				// dame la url
-				$url = $cat_data['img'];
-
-                if ( $rangeHead >= '95' ) {
-                    
-                    $customHeader .= '<div id="masthead" class="site-header">';
-                    $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
-                    $customHeader .= '<div class="inner"><h1 class="entry-title text-center" >'.$titulo.'</h1></div>';
-                    $customHeader .= '</div></div>';
-                    
-                } else {
-                    
-                    $customHeader .= '<div id="masthead" class="site-header container-fluid">';
-                    $customHeader .= '<div class="site-branding jumbotron" style="background-image: url(' . $url . ');">';
-                    $customHeader .= '<h1 class="entry-title" >'.$titulo.'</h1>';
-                    $customHeader .= '</div></div>';
-                    
-                }
-								
-				
-			}
-		
-				
-		}		
-
-        /**
-         * Si utiliza woocommerce, el producto no requiere imagen de cabecera, a menos que crees un homepage con imagen principal.
-         * If is woocommerce post doesnt need a header image, but if you want a store with frontpage params allow it.
-         * @link https://docs.woocommerce.com/document/conditional-tags/
-         * class_exists( 'WooCommerce' ), 
-         */ 
-                
-        if ( get_post_type( get_the_ID() ) == 'product' && !is_front_page() ){
-            $customHeader = '';
-        } 
-			
+	if ( !get_theme_mod('ekiline_video') ) return;
 	
-	echo $customHeader;
-	
-}
-
-/* Agregar css al body para saber el tipo de header 
- * Help CSS, add css class to body for know type of heading */
-
-add_filter( 'body_class', function( $classes ) {
-        
-    if ( get_header_image() && is_front_page() ){
+	{ ?>
+<script>
+    var vid = document.getElementById("bgvid");
+    pauseButton = document.getElementById("vidpause");
     
-        $rangeHead = get_theme_mod('ekiline_range_header');
-        
-        if ($rangeHead <= '95' && empty( $setVideo ) ) {
-            
-            $classes[] = 'head-jumbotron';
-                        
-        } elseif ( $rangeHead >= '95' && empty( $setVideo ) ) {
-            
-            $classes[] = 'head-cover';
-            
-        } elseif ( ! empty( $setVideo ) ) {
-            
-            $classes[] = 'head-video';
-            
-        }
-    
+    if (window.matchMedia("(prefers-reduced-motion)").matches) {
+        vid.removeAttribute("autoplay");
+        vid.pause();
+        pauseButton.innerHTML = "<?php echo __( 'Pause', 'ekiline' ); ?>";
     }
     
-    return $classes;
+    function vidFade() {
+        vid.classList.add("stopfade");
+    }
     
-});
+    vid.addEventListener("ended", function() {
+        vid.pause();
+        vidFade();
+    });
     
-    
+    pauseButton.addEventListener("click", function() {
+        vid.classList.toggle("stopfade");
+        if (vid.paused) {
+            vid.play();
+            pauseButton.innerHTML = "<?php echo __( 'Pause', 'ekiline' ); ?>";
+        } else {
+            vid.pause();
+            pauseButton.innerHTML = "<?php echo __( 'Play', 'ekiline' ); ?>";
+        }
+    });
+</script> 
+	<?php }
+
+}
+add_action( 'wp_footer', 'ekiline_addJsHeader', 110 );
