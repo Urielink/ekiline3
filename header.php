@@ -25,12 +25,12 @@
 
 <header id="masthead" class="site-header">
 <?php customHeader(); ?>
-<?php topNavbar(); ?>  
-<?php modalNavbar(); ?>  
+<?php ekilineNavbar('top'); ?>  
 </header><!-- #masthead -->
+<?php ekilineNavbar('modal'); ?>  
 <div id="page" class="site <?php ekiline_pagewidth(); ?>">
     
-<?php primaryNavbar(); ?>  
+<?php ekilineNavbar('primary'); ?>  
 
 <?php breadcrumb(); ?>
    

@@ -29,23 +29,26 @@ function logoTheme() {
     } 
 }
 
+
 /**
- * Top menu
+ * Todos los menus
  * Se complementa con acciones preestablecidas en customizer.php
  * Works with customizer.php
  **/
 
-function topNavbar(){
+function ekilineNavbar($navPosition){
 
-	$navSet = get_theme_mod('ekiline_topmenuSettings');
+	$navTop = get_theme_mod('ekiline_topmenuSettings');
+    $navMain = get_theme_mod('ekiline_primarymenuSettings');
+    $navMod = get_theme_mod('ekiline_modalNavSettings');
 	
-	if ($navSet == '0') {
+	if ($navTop || $navMain || $navMod == '0') {
 	    $navAction = ' static-top';
-    } else if ($navSet == '1') {
+    } else if ($navTop || $navMain || $navMod == '1') {
         $navAction = ' fixed-top'; 
-    } else if ($navSet == '2') {
+    } else if ($navTop || $navMain || $navModp == '2') {
         $navAction = ' fixed-bottom'; 
-    } else if ($navSet == '3') {
+    } else if ($navTop || $navMain || $navMod == '3') {
         $navAction = ' navbar-sticky'; 
     }	
     
@@ -55,220 +58,74 @@ function topNavbar(){
         $inverseMenu = 'navbar-light bg-light';
     }
 	
-	$navStyle = get_theme_mod('ekiline_topmenuStyles');
+	$navTopStyle = get_theme_mod('ekiline_topmenuStyles');
+	$navMainStyle = get_theme_mod('ekiline_primarymenuStyles');
+	$navModStyle = get_theme_mod('ekiline_modalNavStyles');
 	
-	if ($navStyle == '0') {
+	if ($navTopStyle || $navMainStyle || $navModStyle == '0') {
 	    $navAlign = ' mr-auto';
 		$navHelper = '';
-    } else if ($navStyle == '1') {
-        $navAlign = ''; 
-		$navHelper = ' justify-content-md-center';
-    } else if ($navStyle == '2') {
-        $navAlign = ' ml-auto'; 
-		$navHelper = '';
-    } 		
-	
-		
-	if ( has_nav_menu( 'top' ) ) : ?>
-	
-	<nav id="site-navigation-top"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md top-navbar<?php echo $navAction;?>">
-	    <div class="container">
-
-            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
-                        
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse.top">
-      			<!--span class="navbar-toggler-icon"></span--><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
-
-	        
-	        <div id="navbar-collapse-out" class="collapse navbar-collapse top<?php echo $navHelper;?>">
-
-			<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span>        	
-	        
-    	        <?php wp_nav_menu( 
-                        array(
-        	                'menu'              => 'top',
-        	                'theme_location'    => 'top',
-        	                'depth'             => 2,
-        	                'container'         => '',
-        	                'menu_class'        => 'navbar-nav'.$navAlign,
-        	                'menu_id'           => 'top-menu',
-                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-        	                'walker'            => new WP_Bootstrap_Navwalker()
-    	                )
-    	              ); ?>
-    	
-    			<?php dynamic_sidebar( 'navwidget-nw1' ); ?>     
-	        
-	        </div>
-	    </div><!-- .container -->         
-	</nav><!-- .site-navigation -->         
-	<?php endif;
-
-} 
-
-
-
-/**
- * Primary menu (wordpress default)
- * Este se activa dentro del contenedor general (#page)
- * This is wp default menu position, it appears inside general container (#page)
- **/
-
-function primaryNavbar(){
-        
-    $navSet = get_theme_mod('ekiline_primarymenuSettings');
-    
-	if ($navSet == '0') {
-	    $navAction = ' static-top';
-    } else if ($navSet == '1') {
-        $navAction = ' fixed-top'; 
-    } else if ($navSet == '2') {
-        $navAction = ' fixed-bottom'; 
-    } else if ($navSet == '3') {
-        $navAction = ' navbar-sticky'; 
-    } 
-
-    if( true === get_theme_mod('ekiline_inversemenu') ){
-         $inverseMenu = 'navbar-dark bg-dark'; 
-    } else {
-         $inverseMenu = 'navbar-light bg-light';
-    }
-	
-	$navStyle = get_theme_mod('ekiline_primarymenuStyles');
-	
-	if ($navStyle == '0') {
-	    $navAlign = ' mr-auto';
-		$navHelper = '';
-    } else if ($navStyle == '1') {
-        $navAlign = ''; 
-		$navHelper = ' justify-content-md-center';
-    } else if ($navStyle == '2') {
-        $navAlign = ' ml-auto'; 
-		$navHelper = '';
-    } 		
-    	
-    if ( has_nav_menu( 'primary' ) ) : ?>
-    
-            <nav id="site-navigation-primary"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md primary-navbar<?php echo $navAction;?>">
-                <div class="container">
-
-		            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
-
-		            <span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span>
-		            
-		            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse.primary">
-		      			<!--span class="navbar-toggler-icon"></span--><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-		            </button>
-		                                       
-                    <!-- The WordPress Menu goes here -->
-                    <?php wp_nav_menu( array(
-                            'menu'              => 'primary',
-                            'theme_location'    => 'primary',
-                            'depth'             => 2,
-                            'container'         => 'div',
-                                'container_class'   => 'collapse navbar-collapse primary'.$navHelper,
-                                'container_id'      => 'navbar-collapse-in',
-                            'menu_class'        => 'navbar-nav'.$navAlign,
-                            'menu_id'           => 'main-menu',
-                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                            'walker'            => new WP_Bootstrap_Navwalker()
-                            )
-                          ); ?>                           
-                    
-            		<?php dynamic_sidebar( 'navwidget-nw2' ); ?>     
-            		
-                </div><!-- .container -->  
-            </nav><!-- .site-navigation -->		
-            
-    <?php endif;
-}
-
-function modalNavbar(){
-
-    $navSet = get_theme_mod('ekiline_modalNavSettings');
-        
-	if ($navSet == '0') {
-	    $navAction = ' static-top';
-    } else if ($navSet == '1') {
-        $navAction = ' fixed-top'; 
-    } else if ($navSet == '2') {
-        $navAction = ' fixed-bottom'; 
-    } else if ($navSet == '3') {
-        $navAction = ' navbar-sticky'; 
-    }
-        
-    
-    if( true === get_theme_mod('ekiline_inversemenu') ){
-        $inverseMenu = 'navbar-dark bg-dark'; 
-    } else {
-        $inverseMenu = 'navbar-light bg-light';
-    }
-    
-	$navStyle = get_theme_mod('ekiline_modalNavStyles');
-	
-	if ($navStyle == '0') {
 	    $showModal = '';
-    } else if ($navStyle == '1') {
+    } else if ($navTopStyle || $navMainStyle || $navModStyle == '1') {
+        $navAlign = ''; 
+		$navHelper = ' justify-content-md-center';
         $showModal = 'move-from-bottom'; 
-    } else if ($navStyle == '2') {
+    } else if ($navTopStyle || $navMainStyle || $navModStyle == '2') {
+        $navAlign = ' ml-auto'; 
+		$navHelper = '';
         $showModal = 'left-aside'; 
-    } else if ($navStyle == '3') {
+    } else if ($navTopStyle || $navMainStyle || $navModStyle == '3') {
         $showModal = 'right-aside'; 
-    } 
-        
-    if ( has_nav_menu( 'modal' ) ) : ?>
-    
-    <div id="site-navigation-modal"  class="navbar <?php echo $inverseMenu;?> modal-navbar<?php echo $navAction;?>">
-        
-        <div class="container">
-        	
-        	
-	        <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
-	        
-	        <button class="navbar-toggler collapsed" type="button" data-toggle="modal" data-target="#navModal">
-      			<!--span class="navbar-toggler-icon"></span--><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-	        </button>
-            
-        </div><!-- .container -->      
-           
-    </div><!-- .site-navigation -->     
+    } 		
+	
+	// if ( has_nav_menu( $navPosition ) || has_nav_menu( $navPosition ) || has_nav_menu( $navPosition ) ){
+// 
+		// if ($navPosition == 'top') : echo 'menu superior'; endif;
+		// if ($navPosition == 'primary') : echo 'menu normal'; endif;
+		// if ($navPosition == 'modal') : echo 'menu modal'; endif;
+// 		
+	// }
 
-	<!-- tipos de animacion: .zoom, .newspaper, .move-horizontal, .move-from-bottom, .unfold-3d, .zoom-out, .left-aside, .right-aside-->
-    <div id="navModal" class="modal fade <?php echo $showModal;?>" tabindex="-1" role="dialog" aria-labelledby="navModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h5 class="modal-title text-center" id="navModalLabel"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></h5>
-          </div>
-
-
-            <?php wp_nav_menu( 
-                    array(
-                        'menu'              => 'modal',
-                        'theme_location'    => 'modal',
-                        'depth'             => 2,
-                        'container'         => 'nav',
-                        'container_class'   => 'modal-body',
-                        'menu_class'        => 'navbar-nav mr-auto',
-                        'menu_id'           => 'modal-menu',
-                        'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                        'walker'            => new WP_Bootstrap_Navwalker()
-                    )
-                  ); ?>
-        
-
-          <!--div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div-->
-        </div>
-      </div>
-    </div>
-    
-        
-    <?php endif;
-
+	if ( has_nav_menu( $navPosition ) || has_nav_menu( $navPosition ) || has_nav_menu( $navPosition ) ){
+	
+		if ( has_nav_menu( 'top' ) ) : ?>
+		
+		<nav id="site-navigation-top"  class="navbar <?php echo $inverseMenu;?> navbar-expand-md top-navbar<?php echo $navAction;?>">
+		    <div class="container">
+	
+	            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
+	                        
+	            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse.top">
+	      			<!--span class="navbar-toggler-icon"></span--><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+	            </button>
+	
+		        
+		        <div id="navbar-collapse-out" class="collapse navbar-collapse top<?php echo $navHelper;?>">
+	
+				<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span>        	
+		        
+	    	        <?php wp_nav_menu( 
+	                        array(
+	        	                'menu'              => 'top',
+	        	                'theme_location'    => 'top',
+	        	                'depth'             => 2,
+	        	                'container'         => '',
+	        	                'menu_class'        => 'navbar-nav'.$navAlign,
+	        	                'menu_id'           => 'top-menu',
+	                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+	        	                'walker'            => new WP_Bootstrap_Navwalker()
+	    	                )
+	    	              ); ?>
+	    	
+	    			<?php dynamic_sidebar( 'navwidget-nw1' ); ?>     
+		        
+		        </div>
+		    </div><!-- .container -->         
+		</nav><!-- .site-navigation -->         
+		<?php endif; 
+	
+	}	
+	
+	
+	
 } 
