@@ -93,31 +93,7 @@ function ekilineNavbar($navPosition){
 		$dataTarget = '.navbar-collapse.'.$navPosition;				
 		if ($navPosition == 'modal'): $dataToggle = 'modal'; $dataTarget = '#navModal'; endif; 
 			
-		//argumentos para personalizar el callback del menu: valores en blanco = top.
-
-        $wpnmCont = '';
-	    $wpnmContCss = '';
-		$wpnmContId = '';
-
-		if ($navPosition == 'primary') {
-	        $wpnmCont = 'div';
-	        $wpnmContCss = 'collapse navbar-collapse'.$navPosition.$navHelper;
-	        $wpnmContId = 'navbar-collapse-in';
-		}
-		if ($navPosition == 'top' || $navPosition == 'primary') {
-		$wpNavMenuArgs = array(
-	                        'menu'              => $navPosition,
-	                        'theme_location'    => $navPosition,
-	                        'depth'             => 2,                        
-	                        'container'         => $wpnmCont,
-	                        'container_class'   => $wpnmContCss,
-	                        'container_id'      => $wpnmContId,                        
-	                        'menu_class'        => 'navbar-nav '.$navAlign,                        
-	                        'menu_id'           => $navPosition.'-menu',
-	                        'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-	                        'walker'            => new WP_Bootstrap_Navwalker()
-                        );	
-		}
+	
 		 ?>
 
 			<nav id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
@@ -139,16 +115,38 @@ function ekilineNavbar($navPosition){
 			
 						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span>        	
 								        
-			    	        <?php wp_nav_menu( $wpNavMenuArgs ); ?>			
-			    	            	
+			    	        <?php wp_nav_menu( array(
+			        	                'menu'              => 'top',
+			        	                'theme_location'    => 'top',
+			        	                'depth'             => 2,
+			        	                'container'         => '',
+		                                'container_class'   => '',
+		                                'container_id'      => '',
+			        	                'menu_class'        => 'navbar-nav '.$navAlign,
+			        	                'menu_id'           => 'top-menu',
+			                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+			        	                'walker'            => new WP_Bootstrap_Navwalker()
+			    	                ) ); ?>
+			    	
 			    			<?php dynamic_sidebar( 'navwidget-nw1' ); ?>     
 				        
 				        </div>
 				        
 		        	<?php } elseif ($navPosition == 'primary') { ?>	
 		        		
-	                    <?php wp_nav_menu( $wpNavMenuArgs ); ?>        
-	                                       	                    
+	                    <?php wp_nav_menu( array(
+	                            'menu'              => 'primary',
+	                            'theme_location'    => 'primary',
+	                            'depth'             => 2,
+	                            'container'         => 'div',
+                                'container_class'   => 'collapse navbar-collapse primary'.$navHelper,
+                                'container_id'      => 'navbar-collapse-in',
+	                            'menu_class'        => 'navbar-nav '.$navAlign,
+	                            'menu_id'           => 'main-menu',
+	                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+	                            'walker'            => new WP_Bootstrap_Navwalker()
+	                            ) ); ?>                           
+	                    
 	            		<?php dynamic_sidebar( 'navwidget-nw2' ); ?>     
 		        			        
 		        	<?php } ?>		        
@@ -172,20 +170,7 @@ function ekiline_modalMenuBottom(){
 	    case 2 : $showModal = 'left-aside '; break;
 	    case 3 : $showModal = 'right-aside '; break;
 	}
-	//argumentos para ejecutar el menu
-	$wpNavMenuArgs = array(
-                'menu'              => 'modal',
-                'theme_location'    => 'modal',
-                'depth'             => 2,
-                'container'         => 'nav',
-                'container_class'   => 'modal-body',
-                'container_id'      => '',
-                'menu_class'        => 'navbar-nav',
-                'menu_id'           => 'modal-menu',
-                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                'walker'            => new WP_Bootstrap_Navwalker()
-            );
-			
+
 	{ //template ?> 
 <div id="navModal" class="modal fade <?php echo $showModal;?>" tabindex="-1" role="dialog" aria-labelledby="navModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -196,7 +181,20 @@ function ekiline_modalMenuBottom(){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-		<?php wp_nav_menu( $wpNavMenuArgs ); ?>    			
+
+    <?php wp_nav_menu( array(
+                'menu'              => 'modal',
+                'theme_location'    => 'modal',
+                'depth'             => 2,
+                'container'         => 'nav',
+                'container_class'   => 'modal-body',
+                'container_id'      => '',
+                'menu_class'        => 'navbar-nav',
+                'menu_id'           => 'modal-menu',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker()
+            ) ); ?>
+    			
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
