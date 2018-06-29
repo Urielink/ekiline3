@@ -14,6 +14,6 @@ if ( ! is_active_sidebar( 'sidebar-2' ) ) {
 
 <?php rightSideButton(); ?>
 
-<aside id="third" class="widget-area<?php rightSideOn(); ?>" role="complementary">
+<aside id="third" class="widget-area<?php rightSideOn(); ?>">
 	<?php dynamic_sidebar( 'sidebar-2' ); ?>
 </aside><!-- #secondary -->

@@ -38,7 +38,7 @@ function logoTheme() {
 
 function ekilineNavbar($navPosition){
 
-	if ( has_nav_menu( $navPosition ) ){
+	if ( !has_nav_menu( $navPosition ) ) return; 
 		
 		// invertir color (class css)
         $inverseMenu = 'navbar-light bg-light ';		
@@ -92,9 +92,7 @@ function ekilineNavbar($navPosition){
 		$dataToggle = 'collapse';
 		$dataTarget = '.navbar-collapse.'.$navPosition;				
 		if ($navPosition == 'modal'): $dataToggle = 'modal'; $dataTarget = '#navModal'; endif; 
-			
-	
-		 ?>
+?>
 
 			<nav id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
 			    <div class="container">
@@ -153,7 +151,7 @@ function ekilineNavbar($navPosition){
 			    </div><!-- .container -->         
 			</nav><!-- .site-navigation -->        
 
-	<?php } //endif;
+	<?php 
 
 }
 
@@ -163,16 +161,14 @@ function ekilineNavbar($navPosition){
 
 function ekiline_modalMenuBottom(){
 	if ( !has_nav_menu( 'modal' ) )	return;	
-	//tipos de animacion: .zoom, .newspaper, .move-horizontal, .move-from-bottom, .unfold-3d, .zoom-out, .left-aside, .right-aside		
 	switch ( get_theme_mod('ekiline_modalNavStyles') ) {
-	    case 0 : $showModal = ''; break;
-	    case 1 : $showModal = 'move-from-bottom '; break;
-	    case 2 : $showModal = 'left-aside '; break;
-	    case 3 : $showModal = 'right-aside '; break;
-	}
-
-	{ //template ?> 
-<div id="navModal" class="modal fade <?php echo $showModal;?>" tabindex="-1" role="dialog" aria-labelledby="navModalLabel" aria-hidden="true">
+	    case 0 : $modalCss = 'modal fade'; break;
+	    case 1 : $modalCss = 'modal fade move-from-bottom'; break;
+	    case 2 : $modalCss = 'modal fade left-aside'; break;
+	    case 3 : $modalCss = 'modal fade right-aside'; break;
+	}?>
+	
+<div id="navModal" class="<?php echo $modalCss;?>" tabindex="-1" role="dialog" aria-labelledby="navModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -186,7 +182,7 @@ function ekiline_modalMenuBottom(){
                 'menu'              => 'modal',
                 'theme_location'    => 'modal',
                 'depth'             => 2,
-                'container'         => 'nav',
+                'container'         => 'div',
                 'container_class'   => 'modal-body',
                 'container_id'      => '',
                 'menu_class'        => 'navbar-nav',
@@ -201,8 +197,7 @@ function ekiline_modalMenuBottom(){
     </div>
   </div>
 </div>
-<?php } // fin template
 
-}
+<?php }
 add_action( 'wp_footer', 'ekiline_modalMenuBottom', 0 );
 
