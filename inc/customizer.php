@@ -664,6 +664,7 @@ function ekiline_theme_customizer( $wp_customize ) {
     $wp_customize->add_control(
             'ekiline_sitemap', array(
                     'label'          => __( 'Enable sitemap XML', 'ekiline' ),
+                    'description'    => '<a href="'.site_url('?feed=sitemap').'" target="_blank">'.__( 'Show sitemap', 'ekiline' ).'</a>',
                     'section'        => 'ekiline_tracking_section',
                     'settings'       => 'ekiline_sitemap',
                     'type'           => 'checkbox',
