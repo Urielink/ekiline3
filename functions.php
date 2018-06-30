@@ -413,39 +413,3 @@ require get_template_directory() . '/inc/adminEditor.php';
  **/
 
 add_action( 'after_switch_theme', 'flush_rewrite_rules' );
-
-/* Revisar:
- * La compatiilidad de AMP
- * https://isabelcastillo.com/wordpress-amp-plugin
- * 
- * Agregar tab a libreria de medios.
- * https://wordpress.stackexchange.com/questions/216284/how-to-extend-media-library-wp-4-4
- * https://wordpress.stackexchange.com/questions/125692/how-to-know-if-admin-is-in-edit-page-or-post
- * https://codex.wordpress.org/Function_Reference/wp_iframe
- * 
- */
-//  
- // /*
-  // * Prueba, hacer sitemap custom feed
-  // * http://www.wpbeginner.com/wp-tutorials/how-to-create-custom-rss-feeds-in-wordpress/
-  // * https://codex.wordpress.org/Customizing_Feeds
-  // * https://codex.wordpress.org/WordPress_Feeds#Site_comment_feed
-  // * https://codex.wordpress.org/Rewrite_API/add_feed
-  // * https://codex.wordpress.org/Rewrite_API/add_rewrite_rule
-  // */
-// 
-// function customRSS(){
-    // add_feed('sitemap', 'customRSSFunc');
-	// add_rewrite_rule('^sitemap/?', '?feed=sitemap', 'top');
-// }
-// add_action('init', 'customRSS');
-// 
-// function customRSSFunc(){
-        // get_template_part('rss', 'sitemap');
-// }
-// 
-// // function custom_rewrite_rss() {
-  // // // add_rewrite_rule('^leaf/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top');
-  // // add_rewrite_rule('^sitemap/?', '?feed=sitemap', 'top');
-// // }
-// // add_action('init', 'custom_rewrite_rss');
