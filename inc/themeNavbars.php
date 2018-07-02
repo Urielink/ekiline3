@@ -95,7 +95,9 @@ function ekilineNavbar($navPosition){
 ?>
 
 			<nav id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
-			    <div class="container">
+			    <?php if ($navPosition == 'top'){ ?> 
+			    	<div class="container">
+		    	<?php } ?>          
 		
 		            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
 	
@@ -147,8 +149,12 @@ function ekilineNavbar($navPosition){
 	                    
 	            		<?php dynamic_sidebar( 'navwidget-nw2' ); ?>     
 		        			        
-		        	<?php } ?>		        
-			    </div><!-- .container -->         
+		        	<?php } ?>		   
+		        	     
+			    <?php if ($navPosition == 'top'){ ?> 
+			    	</div><!-- .container --> 
+		    	<?php } ?>          
+		    	
 			</nav><!-- .site-navigation -->        
 
 	<?php 

@@ -457,7 +457,7 @@ function ekiline_archive_pagination() {
 if ( ! function_exists( 'topWidgets' ) ) :    
 	function topWidgets(){		
 		if ( is_active_sidebar( 'toppage-w1' ) ) { ?>
-			<div class="row m-0 top-widgets"> 
+			<div id="top-widgets" class="row m-0"> 
 		    <?php dynamic_sidebar( 'toppage-w1' ); ?>
 			</div>
 		<?php }
