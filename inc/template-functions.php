@@ -454,14 +454,15 @@ function ekiline_archive_pagination() {
  * Widgets: Set top widgets (header.php #25)
  **/
 
-if ( ! function_exists ( 'topWidgets' ) ) {
-    
-	function topWidgets(){
-		if ( is_active_sidebar( 'toppage-w1' ) ) {
-		    return '<div class="row top-widgets">'.dynamic_sidebar( 'toppage-w1' ).'</div>';
-		}
+if ( ! function_exists( 'topWidgets' ) ) :    
+	function topWidgets(){		
+		if ( is_active_sidebar( 'toppage-w1' ) ) { ?>
+			<div class="row m-0 top-widgets"> 
+		    <?php dynamic_sidebar( 'toppage-w1' ); ?>
+			</div>
+		<?php }
 	}
-}
+endif;
 
 /**
  * Customizer: Disable all media comments (customizer.php#371).
