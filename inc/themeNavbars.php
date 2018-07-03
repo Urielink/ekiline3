@@ -101,8 +101,10 @@ function ekilineNavbar($navPosition){
 		
 		            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
 	
-					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' ) { ?> 
-					<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span> 
+					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' ) { ?>
+						<?php if ( get_bloginfo( 'description' ) ) { ?> 
+						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span> 
+						<?php } ?>
 					<?php } ?>
 										
 		            <button class="navbar-toggler collapsed" type="button" data-toggle="<?php echo $dataToggle; ?>" data-target="<?php echo $dataTarget; ?>">
@@ -113,7 +115,9 @@ function ekilineNavbar($navPosition){
 			        	
 				        <div id="navbar-collapse-out" class="collapse navbar-collapse <?php echo $navPosition; ?><?php echo $navHelper;?>">
 			
-						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span>        	
+						<?php if ( get_bloginfo( 'description' ) ) { ?> 
+						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span> 
+						<?php } ?>
 								        
 			    	        <?php wp_nav_menu( array(
 			        	                'menu'              => 'top',
