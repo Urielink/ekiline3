@@ -22,7 +22,6 @@ if ($colSet != '0') { $cssCols = ' row'; $cssToCol = ' col-md-12'; }
 
 ?>
 
-		
 		<?php dynamic_sidebar( 'content-w1' ); ?>		
 
 		<main id="main" class="site-main<?php echo $cssCols; ?>">

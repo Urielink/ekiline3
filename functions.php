@@ -148,7 +148,7 @@ function ekiline_widgets_init() {
     ) );
 
         register_sidebar( array(
-        'name'          => esc_html__( 'In page on bottom of content', 'ekiline' ),
+        'name'          => esc_html__( 'In page at bottom of content', 'ekiline' ),
         'id'            => 'content-w2',
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -156,6 +156,16 @@ function ekiline_widgets_init() {
         'before_title'  => '<h4 class="widget-title">',
         'after_title'   => '</h4>',
     ) );
+
+        register_sidebar( array(
+        'name'          => esc_html__( 'In page above columns', 'ekiline' ),
+        'id'            => 'content-w3',
+        'description'   => '',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ) );	
                
 // Widgets at top of content
     register_sidebar( array(

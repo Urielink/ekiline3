@@ -29,10 +29,10 @@
 </header><!-- #masthead -->
 <?php ekilineNavbar('modal'); ?>  
 <div id="page" class="site <?php ekiline_pagewidth(); ?>">
-    
-<?php ekilineNavbar('primary'); ?>  
 
+<?php ekilineNavbar('primary'); ?>  
 <?php breadcrumb(); ?>
+<?php dynamic_sidebar( 'content-w3' ); ?>    
    
 	<div id="content" class="site-content<?php cssSides(); ?>">
 	    	
