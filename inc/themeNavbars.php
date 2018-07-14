@@ -41,13 +41,18 @@ function ekilineNavbar($navPosition){
 	if ( !has_nav_menu( $navPosition ) ) return; 
 		
 		// invertir color (class css)
-        $inverseMenu = 'navbar-light bg-light ';		
+        $inverseMenu = 'navbar-light bg-light ';
 		if( true === get_theme_mod('ekiline_inversemenu') ) : $inverseMenu = 'navbar-dark bg-dark ';  endif;
-				
+		// semantica html por posicion de objetos
+		$tagNav = 'nav';
+		$tagNavBrand = 'h2';
+						
 		// Variables por cada tipo de menu: configurcion y distribucion de menu	    						
 		if ($navPosition == 'top'){
 			$actions = get_theme_mod('ekiline_topmenuSettings'); 
 			$styles = get_theme_mod('ekiline_topmenuStyles'); 
+			$tagNav = 'header';
+			$tagNavBrand = 'h1';
 		}
 		if ($navPosition == 'primary'){
 			$actions = get_theme_mod('ekiline_primarymenuSettings');
@@ -94,12 +99,12 @@ function ekilineNavbar($navPosition){
 		if ($navPosition == 'modal'): $dataToggle = 'modal'; $dataTarget = '#navModal'; endif; 
 ?>
 
-			<nav id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
+			<<?php echo $tagNav; ?> id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
 			    <?php if ($navPosition == 'top'){ ?> 
 			    	<div class="container">
 		    	<?php } ?>          
 		
-		            <h2><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></h2>
+		            <<?php echo $tagNavBrand; ?>><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></<?php echo $tagNavBrand; ?>>
 	
 					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' ) { ?>
 						<?php if ( get_bloginfo( 'description' ) ) { ?> 
@@ -159,7 +164,7 @@ function ekilineNavbar($navPosition){
 			    	</div><!-- .container --> 
 		    	<?php } ?>          
 		    	
-			</nav><!-- .site-navigation -->        
+			</<?php echo $tagNav; ?>><!-- .site-navigation -->        
 
 	<?php 
 

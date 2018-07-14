@@ -93,9 +93,10 @@ endif;  // ekiline_admin_header_image
 
 function ekiline_addCssHeader() {
 	$headerImage = get_header_image();
-	if ( is_single() || is_page() && has_post_thumbnail() ) {
+	if ( is_single() || is_page() ) {		
 		$medium_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
-		$headerImage = $medium_image_url[0];
+		// si tiene imagen
+		if ( has_post_thumbnail() ) $headerImage = $medium_image_url[0];
 	}
 	if ( is_category() ) {
 		$cat_id = get_query_var('cat');
@@ -127,6 +128,11 @@ function customHeader(){
 	//variables para la información del tema
 	$headerSwitch = 'site-branding jumbotron m-0';
 	$headerTitle = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home">'.$siteName.'</a>';
+	// semantica html por posicion de objetos
+	$tagHead = 'header';
+	$tagTitle = 'h1';
+	if ( has_nav_menu( 'top' ) ) $tagHead = 'div'; $tagTitle = 'h2';
+	
 	//Personalizaciones
     $rangeHead = get_theme_mod('ekiline_range_header');
 	$setVideo = get_theme_mod('ekiline_video');
@@ -147,9 +153,11 @@ function customHeader(){
 		//cancelar si es producto de woocommerce
 		return;
 	}
-	else return;
+	else return;		
 	// Header y cambios
 	{ ?>
+		
+		<<?php echo $tagHead; ?> id="masthead" class="site-header">
 	
 		<?php if ( is_front_page() && $rangeHead == '100' ) { ?>
 			<div class="cover-wrapper">
@@ -171,8 +179,8 @@ function customHeader(){
 				    	<?php 
 				    	if( $headerText && is_front_page() ) {
 				    		 echo $headerText ; 
-						} else { ?>				    		
-							<h1 class="site-title entry-title"><?php echo $headerTitle ;?></h1>                              														
+						} else { ?>		
+							<<?php echo $tagTitle; ?> class="site-title entry-title"><?php echo $headerTitle ;?></<?php echo $tagTitle; ?>>                              														
 					    	<p class="site-description"> <?php echo $siteDescription ;?> </p>				    		
 				    	<?php } ?>
 			    	
@@ -204,6 +212,9 @@ function customHeader(){
 			  </div><!-- cover-wrapper-inner -->
 		    </div><!-- cover-wrapper -->	    
 		<?php } ;?>
+
+		</<?php echo $tagHead; ?>><!-- #masthead -->
+		
 		
 	<?php }
 	

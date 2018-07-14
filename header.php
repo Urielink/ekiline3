@@ -19,19 +19,24 @@
 <meta name="keywords" content="<?php ekiline_keywords(); ?> " />
 <?php wp_head(); ?>
 </head>
-<body <?php body_class();?>>	
+<body <?php body_class();?>>
+		
 <?php ekiline_loader(); ?>
+
 <?php topWidgets(); ?>  
 
-<header id="masthead" class="site-header">
-<?php customHeader(); ?>
 <?php ekilineNavbar('top'); ?>  
-</header><!-- #masthead -->
+
+<?php customHeader(); ?>
+
 <?php ekilineNavbar('modal'); ?>  
+
 <div id="page" class="site <?php ekiline_pagewidth(); ?>">
 
 <?php ekilineNavbar('primary'); ?>  
+
 <?php breadcrumb(); ?>
+
 <?php dynamic_sidebar( 'content-w3' ); ?>    
    
 	<div id="content" class="site-content<?php cssSides(); ?>">
