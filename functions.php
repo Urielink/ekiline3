@@ -231,12 +231,12 @@ function ekiline_scripts() {
 	wp_enqueue_style( 'layout', get_template_directory_uri() . '/css/ekiline.css', array(), '1.0', 'all' );	
 	
 	// permitir el uso del tema minificado
-	$located = locate_template( 'style.min.css' );
-	if ($located != '' ) {
-		wp_enqueue_style( 'ekiline-style', get_template_directory_uri() . '/style.min.css', array(), '1.0', 'all' );	
-    } else {
+	// $located = locate_template( 'style.min.css' );
+	// if ($located != '' ) {
+		// wp_enqueue_style( 'ekiline-style', get_template_directory_uri() . '/style.min.css', array(), '1.0', 'all' );	
+    // } else {
 		wp_enqueue_style( 'ekiline-style', get_stylesheet_uri() );	
-    }	
+    // }	
         
     // Condición para font awesome
     if( true === get_theme_mod( 'ekiline_fontawesome', true ) ) {

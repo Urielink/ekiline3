@@ -46,6 +46,8 @@ function ekilineNavbar($navPosition){
 		// semantica html por posicion de objetos
 		$tagNav = 'nav';
 		$tagNavBrand = 'h2';
+		// clase auxiliar alineación de items, transformar a header.
+		$headNav = '';
 						
 		// Variables por cada tipo de menu: configurcion y distribucion de menu	    						
 		if ($navPosition == 'top'){
@@ -75,13 +77,13 @@ function ekilineNavbar($navPosition){
 	    }	
 				
 		//Clases css por estilo de menu
-		/*tipos de animacion: .zoom, .newspaper, .move-horizontal, .move-from-bottom, .unfold-3d, .zoom-out, .left-aside, .right-aside */
 		if ($styles == '0') {
 		    $navAlign = 'mr-auto ';
 			$navHelper = '';
 	    } else if ($styles == '1') {
 	        $navAlign = ''; 
-			$navHelper = ' justify-content-md-center ';
+			$navHelper = ' justify-content-md-center';
+			$headNav = ' flex-md-column';
 	    } else if ($styles == '2') {
 	        $navAlign = 'ml-auto '; 
 			$navHelper = '';
@@ -101,7 +103,7 @@ function ekilineNavbar($navPosition){
 
 			<<?php echo $tagNav; ?> id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
 			    <?php if ($navPosition == 'top'){ ?> 
-			    	<div class="container">
+			    	<div class="container<?php echo $headNav; ?>">
 		    	<?php } ?>          
 		
 		            <<?php echo $tagNavBrand; ?>><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></<?php echo $tagNavBrand; ?>>
@@ -176,6 +178,7 @@ function ekilineNavbar($navPosition){
 
 function ekiline_modalMenuBottom(){
 	if ( !has_nav_menu( 'modal' ) )	return;	
+	/*tipos de animacion: .zoom, .newspaper, .move-horizontal, .move-from-bottom, .unfold-3d, .zoom-out, .left-aside, .right-aside */
 	switch ( get_theme_mod('ekiline_modalNavStyles') ) {
 	    case 0 : $modalCss = 'modal fade'; break;
 	    case 1 : $modalCss = 'modal fade move-from-bottom'; break;
