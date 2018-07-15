@@ -213,25 +213,6 @@ function ekiline_widgets_init() {
 add_action( 'widgets_init', 'ekiline_widgets_init' );
 
 /**
- * filtro para convertir un widget en botón
- * http://rickrduncan.com/pro/wordpress/customize-wordpress-widget-titles
- * https://wordpress.stackexchange.com/questions/106476/wordpress-apply-filter-hook-to-a-particular-sidebar-widgets
- * 
- */ 
-
-// function widget_params( $params ) { 
-  // if ('navwidget-nw2' === $params[0]['id']) {
-    // $params[0]['before_widget'] = '<!--abrir--><div class="widget navbar-btn btn-group dropdown">' ;
-    // $params[0]['after_widget'] = '</section></div><!--cerrar-->' ;
-    // $params[0]['before_title'] = '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">' ;
-    // $params[0]['after_title'] = ' <span class="caret"></span></button><section class="dropdown-menu">' ;
-  // }
-  // return $params;
-// }
-// add_filter( 'dynamic_sidebar_params', 'widget_params' );
-
-
-/**
  * Ingreso de CSS y JS, para fines de optimización cargamos estilos y js de manera asincrona.
  * Enqueue scripts and styles (ekiline add css by other methods)
  * Add CSS and JS https://codex.wordpress.org/Function_Reference/wp_enqueue_script

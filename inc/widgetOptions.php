@@ -64,3 +64,21 @@ add_filter('widget_update_callback', 'ekiline_in_widget_form_update',5,3);
 //add class names (default priority, one parameter)
 add_filter('dynamic_sidebar_params', 'ekiline_dynamic_sidebar_params');
 
+
+/**
+ * filtro para convertir un widget en botón
+ * http://rickrduncan.com/pro/wordpress/customize-wordpress-widget-titles
+ * https://wordpress.stackexchange.com/questions/106476/wordpress-apply-filter-hook-to-a-particular-sidebar-widgets
+ * 
+ */ 
+
+// function widget_params( $params ) { 
+  // if ('navwidget-nw2' === $params[0]['id']) {
+    // $params[0]['before_widget'] = '<!--abrir--><div class="widget navbar-btn btn-group dropdown">' ;
+    // $params[0]['after_widget'] = '</section></div><!--cerrar-->' ;
+    // $params[0]['before_title'] = '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">' ;
+    // $params[0]['after_title'] = ' <span class="caret"></span></button><section class="dropdown-menu">' ;
+  // }
+  // return $params;
+// }
+// add_filter( 'dynamic_sidebar_params', 'widget_params' );
