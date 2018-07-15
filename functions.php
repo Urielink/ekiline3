@@ -195,10 +195,10 @@ function ekiline_widgets_init() {
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s navbar-btn btn-group dropdown">',
         'before_title'  => '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">',
-        'after_title'   => ' <span class="caret"></span></button><div class="dropdown-menu">',
-        'after_widget'  => '</div></div>',
+        'after_title'   => ' <span class="caret"></span></button><section class="dropdown-menu">',
+        'after_widget'  => '</section></div>',
     ) );     
-
+      
 // Widgets in widgets
     register_sidebar( array(
         'name'          => esc_html__( 'Dropdown in single bootstrap navbar', 'ekiline' ),
@@ -211,6 +211,24 @@ function ekiline_widgets_init() {
     ) );         
 }
 add_action( 'widgets_init', 'ekiline_widgets_init' );
+
+/**
+ * filtro para convertir un widget en botón
+ * http://rickrduncan.com/pro/wordpress/customize-wordpress-widget-titles
+ * https://wordpress.stackexchange.com/questions/106476/wordpress-apply-filter-hook-to-a-particular-sidebar-widgets
+ * 
+ */ 
+
+// function widget_params( $params ) { 
+  // if ('navwidget-nw2' === $params[0]['id']) {
+    // $params[0]['before_widget'] = '<!--abrir--><div class="widget navbar-btn btn-group dropdown">' ;
+    // $params[0]['after_widget'] = '</section></div><!--cerrar-->' ;
+    // $params[0]['before_title'] = '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">' ;
+    // $params[0]['after_title'] = ' <span class="caret"></span></button><section class="dropdown-menu">' ;
+  // }
+  // return $params;
+// }
+// add_filter( 'dynamic_sidebar_params', 'widget_params' );
 
 
 /**
@@ -273,7 +291,7 @@ function ekiline_scripts() {
 	wp_enqueue_script( 'popper-script', get_template_directory_uri() . '/js/popper.min.js', array('jquery'), '1', true  );
  	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4', true  );
     wp_enqueue_script( 'ekiline-swipe', get_template_directory_uri() . '/js/carousel-swipe.min.js', array('jquery'), '20150716', true  );
-    wp_enqueue_script( 'ekiline-layout', get_template_directory_uri() . '/js/ekiline.min.js', array('jquery'), '20151226', true  );
+    wp_enqueue_script( 'ekiline-layout', get_template_directory_uri() . '/js/ekiline.js', array('jquery'), '20151226', true  );
             
 	// scripts con condicionales, caso IE https://developer.wordpress.org/reference/functions/wp_script_add_data/
 	wp_enqueue_script( 'ie10-vpbugwkrnd', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.min.js' );

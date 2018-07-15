@@ -7,21 +7,21 @@ jQuery(document).ready(function($){
         $('#pageLoad').fadeOut(500);
     }, 600);			          
     
-    // Ajuste en dropdown de widgets dentro de navbar
-	$('.widget.navbar-btn.dropdown .dropdown-menu').on('click', function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		$('.carousel-control-prev').click(function() {
-		  $( $( this ).parent() ).carousel('prev');
-		});
-		
-		$('.carousel-control-next').click(function() {
-		  $( $( this ).parent() ).carousel('next');
-		});
-	});
-   
-    // Ajuste en dropdown de widgets dentro de navbar
-	$( '.external-toggle .nav-link' ).attr('data-toggle', 'collapse' );	 
+    // // Ajuste en dropdown de widgets dentro de navbar
+	// $('.widget.navbar-btn.dropdown .dropdown-menu').on('click', function(e){
+		// e.stopPropagation();
+		// e.preventDefault();
+		// $('.carousel-control-prev').click(function() {
+		  // $( $( this ).parent() ).carousel('prev');
+		// });
+// 		
+		// $('.carousel-control-next').click(function() {
+		  // $( $( this ).parent() ).carousel('next');
+		// });
+	// });
+//    
+    // // Ajuste en dropdown de widgets dentro de navbar
+	// $( '.external-toggle .nav-link' ).attr('data-toggle', 'collapse' );	 
   
 		
 	/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
