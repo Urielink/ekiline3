@@ -48,6 +48,8 @@ function ekilineNavbar($navPosition){
 		$tagNavBrand = 'h2';
 		// clase auxiliar alineación de items, transformar a header.
 		$headNav = '';
+		$navHelper = '';
+        $navAlign = ''; 
 						
 		// Variables por cada tipo de menu: configurcion y distribucion de menu	    						
 		if ($navPosition == 'top'){
@@ -79,15 +81,19 @@ function ekilineNavbar($navPosition){
 		//Clases css por estilo de menu
 		if ($styles == '0') {
 		    $navAlign = 'mr-auto ';
-			$navHelper = '';
 	    } else if ($styles == '1') {
-	        $navAlign = ''; 
+	        $navAlign = 'ml-auto '; 
+	    } else if ($styles == '2') {
 			$navHelper = ' justify-content-md-center';
 			$headNav = ' flex-md-column';
-	    } else if ($styles == '2') {
-	        $navAlign = 'ml-auto '; 
-			$navHelper = '';
-	    }
+	    } else if ($styles == '3') {
+			$navHelper = ' justify-content-md-between w-100';
+			$headNav = ' flex-md-column';
+	    } else if ($styles == '4') {
+			$navHelper = ' justify-content-md-around w-100';
+			$headNav = ' flex-md-column';
+	    } 	    		
+		
 		
 		// Clases css para mostrar el boton del modal
 		if ($navPosition != 'modal'){ $expand = 'navbar-expand-md '; } else { $expand = ' '; }

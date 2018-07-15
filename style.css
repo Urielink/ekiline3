@@ -68,7 +68,7 @@ a img.aligncenter{display:block;margin-left:auto;margin-right:auto;}
 .sticky{display:block;}
 .bypostauthor{display:block;}
 #user_switching_switch_on{position:fixed;left:0;padding:0.4rem;margin:0px;bottom:0px;z-index:3000;background-color:#343A40;font-size:0.8rem;}
-/**/#wpadminbar{display:none;}
+/*#wpadminbar{display:none;}*/
 /*gutenberg*/
 .wp-block-image img{max-width:100%;}
 /* ------------------------------------------------

@@ -433,8 +433,10 @@ function ekiline_theme_customizer( $wp_customize ) {
             	'priority'    => 100,
             	'choices' => array(
                     '0' => __( 'Default', 'ekiline' ),
-                    '1' => __( 'Centered', 'ekiline' ),
-                	'2' => __( 'Right', 'ekiline' ),
+                	'1' => __( 'Right', 'ekiline' ),
+                    '2' => __( 'Centered', 'ekiline' ),
+                	'3' => __( 'Centered between', 'ekiline' ),
+                	'4' => __( 'Centered around', 'ekiline' ),
                 ),
             )
         );   
@@ -479,8 +481,8 @@ function ekiline_theme_customizer( $wp_customize ) {
             	'priority'    => 100,
             	'choices' => array(
                     '0' => __( 'Default', 'ekiline' ),
-                    '1' => __( 'Centered', 'ekiline' ),
-                	'2' => __( 'Right', 'ekiline' ),
+                	'1' => __( 'Right', 'ekiline' ),
+                    '2' => __( 'Centered', 'ekiline' ),
                 ),
             )
         );  		       
