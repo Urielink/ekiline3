@@ -177,38 +177,39 @@ function ekiline_widgets_init() {
         'before_title'  => '<p>',
         'after_title'   => '</p>',
     ) );   
-            
+
 // Widget positions for each menu
     register_sidebar( array(
-        'name'          => esc_html__( 'Dropdown in top menu', 'ekiline' ),
+        'name'          => esc_html__( 'In top menu', 'ekiline' ),
         'id'            => 'navwidget-nw1',
         'description'   => '',
-        'before_widget' => '<div id="%1$s" class="widget %2$s navbar-btn btn-group dropdown">',
-        'before_title'  => '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">',
-        'after_title'   => ' <span class="caret"></span></button><div class="dropdown-menu">',
-        'after_widget'  => '</div></div>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<p>',
+        'after_title'   => '</p>',
     ) );     
 
     register_sidebar( array(
-        'name'          => esc_html__( 'Dropdown in primary menu', 'ekiline' ),
+        'name'          => esc_html__( 'In primary menu', 'ekiline' ),
         'id'            => 'navwidget-nw2',
         'description'   => '',
-        'before_widget' => '<div id="%1$s" class="widget %2$s navbar-btn btn-group dropdown">',
-        'before_title'  => '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">',
-        'after_title'   => ' <span class="caret"></span></button><section class="dropdown-menu">',
-        'after_widget'  => '</section></div>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<p>',
+        'after_title'   => '</p>',
     ) );     
       
 // Widgets in widgets
     register_sidebar( array(
-        'name'          => esc_html__( 'Dropdown in single bootstrap navbar', 'ekiline' ),
+        'name'          => esc_html__( 'In single bootstrap navbar', 'ekiline' ),
         'id'            => 'navwidget-nw3',
         'description'   => '',
-        'before_widget' => '<div id="%1$s" class="widget %2$s navbar-btn btn-group dropdown">',
-        'before_title'  => '<button class="btn btn-secondary btn-block dropdown-toggle" type="button" data-toggle="dropdown">',
-        'after_title'   => ' <span class="caret"></span></button><div class="dropdown-menu">',
-        'after_widget'  => '</div></div>',
-    ) );         
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<p>',
+        'after_title'   => '</p>',
+    ) );
+	         
 }
 add_action( 'widgets_init', 'ekiline_widgets_init' );
 
