@@ -170,5 +170,3 @@ function ekiline_widgetShow($params){
 
 }
 add_filter('dynamic_sidebar_params', 'ekiline_widgetShow');
-
-
