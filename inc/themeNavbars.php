@@ -50,6 +50,8 @@ function ekilineNavbar($navPosition){
 		$headNav = '';
 		$navHelper = '';
         $navAlign = ''; 
+		// el widget
+		$wdgtNav = ''; // navwidget-nw1 navwidget-nw2
 						
 		// Variables por cada tipo de menu: configurcion y distribucion de menu	    						
 		if ($navPosition == 'top'){
@@ -57,10 +59,12 @@ function ekilineNavbar($navPosition){
 			$styles = get_theme_mod('ekiline_topmenuStyles'); 
 			$tagNav = 'header';
 			$tagNavBrand = 'h1';
+			$wdgtNav = 'navwidget-nw1';
 		}
 		if ($navPosition == 'primary'){
 			$actions = get_theme_mod('ekiline_primarymenuSettings');
 			$styles = get_theme_mod('ekiline_primarymenuStyles'); 
+			$wdgtNav = 'navwidget-nw2';	
 		}
 		if ($navPosition == 'modal'){
 			$actions = get_theme_mod('ekiline_modalNavSettings');
@@ -103,72 +107,55 @@ function ekilineNavbar($navPosition){
 		
 		// variables para boton modal
 		$dataToggle = 'collapse';
-		$dataTarget = '.navbar-collapse.'.$navPosition;				
+		$dataTarget = '#navbar-collapse-'.$navPosition;				
 		if ($navPosition == 'modal'): $dataToggle = 'modal'; $dataTarget = '#navModal'; endif; 
 ?>
 
 			<<?php echo $tagNav; ?> id="site-navigation-<?php echo $navPosition; ?>"  class="<?php echo $navClassCss;?>">
-			    <?php if ($navPosition == 'top'){ ?> 
+			
+			    <?php if ($navPosition == 'top' || $navPosition == 'modal'){ ?> 
 			    	<div class="container<?php echo $headNav; ?>">
 		    	<?php } ?>          
 		
-		            <<?php echo $tagNavBrand; ?>><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php logoTheme(); ?></a></<?php echo $tagNavBrand; ?>>
-	
-					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' ) { ?>
-						<?php if ( get_bloginfo( 'description' ) ) { ?> 
-						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span> 
-						<?php } ?>
+		            <<?php echo $tagNavBrand; ?>><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php logoTheme(); ?></a></<?php echo $tagNavBrand; ?>>
+
+					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' && get_bloginfo( 'description' ) ) { ?> 
+					<span class="navbar-text d-none d-md-block"><?php echo get_bloginfo( 'description' ); ?></span> 
 					<?php } ?>
-										
+											
 		            <button class="navbar-toggler collapsed" type="button" data-toggle="<?php echo $dataToggle; ?>" data-target="<?php echo $dataTarget; ?>">
-		      			<!--span class="navbar-toggler-icon"></span--><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+		      			<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 		            </button>
 
-			        <?php if ($navPosition == 'top') { ?>
+			        <div id="navbar-collapse-<?php echo $navPosition; ?>" class="collapse navbar-collapse <?php echo $navPosition; ?><?php echo $navHelper;?>">
+
+					<?php if ( $navPosition == 'top' && get_bloginfo( 'description' ) ) { ?> 
+					<span class="navbar-text d-none d-md-block"><?php echo get_bloginfo( 'description' ); ?></span> 
+					<?php } ?>
+
+
+			        <?php if ($navPosition == 'top' || $navPosition == 'primary') { ?>
 			        	
-				        <div id="navbar-collapse-out" class="collapse navbar-collapse <?php echo $navPosition; ?><?php echo $navHelper;?>">
-			
-						<?php if ( get_bloginfo( 'description' ) ) { ?> 
-						<span class="navbar-text d-none d-sm-block"><?php echo get_bloginfo( 'description' ); ?></span> 
-						<?php } ?>
-								        
 			    	        <?php wp_nav_menu( array(
-			        	                'menu'              => 'top',
-			        	                'theme_location'    => 'top',
+			        	                'menu'              => $navPosition,
+			        	                'theme_location'    => $navPosition,
 			        	                'depth'             => 2,
 			        	                'container'         => '',
 		                                'container_class'   => '',
 		                                'container_id'      => '',
-			        	                'menu_class'        => 'navbar-nav '.$navAlign,
-			        	                'menu_id'           => 'top-menu',
+			        	                'menu_class'        => 'navbar-nav ' . $navAlign,
+			        	                'menu_id'           => $navPosition . '-inner-menu',
 			                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
 			        	                'walker'            => new WP_Bootstrap_Navwalker()
 			    	                ) ); ?>
-			    	
-			    			<?php dynamic_sidebar( 'navwidget-nw1' ); ?>     
-				        
-				        </div>
-				        
-		        	<?php } elseif ($navPosition == 'primary') { ?>	
-		        		
-	                    <?php wp_nav_menu( array(
-	                            'menu'              => 'primary',
-	                            'theme_location'    => 'primary',
-	                            'depth'             => 2,
-	                            'container'         => 'div',
-                                'container_class'   => 'collapse navbar-collapse primary'.$navHelper,
-                                'container_id'      => 'navbar-collapse-in',
-	                            'menu_class'        => 'navbar-nav '.$navAlign,
-	                            'menu_id'           => 'main-menu',
-	                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-	                            'walker'            => new WP_Bootstrap_Navwalker()
-	                            ) ); ?>                           
-	                    
-	            		<?php dynamic_sidebar( 'navwidget-nw2' ); ?>     
-		        			        
-		        	<?php } ?>		   
-		        	     
-			    <?php if ($navPosition == 'top'){ ?> 
+
+		    				<?php dynamic_sidebar( $wdgtNav ); ?>     
+			    					        				        
+		        	<?php } ?>	
+		        	
+			        </div>
+
+			    <?php if ($navPosition == 'top' || $navPosition == 'modal'){ ?> 
 			    	</div><!-- .container --> 
 		    	<?php } ?>          
 		    	

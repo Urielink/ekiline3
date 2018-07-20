@@ -166,8 +166,6 @@ function ekiline_widgetShow($params){
     $params[0]['after_title'] = $aftTtl;
     $params[0]['after_widget'] = $aftWdg ;
 
-
-
     return $params;
 
 }
