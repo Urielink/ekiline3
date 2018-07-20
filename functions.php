@@ -228,19 +228,18 @@ function ekiline_scripts() {
     wp_enqueue_style( 'bootstrap-4', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4', 'all' );
 	wp_enqueue_style( 'ie10-viewport-bug-workaround', get_template_directory_uri() . '/css/ie10-viewport-bug-workaround.min.css', array(), '1', 'all' );
 		wp_style_add_data( 'ie10-viewport-bug-workaround', 'conditional', 'gte IE 8' );	
-	wp_enqueue_style( 'layout', get_template_directory_uri() . '/css/ekiline.css', array(), '1.0', 'all' );	
+	wp_enqueue_style( 'layout', get_template_directory_uri() . '/css/ekiline.min.css', array(), '1.0', 'all' );	
 	
 	// permitir el uso del tema minificado
-	// $located = locate_template( 'style.min.css' );
-	// if ($located != '' ) {
-		// wp_enqueue_style( 'ekiline-style', get_template_directory_uri() . '/style.min.css', array(), '1.0', 'all' );	
-    // } else {
+	$located = locate_template( 'style.min.css' );
+	if ($located != '' ) {
+		wp_enqueue_style( 'ekiline-style', get_template_directory_uri() . '/style.min.css', array(), '1.0', 'all' );	
+    } else {
 		wp_enqueue_style( 'ekiline-style', get_stylesheet_uri() );	
-    // }	
+    }	
         
     // Condición para font awesome
     if( true === get_theme_mod( 'ekiline_fontawesome', true ) ) {
-          //wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0', 'all' ); 
           wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/fontawesome-all.min.css', array(), '5.0.6', 'all' ); 
     }
 		
@@ -273,7 +272,7 @@ function ekiline_scripts() {
 	wp_enqueue_script( 'popper-script', get_template_directory_uri() . '/js/popper.min.js', array('jquery'), '1', true  );
  	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4', true  );
     wp_enqueue_script( 'ekiline-swipe', get_template_directory_uri() . '/js/carousel-swipe.min.js', array('jquery'), '20150716', true  );
-    wp_enqueue_script( 'ekiline-layout', get_template_directory_uri() . '/js/ekiline.js', array('jquery'), '20151226', true  );
+    wp_enqueue_script( 'ekiline-layout', get_template_directory_uri() . '/js/ekiline.min.js', array('jquery'), '20151226', true  );
             
 	// scripts con condicionales, caso IE https://developer.wordpress.org/reference/functions/wp_script_add_data/
 	wp_enqueue_script( 'ie10-vpbugwkrnd', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.min.js' );
