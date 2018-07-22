@@ -125,8 +125,6 @@ function ekiline_csscolors() {
         body{ color:'.$texto.'; }
         a:hover,a:focus,a:active{ color:'.$enlaces.';opacity:.6; }
         .page-title, .jumbotron .entry-title{color:'.$texto.';}
-        .navbar.navbar-light.bg-light { background-color:'.$menu.' !important;}
-        .navbar.navbar-dark.bg-dark { background-color:'.$menu.' !important;}
         .navbar-light .navbar-brand, .navbar-light .navbar-nav > li > a{ color:'.$texto.'; }
         .navbar-dark .navbar-brand, .navbar-dark .navbar-nav > li > a, a, h1 a, h2 a, h3 a, .pagination>li>a, .page-link, .page-link:hover{ color:'.$enlaces.'; }
         .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover,
@@ -142,6 +140,19 @@ function ekiline_csscolors() {
         .pagination-sm .page-item:first-child .page-link{border-top-left-radius: '.$rangeLmnts.'px;border-bottom-left-radius: '.$rangeLmnts.'px}
         .pagination-sm .page-item:last-child .page-link{border-top-right-radius: '.$rangeLmnts.'px;border-bottom-right-radius: '.$rangeLmnts.'px}
         ';
+		
+	if ($menu != ''){
+		$miestilo = '
+        .navbar.navbar-light.bg-light { background-color:'.$menu.' !important;}
+        .navbar.navbar-dark.bg-dark { background-color:'.$menu.' !important;}
+		.navbar-light, .navbar-dark{background-color:'.$menu.';background-image: none;}
+		.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, 
+		.navbar-light .navbar-nav .nav-link.show,.navbar-light .navbar-nav .show > .nav-link,.navbar-light .navbar-nav > .current-menu-ancestor > a {background-color:rgba(0,0,0,.2);}
+		.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, 
+		.navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav > .current-menu-ancestor > a {background-color:rgba(255,255,255,.2);}
+		';
+	}	
+		
     // En caso de utilizar dos colores en el menú // if uses 2nd menu color    
     if ( $mgradient != '' ){
         $miestilo .= '
@@ -151,20 +162,8 @@ function ekiline_csscolors() {
             background-image: -webkit-gradient(linear, left top, left bottom, from('.$menu.'), to('.$mgradient.'));
             background-image: linear-gradient(to bottom, '.$menu.' 0%, '.$mgradient.' 100%);
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="'.$menu.'", endColorstr="'.$mgradient.'", GradientType=0);}              
-        .navbar-light .navbar-nav > .show > a, .navbar-light .navbar-nav > .active > a,
-        .navbar-dark .navbar-nav > .show > a, .navbar-dark .navbar-nav > .active > a {
-            background-image: -webkit-linear-gradient(top, '.$mgradient.' 0%, '.$menu.' 100%);
-            background-image: -o-linear-gradient(top, '.$mgradient.' 0%, '.$menu.' 100%);
-            background-image: -webkit-gradient(linear, left top, left bottom, from('.$mgradient.'), to('.$menu.'));
-            background-image: linear-gradient(to bottom, '.$mgradient.' 0%, '.$menu.' 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="'.$mgradient.'", endColorstr="'.$menu.'", GradientType=0);}';
-    } else {
-        $miestilo .= '.navbar-light, .navbar-dark{background-color:'.$menu.';background-image: none;}
-        .navbar-light .navbar-nav > .active > a, .navbar-light .navbar-nav > .active > a:focus, .navbar-light .navbar-nav > .active > a:hover, .navbar-light .navbar-nav > .current-menu-ancestor > a {background-color:rgba(0,0,0,.1)}
-        .navbar-dark .navbar-nav > .active > a, .navbar-dark .navbar-nav > .active > a:focus, .navbar-dark .navbar-nav > .active > a:hover, .navbar-dark .navbar-nav > .current-menu-ancestor > a {background-color:rgba(0,0,0,.3)}
         ';
-                
-    }        
+    } 
 
     // echo '<style id="ekiline-inline" type="text/css" media="all">'.$miestilo.'</style>'."\n";
     echo '<style id="ekiline-inline" media="all">'.$miestilo.'</style>'."\n";
