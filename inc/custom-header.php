@@ -139,7 +139,11 @@ function customHeader(){
 	//Personalizaciones
     $rangeHead = get_theme_mod('ekiline_range_header');
 	$setVideo = get_theme_mod('ekiline_video');
+    // Permitir el uso de HTML a la vista // Alllow html on output
+    // https://blog.templatetoaster.com/wordpress-wp-kses/
     $headerText = get_theme_mod( 'ekiline_headertext', '' );
+    	$headerText = wp_kses_post( $headerText );            	
+	
 	// Condiciones
 	if ( is_front_page() && true === get_theme_mod('ekiline_showFrontPageHeading') ){		
 		if ( $rangeHead == '100' ) $headerSwitch = 'inner cover';
