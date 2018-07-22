@@ -229,8 +229,8 @@ function customHeader(){
  
 
 function ekiline_addJsHeader() {
-
-	if ( !get_theme_mod('ekiline_video') ) return;
+	
+	if ( is_front_page() && get_theme_mod('ekiline_video') ){
 	
 	{ ?>
 <script>
@@ -264,6 +264,8 @@ function ekiline_addJsHeader() {
     });
 </script> 
 	<?php }
+	
+	}
 
 }
 add_action( 'wp_footer', 'ekiline_addJsHeader', 110 );
