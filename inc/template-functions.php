@@ -168,10 +168,11 @@ function ekiline_csscolors() {
 
     // echo '<style id="ekiline-inline" type="text/css" media="all">'.$miestilo.'</style>'."\n";
     echo '<style id="ekiline-inline" media="all">'.$miestilo.'</style>'."\n";
+	// wp_add_inline_style( 'ekiline-style', $miestilo ); 
 
 }
-add_action('wp_head','ekiline_csscolors');
-
+add_action('wp_head','ekiline_csscolors', 90);
+// add_action( 'wp_enqueue_scripts', 'ekiline_csscolors'); 
 
 /**
  * Customizer: 

@@ -230,7 +230,7 @@ function ekiline_loadcss() {
 	    foreach( $wp_styles->queue as $csshandle ) {    	
 			$allcss[] = $csshandle;              
 	  	} 
-		$allowcss = array('photoswipe-default-skin');	
+		$allowcss = array('photoswipe-default-skin','woocommerce-inline');	// la nueva versión 4.9 complica el uso de dependencias ,'ekiline-style'
 		//permitir la carga de estilos que tienen dependencia o prioridad
 		$load_css = array_diff( $allcss, $allowcss );        
 		

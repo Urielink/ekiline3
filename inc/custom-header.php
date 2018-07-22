@@ -113,9 +113,12 @@ function ekiline_addCssHeader() {
 	if ( is_front_page() && !empty( $setVideo ) ) $extracss .= '.cover-wrapper-inner,.cover-header,.cover-footer{position:relative;}.cover-container{position: absolute;z-index:100;left: 0;right: 0;height:100%;}';
 	if ( get_header_image() ) $extracss .= '.cover-wrapper,.jumbotron{background-image:url("' . $headerImage . '");}';		
 			    	
-    wp_add_inline_style( 'ekiline-style', $extracss );
+    // wp_add_inline_style( 'ekiline-style', $extracss );
+    echo '<style id="ekiline-inline-header" media="all">'.$extracss.'</style>'."\n";
+        
 }
-add_action( 'wp_enqueue_scripts', 'ekiline_addCssHeader'); 
+// add_action( 'wp_enqueue_scripts', 'ekiline_addCssHeader'); 
+add_action('wp_head','ekiline_addCssHeader', 100);
 
 function customHeader(){
 
