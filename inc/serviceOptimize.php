@@ -172,7 +172,7 @@ function ekiline_postcss(){
            // Si utilizan nuestro custom field
            // here is our custom field
            // echo '<style type="text/css" id="custom-css-'.$postid.'">'.$myCss.'</style>';
-          echo '<style id="custom-css-'.$postid.'">'.$myCss.'</style>';
+          echo '<style title="ekiline-post-'.$postid.'-style" media="all">'.$myCss.'</style>';
        } 
      
     } 
