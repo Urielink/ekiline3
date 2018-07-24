@@ -64,7 +64,7 @@ if ( ! function_exists( 'ekiline_header_style' ) ) :
     
     	// If we get this far, we have custom styles. Let's do this.
     	?>
-    	<style title="ekiline-header" media="all">
+    	<style id="style-text-header" media="all">
     	<?php
     		// Has the text been hidden?
     		if ( ! display_header_text() ) :
@@ -114,7 +114,7 @@ function ekiline_addCssHeader() {
 	if ( get_header_image() ) $extracss .= '.cover-wrapper,.jumbotron{background-image:url("' . $headerImage . '");}';		
 			    	
     // wp_add_inline_style( 'ekiline-style', $extracss );
-    echo '<style title="ekiline-header-image" media="all">'.$extracss.'</style>'."\n";
+    echo '<style id="style-header-image">'.$extracss.'</style>'."\n";
         
 }
 // add_action( 'wp_enqueue_scripts', 'ekiline_addCssHeader'); 

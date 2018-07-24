@@ -172,13 +172,13 @@ function ekiline_postcss(){
            // Si utilizan nuestro custom field
            // here is our custom field
            // echo '<style type="text/css" id="custom-css-'.$postid.'">'.$myCss.'</style>';
-          echo '<style title="ekiline-post-'.$postid.'-style" media="all">'.$myCss.'</style>';
+          echo '<style id="custom-css-'.$postid.'">'.$myCss.'</style>';
        } 
      
     } 
     
 }
-add_action( 'wp_head', 'ekiline_postcss', 99);
+add_action( 'wp_head', 'ekiline_postcss', 100);
 
 /** 
  * Agregar js por pagina.
