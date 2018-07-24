@@ -170,7 +170,7 @@ function ekiline_csscolors() {
 	// wp_add_inline_style( 'ekiline-style', $miestilo ); 
 
 }
-add_action('wp_head','ekiline_csscolors', 100);
+add_action('wp_head','ekiline_csscolors', 90);
 // add_action( 'wp_enqueue_scripts', 'ekiline_csscolors'); 
 
 /**
