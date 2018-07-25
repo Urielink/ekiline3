@@ -15,7 +15,8 @@
  * @link  https://developer.wordpress.org/reference/functions/body_class/
  */
 
-add_filter( 'body_class', function( $classes ) {
+function ekiline_asides_css( $classes ) {
+	//add_filter( 'body_class', function( $classes ) {
     
     //Llamo a mis variables
     $leftOn = get_theme_mod('ekiline_sidebarLeft','on');
@@ -31,7 +32,9 @@ add_filter( 'body_class', function( $classes ) {
         return array_merge( $classes, array( 'static-sidebars' ) );
     }   
     
-});
+	//});
+}
+add_filter( 'body_class', 'ekiline_asides_css' );
 
 /* En caso de estar activos los sidebars, cambia la clase del contenedor principal y los sidebars.
  * Este fragmento afecta a la container: index.php, single.php, search.php, page.php, archive.php, 404.php 

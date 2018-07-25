@@ -351,7 +351,8 @@ if( false === get_theme_mod('ekiline_carouseldisable') ) {
 	global $pagenow;
 	//if ( ( $pagenow != 'widgets.php' ) ) {
 	if ( ( $pagenow == 'post.php' ) ) {
-		add_action('print_media_templates', function(){
+		
+		function ekiline_gallery_settings() {
 		  ?>
 		 
 		  <script type="text/html" id="tmpl-ekiline-gallery-setting">
@@ -454,7 +455,8 @@ if( false === get_theme_mod('ekiline_carouseldisable') ) {
 		  </script>
 		  <?php
 		
-		});
+		}
+		add_action('print_media_templates', 'ekiline_gallery_settings');
 	}
 
 }
