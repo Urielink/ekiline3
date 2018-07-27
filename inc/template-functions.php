@@ -142,7 +142,7 @@ function ekiline_csscolors() {
         ';
 		
 	if ($menu != ''){
-		$miestilo = '
+		$miestilo .= '
         .navbar.navbar-light.bg-light { background-color:'.$menu.' !important;}
         .navbar.navbar-dark.bg-dark { background-color:'.$menu.' !important;}
 		.navbar-light, .navbar-dark{background-color:'.$menu.';background-image: none;}
