@@ -35,8 +35,6 @@
 
 <?php ekilineNavbar('primary'); ?>  
 
-<?php //breadcrumb(); ?>
-
 <?php dynamic_sidebar( 'content-w3' ); ?>    
    
 	<div id="content" class="site-content<?php cssSides(); ?>">
