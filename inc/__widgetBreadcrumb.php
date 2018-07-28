@@ -102,7 +102,6 @@ function createBreadcrumb(){
             } elseif ( is_page()  ) {
             	
 				//Si es pagina y tiene herencia, padres.
-				// https://wordpress.stackexchange.com/questions/140362/wordpress-breadcrumb-depth
 				// 1) Se llama la variable global para hacer un loop de paginas.
     			global $post;
 				// 2) confirmamos si tiene herencia, si no brinca al final (3)
@@ -136,14 +135,8 @@ function createBreadcrumb(){
 
                 $cats = get_the_category( get_the_ID() );
                 $cat = array_shift($cats);
-				
-				if ( get_post_type( get_the_ID() ) != 'product'){
-					//en caso de woocommerce
-					$breadcrumb .= '<li class="breadcrumb-item single-category">' . get_category_parents( $cat, true, '</li><!--.single-category--><li class="breadcrumb-item single-category-child">');
-				} else {
-					$breadcrumb .= '<li class="breadcrumb-item single-category">';
-				}
-
+        	
+				$breadcrumb .= '<li class="breadcrumb-item single-category">' . get_category_parents( $cat, true, '</li><!--.single-category--><li class="breadcrumb-item single-category-child">' );
 
 			}
 
@@ -183,7 +176,7 @@ function createBreadcrumb(){
 	        $title = '<li class="breadcrumb-item ptArchive">' . post_type_archive_title( '', false );
 	    } elseif ( is_tax() ) {
 	        $tax = get_taxonomy( get_queried_object()->taxonomy );
-	        $title = '<li class="breadcrumb-item tax">' . single_term_title( '', false );
+	        $title = '<li class="breadcrumb-item tax">' . sprintf( __( '%1$s: %2$s' ), $tax->labels->singular_name, single_term_title( '', false ) );
 	    } 
 
         $breadcrumb .= $title .'</li><!--.category-child.tag.author.year.month.day.ptArchive.tax-->';
