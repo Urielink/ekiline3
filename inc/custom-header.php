@@ -142,29 +142,36 @@ function customHeader(){
     // Permitir el uso de HTML a la vista // Alllow html on output
     // https://blog.templatetoaster.com/wordpress-wp-kses/
     $headerText = get_theme_mod( 'ekiline_headertext', '' );
-    	$headerText = wp_kses_post( $headerText );            	
+    	$headerText = wp_kses_post( $headerText );      
+	// Ajustar el ancho del header si es jumbotron.
+	$headWidth = '';
 	
 	// Condiciones
 	if ( is_front_page() && true === get_theme_mod('ekiline_showFrontPageHeading') ){		
-		if ( $rangeHead == '100' ) $headerSwitch = 'inner cover';
+		if ( $rangeHead == '100' ) $headerSwitch = 'inner cover';		
+		if ( $rangeHead != '100' ) $headWidth = get_theme_mod( 'ekiline_anchoHome', 'container' );		
 	}
 	else if ( is_single() && true === get_theme_mod('ekiline_showEntryHeading') || is_page() && true === get_theme_mod('ekiline_showPageHeading') ) {
 		$siteDescription = $headerTitle . ' '. $siteDescription;
 		$headerTitle = get_the_title();
+		$headWidth = get_theme_mod( 'ekiline_anchoSingle', 'container' );
 	}
 	else if ( is_category() && true === get_theme_mod('ekiline_showCategoryHeading') ){
 		$siteDescription = $headerTitle . ' ' . $siteDescription;
 		$headerTitle = single_cat_title('', false);
+		$headWidth = get_theme_mod( 'ekiline_anchoCategory', 'container' );
 	}
 	else if ( get_post_type( get_the_ID() ) == 'product' && !is_front_page() ){
 		//cancelar si es producto de woocommerce
 		return;
 	}
 	else return;		
-	// Header y cambios
+	// // Header y cambios
+	// if ( is_front_page() && $rangeHead == '100') { $headWidth = ''; }
+	
 	{ ?>
 		
-		<<?php echo $tagHead; ?> id="masthead" class="site-header">
+		<<?php echo $tagHead; ?> id="masthead" class="site-header <?php echo $headWidth; ?>">
 	
 		<?php if ( is_front_page() && $rangeHead == '100' ) { ?>
 			<div class="cover-wrapper">
