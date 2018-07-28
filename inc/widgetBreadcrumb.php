@@ -77,9 +77,14 @@ class ekilineBreadcrumb extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', function(){
+/**add_action( 'widgets_init', function(){
 	register_widget( 'ekilineBreadcrumb' );
-});
+});**/
+
+function ekilineBreadcrumb_register_widgets() {
+    register_widget( 'ekilineBreadcrumb' );
+}
+add_action( 'widgets_init', 'ekilineBreadcrumb_register_widgets' );
 
 function createBreadcrumb(){
 	
