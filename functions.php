@@ -372,7 +372,7 @@ require get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
 // theme frontend addons
 require get_template_directory() . '/inc/themeSidebars.php';
 require get_template_directory() . '/inc/themeNavbars.php';
-require get_template_directory() . '/inc/themeBreadcrumb.php';
+//require get_template_directory() . '/inc/themeBreadcrumb.php';
 
 // theme custom widgets
 require get_template_directory() . '/inc/widgetNavVer.php';

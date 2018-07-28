@@ -35,7 +35,7 @@
 
 <?php ekilineNavbar('primary'); ?>  
 
-<?php breadcrumb(); ?>
+<?php //breadcrumb(); ?>
 
 <?php dynamic_sidebar( 'content-w3' ); ?>    
    
