@@ -108,7 +108,7 @@ function ekiline_widgetView( $widget , $return , $instance ){
     </p>
     <?php    
 }
-add_action('in_widget_form', 'ekiline_widgetView',10,3);
+add_action('in_widget_form', 'ekiline_widgetView',5,3);
 
 function ekiline_widgetViewSave($instance, $new_instance, $old_instance){
 	
@@ -116,7 +116,7 @@ function ekiline_widgetViewSave($instance, $new_instance, $old_instance){
     return $instance;
 	
 }
-add_filter('widget_update_callback', 'ekiline_widgetViewSave',10,3);
+add_filter('widget_update_callback', 'ekiline_widgetViewSave',5,3);
 
 function ekiline_widgetShow($params){
 	

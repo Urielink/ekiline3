@@ -34,15 +34,27 @@ class ekilineBreadcrumb extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-				
-	    //** $args = array(
-	        // 'before_widget' => '<nav id="%1$s" class="widget %2$s">',
-	        // 'after_widget'  => '</nav>',
-	    // );     
+		
+	/** 
+	 * Para sobrescribir un widget, en este caso ekiline, agrega opciones css y tipo de mestreo,
+	 * entonces es necesario llamar un widget, obteniendo su id y llamando el dato que necesitamos.
+	 * 
+	 **/	
+    global $wp_registered_widgets;
+    $widget_id = $args['widget_id'];
+    $widget_obj = $wp_registered_widgets[$widget_id];
+    $widget_opt = get_option($widget_obj['callback'][0]->option_name);
+    $widget_num = $widget_obj['params'][0]['number'];
+	$css_style = $widget_opt[$widget_num]['css_style'];
+		
+	    $args = array(
+	        'before_widget' => '<nav id="'. $args['widget_id'] .'" class="'. $css_style .' widget '. $args['widget_id'] .'">',
+	        'after_widget'  => '</nav>',
+	    );     
 
 		// outputs the content of the widget
-		//* echo $args['before_widget'];
-		echo str_replace('<div', '<nav', $args['before_widget'] );
+		 echo $args['before_widget'];
+		// echo str_replace('<div', '<nav', $args['before_widget'] );
 		
 		// if ( ! empty( $instance['title'] ) ) {
 			// echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -51,8 +63,8 @@ class ekilineBreadcrumb extends WP_Widget {
 		
 		echo createBreadcrumb();
 		
-		//* echo $args['after_widget'];		
-		echo str_replace('div>', 'nav>', $args['after_widget'] );
+		 echo $args['after_widget'];		
+		// echo str_replace('div>', 'nav>', $args['after_widget'] );
 	}
 
 	/**
@@ -79,7 +91,7 @@ class ekilineBreadcrumb extends WP_Widget {
 
 /**add_action( 'widgets_init', function(){
 	register_widget( 'ekilineBreadcrumb' );
-});**/
+});**/ // esto no funciona en php5
 
 function ekilineBreadcrumb_register_widgets() {
     register_widget( 'ekilineBreadcrumb' );
