@@ -178,9 +178,14 @@ function createBreadcrumb(){
 			// diferenciar si hay categorías padre:  
 			// https://wordpress.stackexchange.com/questions/11267/check-is-category-parent-or-not-from-its-id   
 			$catobj = get_category($catid);
+			// auxiliar para mostrar solo el padre
+			$parentobj = $catobj->parent;
+			
 	        
 	        if ($catobj->category_parent > 0){
-				$breadcrumb .= '<li class="breadcrumb-item category-parent">' . get_category_parents( $catid, true, '</li><!--.category-parent--><li class="breadcrumb-item category-child">' );
+	        	// este muestra toda una lista
+				// $breadcrumb .= '<li class="breadcrumb-item category-parent">' . get_category_parents( $catid, true, '</li><!--.category-parent--><li class="breadcrumb-item category-child">' );
+				$breadcrumb .= '<li class="breadcrumb-item category-parent">' . get_category_parents( $parentobj, true, '</li><!--.category-parent--><li class="breadcrumb-item category-child">' ). $catName;
 		    } else {
 				$breadcrumb .= '<li class="breadcrumb-item category-child">' . get_category_parents( $catid, false, '' );
 		    }
