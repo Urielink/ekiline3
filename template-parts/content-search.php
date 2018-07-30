@@ -14,13 +14,13 @@
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h3 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
+		<?php // if ( 'post' === get_post_type() ) : ?>
 
 		<small class="entry-meta">
 			<?php ekiline_posted_on(); ?>
 		</small><!-- .entry-meta -->
 		
-		<?php endif; ?>
+		<?php // endif; ?>
 	</header><!-- .entry-header -->
 	    
 	<div class="entry-summary clearfix border-top pt-2 mt-2">

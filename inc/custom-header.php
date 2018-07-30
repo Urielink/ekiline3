@@ -155,6 +155,8 @@ function customHeader(){
 		$siteDescription = $headerTitle . ' '. $siteDescription;
 		$headerTitle = get_the_title();
 		$headWidth = get_theme_mod( 'ekiline_anchoSingle', 'container' );
+		// si tiene titulo e imagen destacada, se anula texto del home
+		// if( $headerTitle && has_post_thumbnail() ) $headerText = false;
 	}
 	else if ( is_category() && true === get_theme_mod('ekiline_showCategoryHeading') ){
 		$siteDescription = $headerTitle . ' ' . $siteDescription;
@@ -166,8 +168,6 @@ function customHeader(){
 		return;
 	}
 	else return;		
-	// // Header y cambios
-	// if ( is_front_page() && $rangeHead == '100') { $headWidth = ''; }
 	
 	{ ?>
 		
@@ -188,18 +188,17 @@ function customHeader(){
 		<?php } ;?>
 		
 		          <div class="<?php echo $headerSwitch;?>">
-		
 
 				    	<?php 
-				    	if( $headerText && is_front_page() ) {
+				    	if( $headerText ) {
 				    		 echo $headerText ; 
 						} else { ?>		
-							<<?php echo $tagTitle; ?> class="site-title entry-title"><?php echo $headerTitle ;?></<?php echo $tagTitle; ?>>                              														
+							<<?php echo $tagTitle; ?> class="site-title entry-title">
+								<?php echo $headerTitle ;?>
+							</<?php echo $tagTitle; ?>>                              														
 					    	<p class="site-description"> <?php echo $siteDescription ;?> </p>				    		
 				    	<?php } ?>
-			    	
-			    	
-		
+
 				  </div>
 		
 		<?php if ( is_front_page() && $rangeHead == '100' ) { ?>

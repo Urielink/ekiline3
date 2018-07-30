@@ -161,10 +161,13 @@ function createBreadcrumb(){
 					$breadcrumb .= '<li class="breadcrumb-item single-category">';
 				}
 
-
 			}
-
-        $breadcrumb .= the_title('','</li><!--.single-category-child.post-child-->', false);
+			// en caso de no tener titulo
+			if( !get_the_title() ){
+				$breadcrumb .= __('untitled','ekiline').'</li><!--.single-category-child.post-child-->';
+			} else {
+		        $breadcrumb .= the_title('','</li><!--.single-category-child.post-child-->', false);
+			}
 
     }
 
