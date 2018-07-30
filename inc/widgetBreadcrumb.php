@@ -22,9 +22,9 @@ class ekilineBreadcrumb extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array( 
 			'classname' => 'ekilineBreadcrumb',
-			'description' => 'Add bootstrap breadcrumb',
+			'description' => __('Add bootstrap breadcrumb','ekiline'),
 		);
-		parent::__construct( 'ekilineBreadcrumb', 'Show breadcrumb', $widget_ops );
+		parent::__construct( 'ekilineBreadcrumb', __('Show breadcrumb','ekiline'), $widget_ops );
 	}
 
 	/**
