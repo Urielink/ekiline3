@@ -15,7 +15,8 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 	 * Add styles to wordpress admin editor
 	 */
 	
-	add_editor_style('editor-style.min.css'); 
+	// add_editor_style('editor-style.min.css'); 
+		add_editor_style('editor-style.css'); 
 
 	/**
 	 * La llega de gutenberg es inminente.
@@ -33,7 +34,7 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 		$gutenbergExists = 'mce_buttons_2';
 		// agregar estilos en gutenberg
 		function ekiline_gutenberg_styles() {
-		     wp_enqueue_style( 'ekiline-gutenberg', get_template_directory_uri() . '/editor-style.min.css', array(), '1', 'all' );
+		     wp_enqueue_style( 'ekiline-gutenberg', get_template_directory_uri() . '/editor-style.css', array(), '1', 'all' );
 		}
 		add_action( 'enqueue_block_editor_assets', 'ekiline_gutenberg_styles' ); 		
 	}	
@@ -1165,22 +1166,22 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 	function custom_tinymce_plugin( $plugin_array ) {
 	    // $plugin_array['custom_mce_button1'] = get_template_directory_uri() .'PATH_TO_THE_JS_FILE';
 	    // $plugin_array['custom_mce_button2'] = get_template_directory_uri() .'PATH_TO_THE_OTHER_JS_FILE';
-	    //$plugin_array['custom_mce_button1'] = get_template_directory_uri() .'/js/adminEditor.min.js';
-	    $plugin_array['custom_mce_button2'] = get_template_directory_uri() .'/js/adminSubgrid.min.js';
-	    $plugin_array['custom_mce_button3'] = get_template_directory_uri() .'/js/adminShowgrid.min.js';
-	    $plugin_array['custom_mce_button4'] = get_template_directory_uri() .'/js/adminItemBg.min.js';
-	    $plugin_array['custom_mce_button5'] = get_template_directory_uri() .'/js/adminMap.min.js';
-	    $plugin_array['custom_mce_button6'] = get_template_directory_uri() .'/js/adminTabs.min.js';
-	    $plugin_array['custom_mce_button7'] = get_template_directory_uri() .'/js/adminToggle.min.js';
-	    $plugin_array['custom_mce_button8'] = get_template_directory_uri() .'/js/adminPops.min.js';
-	    $plugin_array['custom_mce_button9'] = get_template_directory_uri() .'/js/adminShare.min.js';
-	    $plugin_array['custom_mce_button10'] = get_template_directory_uri() .'/js/adminPostin.min.js';
-	    // $plugin_array['custom_mce_button11'] = get_template_directory_uri() .'/js/adminFields.min.js';
-	    $plugin_array['custom_mce_button12'] = get_template_directory_uri() .'/js/adminModal.min.js';
-	    $plugin_array['custom_mce_button13'] = get_template_directory_uri() .'/js/adminLayout.min.js';
-	    $plugin_array['custom_mce_button14'] = get_template_directory_uri() .'/js/adminCustom.min.js';
-	    $plugin_array['custom_mce_button15'] = get_template_directory_uri() .'/js/adminFawfive.min.js';
-	    $plugin_array['custom_mce_button16'] = get_template_directory_uri() .'/js/adminPro.min.js';
+	    //$plugin_array['custom_mce_button1'] = get_template_directory_uri() .'/js/adminEditor.js';
+	    $plugin_array['custom_mce_button2'] = get_template_directory_uri() .'/js/adminSubgrid.js';
+	    $plugin_array['custom_mce_button3'] = get_template_directory_uri() .'/js/adminShowgrid.js';
+	    $plugin_array['custom_mce_button4'] = get_template_directory_uri() .'/js/adminItemBg.js';
+	    $plugin_array['custom_mce_button5'] = get_template_directory_uri() .'/js/adminMap.js';
+	    $plugin_array['custom_mce_button6'] = get_template_directory_uri() .'/js/adminTabs.js';
+	    $plugin_array['custom_mce_button7'] = get_template_directory_uri() .'/js/adminToggle.js';
+	    $plugin_array['custom_mce_button8'] = get_template_directory_uri() .'/js/adminPops.js';
+	    $plugin_array['custom_mce_button9'] = get_template_directory_uri() .'/js/adminShare.js';
+	    $plugin_array['custom_mce_button10'] = get_template_directory_uri() .'/js/adminPostin.js';
+	    // $plugin_array['custom_mce_button11'] = get_template_directory_uri() .'/js/adminFields.js';
+	    $plugin_array['custom_mce_button12'] = get_template_directory_uri() .'/js/adminModal.js';
+	    $plugin_array['custom_mce_button13'] = get_template_directory_uri() .'/js/adminLayout.js';
+	    $plugin_array['custom_mce_button14'] = get_template_directory_uri() .'/js/adminCustom.js';
+	    $plugin_array['custom_mce_button15'] = get_template_directory_uri() .'/js/adminFawfive.js';
+	    $plugin_array['custom_mce_button16'] = get_template_directory_uri() .'/js/adminPro.js';
 	    return $plugin_array;
 	}
 	
