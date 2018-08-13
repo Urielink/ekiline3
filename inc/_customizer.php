@@ -25,17 +25,6 @@ function ekiline_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'ekiline_customize_preview_js' );
 
-/**
- * Funcion para llamar categorias
- */
-function nt_cats() {
-  $cats = array();
-  $cats[0] = "All";
-  foreach ( get_categories() as $categories => $category ) {
-    $cats[$category->term_id] = $category->name;
-  }
-  return $cats;
-}
 
 /** Al custom options for Ekiline Theme 
  *  Handlers need sanitize after output
@@ -276,26 +265,28 @@ function ekiline_theme_customizer( $wp_customize ) {
     );    
 	
 // Front page categories			
+    
+        // $wp_customize->add_setting(
+            // 'ekiline_select_categories', array(
+                    // 'default' => 'container',
+                    // 'sanitize_callback' => 'ekiline_sanitize_select'
+                // ) );
+        
+        // $wp_customize->add_control(
+            // 'ekiline_select_categories', array(
+                // 'type' => 'select',
+                // 'label' => __( 'Seleciona las categorías', 'ekiline' ),
+                // 'section' => 'static_front_page',
+                // 'choices' => array(
+                    // 'container' => __( 'Centered', 'ekiline' ),
+                    // 'container-fluid' => __( 'Fullwidth', 'ekiline' ),
+                // ),
+            // )
+        // );     	
 
-    $wp_customize->add_setting( 
-	    'nt_featured_cat', array(
-				    'default' => 0,
-				    'transport'   => 'refresh',
-				    'sanitize_callback' => 'nt_sanitize_cat' 
-		)
-	);
 
-	$wp_customize->add_control(
-	    new Nt_Customize_Control_Multiple_Select (
-	        $wp_customize, 'nt_featured_cat', array(
-	            'settings' => 'nt_featured_cat',
-	            'label'    => 'Featured category',
-	            'section'  => 'static_front_page', // Enter the name of your own section
-	            'type'     => 'multiple-select', // The $type in our class
-	            'choices' => nt_cats()
-	        )
-	    )
-	);    
+        
+        
         
         
         
@@ -1252,75 +1243,139 @@ function ekiline_sanitize_select( $input, $setting ) {
 
     return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 }
-// esto es en caso de usar un select de pages.
+
 function ekiline_sanitize_dropdown_pages( $page_id, $setting ) {
+  // Ensure $input is an absolute integer.
   $page_id = absint( $page_id );
+
+  // If $page_id is an ID of a published page, return it; otherwise, return the default.
   return ( 'publish' == get_post_status( $page_id ) ? $page_id : $setting->default );
 }
 
-// validar un multi-select
-function nt_sanitize_cat( $input )
-{
-    $valid = nt_cats();
-    foreach ($input as $value) {
-        if ( !array_key_exists( $value, $valid ) ) {
-        	return;
-            // return [];
-        }
+/****
+ * Callback para generar un select de páginas
+ * https://gist.github.com/ajskelton/27369df4a529ac38ec83980f244a7227
+  
+// Se da de alta.    
+$wp_customize->add_setting( 'themeslug_dropdownpages_setting_id', array(
+  'capability' => 'edit_theme_options',
+  'sanitize_callback' => 'themeslug_sanitize_dropdown_pages',
+) );
+
+// Se especifica el tipo, y la sección. Es nativo de WP.
+$wp_customize->add_control( 'themeslug_dropdownpages_setting_id', array(
+  'type' => 'dropdown-pages',
+  'section' => 'static_front_page', // Add a default or your own section
+  'label' => __( 'Custom Dropdown Pages' ),
+  'description' => __( 'This is a custom dropdown pages option.' ),
+) );
+// Se sanea el dato.
+function themeslug_sanitize_dropdown_pages( $page_id, $setting ) {
+  // Ensure $input is an absolute integer.
+  $page_id = absint( $page_id );
+  // If $page_id is an ID of a published page, return it; otherwise, return the default.
+  return ( 'publish' == get_post_status( $page_id ) ? $page_id : $setting->default );
+}        
+****/    
+        
+/** Extender la clase de formularios en wordpress, con un select multiple 
+ *  https://tektriks.com/how-to-create-multiselect-dropdown-in-wordpress-theme-customizer/
+ * **/ 
+
+if (class_exists('WP_Customize_Control')){
+  /**
+  * Class to create a custom multiselect dropdown control
+  */
+  class Countries_Dropdown_Custom_control extends WP_Customize_Control{
+    /**
+    * Render the content on the theme customizer page
+    */
+    public $type = 'multiple-select';
+
+    public function render_content() {
+
+      if ( empty( $this->choices ) )
+        return;
+      ?>
+        <label>
+          <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+          <select <?php $this->link(); ?> multiple="multiple" size="25">
+            <?php
+               foreach ( $this->choices as $value => $label ) {
+                 $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+                   echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
+               }
+            ?>
+          </select>
+        </label>
+      <?php 
     }
-    return $input;
+  }
 }
 
 
-/***
- * Nuevo ejercicio, 
- * 1) extender la clase de selectores 
- * 2) Solo se debe definir el tipo de formulario en ekiline_theme_customizer
- * 3) se crea el arreglo para desplegar las categories
- * https://stackoverflow.com/questions/38481936/multi-select-category-wordpress-customizer-control
- **/
-if (class_exists('WP_Customize_Control')){ 
-	class Nt_Customize_Control_Multiple_Select extends WP_Customize_Control {
-	
-		// Establecer el tipo del control, el formulario
-		public $type = 'multiple-select';
-		// Crear el formulario
-		public function render_content() {
-			if ( empty( $this->choices ) ) return; ?>
-		    <label>
-		        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-		        <select <?php $this->link(); ?> multiple="multiple" size="10">
-		            <?php
-		                foreach ( $this->choices as $value => $label ) {
-		                    $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
-		                    echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
-		                }
-		            ?>
-		        </select>
-		    </label>
-		<?php }
+// File: theme-customizer.php
+if( ! function_exists('yourtheme_customize_register') ) {
+  function yourtheme_customize_register($wp_customize) {
+    global $wpdb;
+    // Including custom controls
+    //require_once( __DIR__ . '/controls/countries-dropdown.php' );
+
+    // $countries = $wpdb->get_results("SELECT id, country_name FROM {$wpdb->prefix}countries");
+    // if( count( $countries ) ) {		
+      // foreach( $countries as $country ) {
+        // $choices[ $country->id ] = $country->country_name;
+      // }		
+    // }
+
+	$args = array( 'orderby' => 'name' ); 
+	$cats = get_terms( 'category', $args ); 
+	// $list = array();
+
+    foreach ( $cats as $cat ) {
+		// $list[] = array(
+			// 'text' =>	$cat->name,
+			// 'value'	=>	$cat->term_id
+		// );
+        $choices[ $cat->term_id ] = $cat->name;
 	}
+
+    // Initialize new section
+    // $wp_customize->add_section('yourtheme_business_info', array(
+      // 'title'    => __('Choose categories', 'ekiline'),
+      // 'description' => 'You can limit latest post to multiple categories',
+      // 'priority' => 240,
+    // ));	
+
+    //  =============================
+    //  = Countries Dropdown        =
+    //  =============================
+    $wp_customize->add_setting('yourtheme_theme_options[country_ids]', array(
+      'capability'     => 'edit_theme_options',
+      'type'           => 'option'
+	));
+
+    $wp_customize->add_control(
+      new Countries_Dropdown_Custom_control(
+        $wp_customize, 'country_ids', array(
+          'label' => __( 'Select categories', 'ekiline' ),
+          'section' => 'static_front_page',
+          'settings' => 'yourtheme_theme_options[country_ids]',
+          'type'     => 'multiple-select',
+          'choices'	=> $choices
+        )
+      )
+    );
+  }
+
+  add_action('customize_register', 'yourtheme_customize_register');
 }
 
+
+/**
 function my_home_category( $query ) {
-	
-	$seleccion =  get_theme_mod('nt_featured_cat');
-	// print_r($seleccion);
-	// crear un string con lo seleccionado
-	$str = implode (',', $seleccion);
-	
-	if ( $query->is_home() && $query->is_main_query() ) {
-	 	 $query->set( 'cat', $str ); 
+	 if ( $query->is_home() && $query->is_main_query() ) {
+	 	 $query->set( 'cat', '0'); 
 	} 
-	
-	
 } 
-add_action( 'pre_get_posts', 'my_home_category' );
-
-
-function ekiline_advicer() {
-	$seleccion =  get_theme_mod('nt_featured_cat');
-	$str = implode (',', $seleccion);
-	echo '<div class="alert alert-danger">Haz seleccionado '. $str .'</div>';
-}
-add_action( 'wp_footer', 'ekiline_advicer', 110 );
+add_action( 'pre_get_posts', 'my_home_category' ); **/
