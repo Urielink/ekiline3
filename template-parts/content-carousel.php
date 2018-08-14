@@ -14,7 +14,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $thumbClass ); ?>>
     
-    <?php if ( has_post_thumbnail() ){?>
+    <?php /** if ( has_post_thumbnail() ){?>
                 
         <a class="link-image" href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">             
             
@@ -22,7 +22,20 @@
         	
         </a>
         
-    <?php }?>
+    <?php }**/?>
+    
+    <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
+    
+            <a class="link-image"  href="<?php echo esc_url( get_permalink() ); ?>">
+                <?php if ( has_post_thumbnail() ){
+                	the_post_thumbnail( 'horizontal-slide', array( 'class' => 'img-fluid') );
+				} else { ?>
+                    <img class="img-fluid wp-post-image" alt="<?php the_title_attribute();?>" src="<?php ekiline_load_first_image(); ?>">
+				<?php } ?>
+            </a>
+        
+    <?php } ?>    
+    
 
         <div class="carousel-caption p-5">
         		

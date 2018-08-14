@@ -24,14 +24,20 @@
 	</header><!-- .entry-header -->
 	    
 	<div class="entry-summary clearfix border-top pt-2 mt-2">
-		
-	    <?php if ( has_post_thumbnail() ) { ?>	    
-	        <div class="cat-thumb float-left mr-2 my-1">
-	            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-	                <?php the_post_thumbnail( 'thumbnail', array( 'class' => 'img-thumbnail')); ?>
-	            </a>
-	        </div>	        
-	    <?php } ?>
+			    
+        <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
+        
+            <div class="cat-thumb float-left mr-2 my-1">
+                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                    <?php if ( has_post_thumbnail() ){
+                    	the_post_thumbnail( 'thumbnail', array( 'class' => 'img-thumbnail') );
+					} else { ?>
+                        <img class="img-thumbnail img-fluid wp-post-image" alt="<?php the_title_attribute();?>" height="150" style="max-width: 150px;" src="<?php ekiline_load_first_image(); ?>">
+					<?php } ?>
+                </a>
+            </div>
+            
+        <?php } ?>	    	    
 		
 		<?php the_excerpt(); ?>
 		

@@ -26,17 +26,20 @@
     
     	<div class="entry-content clearfix">
 
-            <?php if ( has_post_thumbnail() ) { ?>
+            <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
             
                 <div class="cat-thumb float-left mr-2 my-1">
                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                        <?php the_post_thumbnail( 'thumbnail', array( 'class' => 'img-thumbnail')); ?>
+                        <?php if ( has_post_thumbnail() ){
+                        	the_post_thumbnail( 'thumbnail', array( 'class' => 'img-thumbnail') );
+						} else { ?>
+	                        <img class="img-thumbnail img-fluid wp-post-image" alt="<?php the_title_attribute();?>" height="150" style="max-width: 150px;" src="<?php ekiline_load_first_image(); ?>">
+						<?php } ?>
                     </a>
                 </div>
                 
             <?php } ?>
-    	    
-    	    
+
     		<?php
     			// En caso de que el cliente quiera recortar su texto de manera personalizada
 			    if( strpos( $post->post_content, '<!--more-->' ) ) {

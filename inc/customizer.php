@@ -302,7 +302,7 @@ function ekiline_theme_customizer( $wp_customize ) {
         
         $wp_customize->add_control(
             'ekiline_anchoHome', array(
-                'type' => 'radio',
+                'type' => 'select',
                 'label' => __( 'Homepage', 'ekiline' ),
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
@@ -320,7 +320,7 @@ function ekiline_theme_customizer( $wp_customize ) {
         
         $wp_customize->add_control(
             'ekiline_anchoCategory', array(
-                'type' => 'radio',
+                'type' => 'select',
                 'label' => __( 'Categories', 'ekiline' ),
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
@@ -339,7 +339,7 @@ function ekiline_theme_customizer( $wp_customize ) {
         
         $wp_customize->add_control(
             'ekiline_anchoSingle', array(
-                'type' => 'radio',
+                'type' => 'select',
                 'label' => __( 'Single pages', 'ekiline' ),
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
@@ -359,7 +359,7 @@ function ekiline_theme_customizer( $wp_customize ) {
         
         $wp_customize->add_control(
             'ekiline_sidebarLeft', array(
-                'type' => 'radio',
+                'type' => 'select',
                 'label' => __( 'Left sidebar', 'ekiline' ),
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
@@ -378,7 +378,7 @@ function ekiline_theme_customizer( $wp_customize ) {
         
         $wp_customize->add_control(
             'ekiline_sidebarRight', array(
-                'type' => 'radio',
+                'type' => 'select',
                 'label' => __( 'Right sidebar', 'ekiline' ),
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
@@ -411,6 +411,31 @@ function ekiline_theme_customizer( $wp_customize ) {
                 ),
             )
         );                 
+
+    // Extra thumbnails
+
+	    $wp_customize->add_setting( 
+	        'ekiline_getthumbs', array(
+	                'default' => '',
+	                'sanitize_callback' => 'ekiline_sanitize_image'
+	        ) 
+	    );
+	
+	    $wp_customize->add_control( 
+	        new WP_Customize_Image_Control( 
+	            $wp_customize, 'ekiline_getthumbs', 
+	                array(
+	                    'label'    => __( 'Custom thumbnail', 'ekiline' ),
+	                    'description' => __( 'If there is no miniature, it will be replaced with the first image of the entry or the one that you upload', 'ekiline' ),
+	                    'section'  => 'ekiline_vista_section', 
+	                    'priority' => 100,
+	                ) 
+	        ) 
+	    );    
+		
+		
+		
+
 
 	// Behaviors for top menu
 

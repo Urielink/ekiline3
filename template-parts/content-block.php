@@ -37,16 +37,21 @@ $colSet = get_theme_mod('ekiline_Columns');
         </header><!-- .entry-header -->
     
         <div class="entry-content clearfix">
+            	        
+            <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
             
-	        <?php if ( has_post_thumbnail() ) { ?>
-	        	
-		        <div class="cat-thumb">
-		            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-		                <?php the_post_thumbnail( 'horizontal-slide', array( 'class' => 'img-fluid img-thumbnail' ));?>
-		            </a>
-		        </div>
+                <div class="cat-thumb">
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                        <?php if ( has_post_thumbnail() ){
+                        	the_post_thumbnail( 'horizontal-slide', array( 'class' => 'img-fluid img-thumbnail') );
+						} else { ?>
+	                        <img class="img-fluid img-thumbnail wp-post-image" alt="<?php the_title_attribute();?>" src="<?php ekiline_load_first_image(); ?>">
+						<?php } ?>
+                    </a>
+                </div>
+                
+            <?php } ?>	        
 	        
-	        <?php } ?>
             
              <?php the_excerpt(); ?> 
                       
