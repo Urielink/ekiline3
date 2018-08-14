@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-07-30 10:41-0500\n"
+"PO-Revision-Date: 2018-08-14 17:20-0500\n"
 "Language-Team: \n"
 "X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -291,6 +291,9 @@ msgstr "Mensaje de cabecera"
 msgid "Customize the text in your heading image"
 msgstr "Personaliza el mensaje en tu cabecera"
 
+msgid "Show front page heading"
+msgstr "Muestra la cabecera en la portada"
+
 msgid "Show all pages heading (thumbnail and title)"
 msgstr "Muestra la cabecera en todas las páginas (imagen destacada y titulo)"
 
@@ -299,6 +302,9 @@ msgstr "Muestra la cabecera en todas las entradas (imagen destacada y titulo)"
 
 msgid "Show all categories heading (thumbnail and title)"
 msgstr "Muestra la cabecera en todas las categorias (imagen destacada y titulo)"
+
+msgid "Featured category"
+msgstr "Categorías destacadas"
 
 msgid "Site view"
 msgstr "Vista del sitio"
@@ -329,6 +335,12 @@ msgstr "Columna derecha"
 
 msgid "Show your lists in columns"
 msgstr "Muestra tus listados en columnas"
+
+msgid "Custom thumbnail"
+msgstr "Miniatura personalizada"
+
+msgid "If there is no miniature, it will be replaced with the first image of the entry or the one that you upload"
+msgstr "Si no hay una miniatura, se reemplazará con la primera imagen de la entrada o la que cargue"
 
 # @ ekiline
 #: carpeta/archivo.php:29
