@@ -90,9 +90,9 @@ if ( is_page() || is_single() ){
             // verificar si existe una galeria y tomar la primera imagen que encuentre
             // verify if has gallery
             if ( get_post_gallery() ) {
-                preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', get_post_gallery(), $matches);  
+        		preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', get_post_gallery(), $matches);  
             } else {
-                preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+        		preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', $post->post_content, $matches);
             }     
                 
             $image_url = $matches [1][0]; // Necesita declararse el indice        
