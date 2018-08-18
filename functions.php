@@ -132,8 +132,8 @@ function ekiline_widgets_init() {
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h5 class="widget-title">',
-        'after_title'   => '</h5>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
     ) );
 
 // Widget in content
@@ -143,8 +143,8 @@ function ekiline_widgets_init() {
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widget-title">',
-        'after_title'   => '</h4>',
+        'before_title'  => '<p class="lead font-weight-bold widget-title">',
+        'after_title'   => '</p>',
     ) );
 
         register_sidebar( array(
@@ -153,8 +153,8 @@ function ekiline_widgets_init() {
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widget-title">',
-        'after_title'   => '</h4>',
+        'before_title'  => '<p class="lead font-weight-bold widget-title">',
+        'after_title'   => '</p>',
     ) );
 
         register_sidebar( array(
@@ -163,8 +163,8 @@ function ekiline_widgets_init() {
         'description'   => '',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widget-title">',
-        'after_title'   => '</h4>',
+        'before_title'  => '<p class="lead font-weight-bold widget-title">',
+        'after_title'   => '</p>',
     ) );	
                
 // Widgets at top of content
