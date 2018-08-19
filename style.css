@@ -151,7 +151,8 @@ a.woocommerce-product-gallery__trigger{text-decoration:none;}
  * Ekiline CUSTOM STYLES tus estilos || your styles
  * ----------------------------------------------*/
 .list-inline > li {display: inline-block;}
-
+.container-fluid .navbar{margin-left:-15px;margin-right:-15px;}
+.container-fluid .navbar.fixed-top{margin-left:inherit;margin-right:inherit;}
 /*--------------------------------------------------------------------------------
  * CSS RESPONSIVO || RESPONSIVE DESKTOP FIRST
  *------------------------------------------------------------------------------*/
