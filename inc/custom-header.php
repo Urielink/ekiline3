@@ -133,8 +133,7 @@ function customHeader(){
 	$headerTitle = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home">'.$siteName.'</a>';
 	// semantica html por posicion de objetos
 	$tagHead = 'header';
-	$tagTitle = 'h1';
-	if ( has_nav_menu( 'top' ) ) $tagHead = 'div'; $tagTitle = 'h2';
+	if ( has_nav_menu( 'top' ) ) $tagHead = 'div';
 	
 	//Personalizaciones
     $rangeHead = get_theme_mod('ekiline_range_header');
@@ -193,9 +192,9 @@ function customHeader(){
 				    	if( $headerText ) {
 				    		 echo $headerText ; 
 						} else { ?>		
-							<<?php echo $tagTitle; ?> class="site-title entry-title">
+							<h1 class="site-title entry-title">
 								<?php echo $headerTitle ;?>
-							</<?php echo $tagTitle; ?>>                              														
+							</h1>                              														
 					    	<p class="site-description"> <?php echo $siteDescription ;?> </p>				    		
 				    	<?php } ?>
 

@@ -432,11 +432,52 @@ function ekiline_theme_customizer( $wp_customize ) {
 	                ) 
 	        ) 
 	    );    
-		
-		
-		
 
+    // Behaviors for primary menu
 
+        $wp_customize->add_setting(
+            'ekiline_primarymenuSettings', array(
+                    'default' => '0',
+                    'sanitize_callback' => 'ekiline_sanitize_select'
+                ) 
+        );
+        
+        $wp_customize->add_control(
+            'ekiline_primarymenuSettings', array(
+                'type' => 'select',
+                'label' => __( 'Primary menu settings', 'ekiline' ),
+                'description' => __( 'Add behaviors for this menu, fix to top, fix to bottom or fixed with scroll', 'ekiline' ),
+                'section' => 'menu_locations',
+                'priority'    => 100,
+                'choices' => array(
+                    '0' => __( 'Default', 'ekiline' ),
+                    '1' => __( 'Fixed top', 'ekiline' ),
+                    '2' => __( 'Fixed bottom', 'ekiline' ),
+                    '3' => __( 'Fix to scroll', 'ekiline' ),
+                ),
+            )
+        );    
+		
+        $wp_customize->add_setting(
+            'ekiline_primarymenuStyles', array(
+                    'default' => '0',
+                    'sanitize_callback' => 'ekiline_sanitize_select'
+                ) 
+        );
+
+        $wp_customize->add_control(
+            'ekiline_primarymenuStyles', array(
+                'type' => 'select',
+            	'section' => 'menu_locations',
+            	'priority'    => 100,
+            	'choices' => array(
+                    '0' => __( 'Default', 'ekiline' ),
+                	'1' => __( 'Right', 'ekiline' ),
+                    '2' => __( 'Centered', 'ekiline' ),
+                ),
+            )
+        );  		       
+        
 	// Behaviors for top menu
 
         $wp_customize->add_setting(
@@ -483,53 +524,7 @@ function ekiline_theme_customizer( $wp_customize ) {
                 ),
             )
         );   
-
-        
-    // Behaviors for primary menu
-
-        $wp_customize->add_setting(
-            'ekiline_primarymenuSettings', array(
-                    'default' => '0',
-                    'sanitize_callback' => 'ekiline_sanitize_select'
-                ) 
-        );
-        
-        $wp_customize->add_control(
-            'ekiline_primarymenuSettings', array(
-                'type' => 'select',
-                'label' => __( 'Primary menu settings', 'ekiline' ),
-                'description' => __( 'Add behaviors for this menu, fix to top, fix to bottom or fixed with scroll', 'ekiline' ),
-                'section' => 'menu_locations',
-                'priority'    => 100,
-                'choices' => array(
-                    '0' => __( 'Default', 'ekiline' ),
-                    '1' => __( 'Fixed top', 'ekiline' ),
-                    '2' => __( 'Fixed bottom', 'ekiline' ),
-                    '3' => __( 'Fix to scroll', 'ekiline' ),
-                ),
-            )
-        );    
 		
-        $wp_customize->add_setting(
-            'ekiline_primarymenuStyles', array(
-                    'default' => '0',
-                    'sanitize_callback' => 'ekiline_sanitize_select'
-                ) 
-        );
-
-        $wp_customize->add_control(
-            'ekiline_primarymenuStyles', array(
-                'type' => 'select',
-            	'section' => 'menu_locations',
-            	'priority'    => 100,
-            	'choices' => array(
-                    '0' => __( 'Default', 'ekiline' ),
-                	'1' => __( 'Right', 'ekiline' ),
-                    '2' => __( 'Centered', 'ekiline' ),
-                ),
-            )
-        );  		       
-        
     // Behaviors for modal menu
 
         $wp_customize->add_setting(

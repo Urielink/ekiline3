@@ -43,8 +43,8 @@ function ekiline_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-        'top' => esc_html__( 'Top Menu', 'ekiline' ),
         'primary' => esc_html__( 'Primary Menu', 'ekiline' ),
+        'top' => esc_html__( 'Top Menu', 'ekiline' ),
         'modal' => esc_html__( 'Modal Menu', 'ekiline' ),
 	) );
 

@@ -45,7 +45,6 @@ function ekilineNavbar($navPosition){
 		if( true === get_theme_mod('ekiline_inversemenu') ) : $inverseMenu = 'navbar-dark bg-dark ';  endif;
 		// semantica html por posicion de objetos
 		$tagNav = 'nav';
-		$tagNavBrand = 'h2';
 		// clase auxiliar alineación de items, transformar a header.
 		$headNav = '';
 		$navHelper = '';
@@ -58,7 +57,6 @@ function ekilineNavbar($navPosition){
 			$actions = get_theme_mod('ekiline_topmenuSettings'); 
 			$styles = get_theme_mod('ekiline_topmenuStyles'); 
 			$tagNav = 'header';
-			$tagNavBrand = 'h1';
 			$wdgtNav = 'navwidget-nw1';
 		}
 		if ($navPosition == 'primary'){
@@ -117,7 +115,7 @@ function ekilineNavbar($navPosition){
 			    	<div class="container<?php echo $headNav; ?>">
 		    	<?php } ?>          
 		
-		            <<?php echo $tagNavBrand; ?>><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php logoTheme(); ?></a></<?php echo $tagNavBrand; ?>>
+		            <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php logoTheme(); ?></a>
 
 					<?php if ( $navPosition == 'primary' || $navPosition == 'modal' && get_bloginfo( 'description' ) ) { ?> 
 					<span class="navbar-text d-none d-md-block"><?php echo get_bloginfo( 'description' ); ?></span> 
