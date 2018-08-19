@@ -26,11 +26,11 @@ function ekiline_list_categories() {
  */
 
 function ekiline_frontpage_featured( $query ) {
-	
+	if (!is_home()) return;
 	$seleccion =  get_theme_mod('ekiline_featuredcategories');
-	// print_r($seleccion);
+	print_r($seleccion);
 	// crear un string con lo seleccionado
-	$str = implode (',', $seleccion);
+	$str = implode(',', $seleccion);
 	
 	if ( $query->is_home() && $query->is_main_query() ) {
 	 	 $query->set( 'cat', $str ); 
