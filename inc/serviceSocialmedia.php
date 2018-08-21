@@ -84,18 +84,25 @@ if ( is_page() || is_single() ){
         } else {
             
             global $post, $posts;
+			$imageExist = '';
             $image_url = '';
             
             ob_start();
             // verificar si existe una galeria y tomar la primera imagen que encuentre
             // verify if has gallery
             if ( get_post_gallery() ) {
-        		preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', get_post_gallery(), $matches);  
+        		$imageExist = preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', get_post_gallery(), $matches);  
             } else {
-        		preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', $post->post_content, $matches);
+        		$imageExist = preg_match_all('/< *img[^>]*src *= *["\']?([^"\']*)/i', $post->post_content, $matches);
             }     
                 
-            $image_url = $matches [1][0]; // Necesita declararse el indice        
+            // $image_url = $matches [1][0]; // Necesita declararse el indice    
+			if ($imageExist > 0) {
+			    $image_url = $matches[1][0];
+			} elseif ( get_theme_mod('ekiline_getthumbs') ) {
+			    $image_url =  get_theme_mod( 'ekiline_getthumbs' );
+			} 
+		            
             ob_end_clean();  
             
             //En caso de no existir una u otra
