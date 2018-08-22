@@ -1139,7 +1139,6 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 	/**
 	 * 1) Agregar botones a tinymce editor || Add a custom button to tinymce editor
 	 */
-	add_action('admin_head', 'custom_mce_buttons');
  	function custom_mce_buttons() {
 	    // Verificar si esta habilitado || Check is enabled
 	    // if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {    		    
@@ -1148,6 +1147,8 @@ if( true === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) {
 	        add_filter( 'mce_buttons_3', 'register_mce_buttons' );
 	    }
 	}
+	// add_action( 'admin_init', 'custom_mce_buttons' );
+	add_action('admin_head', 'custom_mce_buttons'); //anula el registro de botones en gutenberg
 	
 	// ajuste para su uso en el front	
 	if( !is_admin() ){
