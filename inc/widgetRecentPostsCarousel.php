@@ -89,7 +89,8 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 			$args['widget_id'] = $this->id;
 		}
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts','ekiline' );
+		// $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts','ekiline' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : '';
 
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
@@ -170,30 +171,44 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                 <?php endwhile;?>
                 </ol> <!-- // fin de .carousel-indicators -->                      
                   
-                <?php while( $r->have_posts() ) : $r->the_post();?>                   
+                <?php while( $r->have_posts() ) : $r->the_post();?>      
+                	             
                 <?php // conteo de posts
                         $count = $r->current_post + 0;
                         // marcar el post 0 como el principal, para generar una clase CSS active
-                        if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif;        
-                        ?>                                              
+                        if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; ?>                                              
                 <div class="carousel-item <?php echo $countclass; ?>">
-                    <article<?php if ( !has_post_thumbnail() ) : echo ' class="no-thumb"'; endif; ?>>
+                	
+                    <article<?php if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>>
                     
-				    <?php if ( has_post_thumbnail() ){?>
-				        <a class="link-image" href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark">             
-				        	<?php the_post_thumbnail( 'horizontal-slide', array( 'class' => 'img-fluid' ));?>
-				        </a>
-				    <?php }?>
+				    <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
 				    
+			            <a class="link-image"  href="<?php echo esc_url( get_permalink() ); ?>">
+			                <?php if ( has_post_thumbnail() ){
+			                	the_post_thumbnail( 'horizontal-slide', array( 'class' => 'img-fluid') );
+							} else { ?>
+			                    <img class="img-fluid wp-post-image" alt="<?php the_title_attribute();?>" src="<?php ekiline_load_first_image(); ?>">
+							<?php } ?>
+			            </a>
+				        
+				    <?php } ?>  				    
+				    				    
                     <div class="carousel-caption p-5">
-                      <h4 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                      <p><?php the_excerpt(); ?></p>
-                      <?php if ( $show_date ) : ?>
-                      	<small><?php the_time( get_option( 'date_format' ) ); ?></small>      
-                      <?php endif; ?>                  
+                    	
+					  <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+
+                      <?php the_excerpt(); ?>
+                      	
+	                  <?php if ( $show_date ) : ?>
+	                      <small><?php the_time( get_option( 'date_format' ) ); ?></small>      
+	                  <?php endif; ?>
+                      
                     </div>
+                    
                     </article>
+                    
                 </div> <!-- // fin de .item -->  
+                
                 <?php endwhile;?>   
 
               </div> <!-- // fin de .carousel-inner -->
