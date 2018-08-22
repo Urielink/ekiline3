@@ -62,7 +62,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 			'classname' => 'widget_recent_entries',
-			'description' => __( 'The most recent posts on your site in carousel format','ekiline' ),
+			'description' => __( 'The most recent posts in bootstrap carousel','ekiline' ),
 			'customize_selective_refresh' => true,
 		);
 		// Cancelar herencia.
@@ -99,6 +99,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		if ( ! $number ) {
 			$number = 5;
 		}
+		$show_xcrp = isset( $instance['show_xcrp'] ) ? $instance['show_xcrp'] : false;
 		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 		
 //1400 llamar por categoria selecta: https://codex.wordpress.org/Class_Reference/WP_Query
@@ -197,12 +198,15 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                     	
 					  <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-                      <?php the_excerpt(); ?>
-                      	
-	                  <?php if ( $show_date ) : ?>
-	                      <small><?php the_time( get_option( 'date_format' ) ); ?></small>      
+	                  <?php if ( $show_xcrp ) : ?>
+                      	<?php the_excerpt(); ?>
 	                  <?php endif; ?>
+                      	
+		              <?php if ( $show_date ) : ?>
+		              	<small><?php the_time( get_option( 'date_format' ) ); ?></small>
+		              <?php endif; ?>
                       
+	                  
                     </div>
                     
                     </article>
@@ -245,6 +249,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['number'] = (int) $new_instance['number'];
+		$instance['show_xcrp'] = isset( $new_instance['show_xcrp'] ) ? (bool) $new_instance['show_xcrp'] : false; // Ver resumen // show summary
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
 //1400
         $instance['widget_categories'] = $new_instance['widget_categories'];
@@ -262,8 +267,8 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 	public function form( $instance ) {
 		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
 		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$show_xcrp = isset( $instance['show_xcrp'] ) ? (bool) $instance['show_xcrp'] : false ; 
 		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false ;
-//1400		
         $defaults = array( 'widget_categories' => array() );
         $instance = wp_parse_args( (array) $instance, $defaults );    
         // Instantiate the walker passing name and id as arguments to constructor
@@ -284,6 +289,9 @@ class ekiline_recent_posts_carousel extends WP_Widget {
         <?php echo '<ul class="categorychecklist" style="height:180px;overflow-y:scroll;border:solid 1px #ddd;padding:4px;">';
         wp_category_checklist( 0, 0, $instance['widget_categories'], FALSE, $walker, FALSE );
         echo '</ul>'; ?>
+
+		<p><input class="checkbox" type="checkbox"<?php checked( $show_xcrp ); ?> id="<?php echo $this->get_field_id( 'show_xcrp' ); ?>" name="<?php echo $this->get_field_name( 'show_xcrp' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'show_xcrp' ); ?>"><?php _e( 'Show summary?','ekiline' ); ?></label></p>
 
 		<p><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
 		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Show post date?','ekiline' ); ?></label></p>
