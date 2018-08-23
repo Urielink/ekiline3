@@ -26,12 +26,15 @@
             //icon: false,
             //text: 'Custom presets',
             // title : 'Custom presets',
-            title : editor.getLang('ekiline_tinymce.addmydesign'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-custom.png',
+            // title : editor.getLang('ekiline_tinymce.addmydesign'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-custom.png',
+            title : ekiTinyL10n.addmydesign,
+            image: ekiTinyL10n.themePath+'/img/ico-custom.png',
             onclick: function (e) {
             
 	            //llamar el catalogo de diseños
-	        	$.get(editor.getLang('ekiline_tinymce.themePath')+'/template-parts/custom-layouts.php', function(laysrc){
+	        	// $.get(editor.getLang('ekiline_tinymce.themePath')+'/template-parts/custom-layouts.php', function(laysrc){
+	        	$.get(ekiTinyL10n.themePath+'/template-parts/custom-layouts.php', function(laysrc){
 					
 					// crear variable para cadena de JSON											
 				    jsonObj = [];
@@ -54,7 +57,8 @@
 					//ejecutar el editor								
 	                editor.windowManager.open({
 	                	
-	                    title: editor.getLang('ekiline_tinymce.addmydesign'),
+	                    // title: editor.getLang('ekiline_tinymce.addmydesign'),
+			            title : ekiTinyL10n.addmydesign,
 	                    minWidth: 500,
 	                    minHeight: 100,
 	
@@ -64,9 +68,11 @@
 					            type   : 'label',
 					            name   : 'description',
 					            //label  : 'Your HTML presets',
-					            label  : editor.getLang('ekiline_tinymce.mydeslab'),
+					            // label  : editor.getLang('ekiline_tinymce.mydeslab'),
+					            label : ekiTinyL10n.mydeslab,
 					            // text   : 'Go to Appearance > Editor and edit custom-layouts file to replace and add more HTML sets'
-					            text   : editor.getLang('ekiline_tinymce.mydestext')
+					            // text   : editor.getLang('ekiline_tinymce.mydestext'),
+		                        text : ekiTinyL10n.mydestext
 							},   
 		                    {
 		                    	type: 'listbox', 

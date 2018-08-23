@@ -23,13 +23,16 @@
         editor.addButton('custom_mce_button6', {
             //icon: false,
             //title : 'Insert Tabs',
-            title : editor.getLang('ekiline_tinymce.addtabs'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tabs.png',
+            // title : editor.getLang('ekiline_tinymce.addtabs'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tabs.png',
+            title : ekiTinyL10n.addtabs,
+            image: ekiTinyL10n.themePath+'/img/ico-tabs.png',
             onclick: function (e) {            	
                 editor.windowManager.open({
                 	
                     //title: 'Insert Tabs',
-		            title : editor.getLang('ekiline_tinymce.addtabs'),
+		            // title : editor.getLang('ekiline_tinymce.addtabs'),
+		            title : ekiTinyL10n.addtabs,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -38,7 +41,8 @@
 						{
                         	type	: 'textbox',
                         	name	: 'tabNumber',
-                        	label	: editor.getLang('ekiline_tinymce.tabdesc'),
+                        	// label	: editor.getLang('ekiline_tinymce.tabdesc'),
+                        	label	: ekiTinyL10n.tabdesc,
                     	},	                          	
                 	],                    	
                     onsubmit: function (e) {
@@ -47,8 +51,10 @@
 						var tab = '';						
 						var i;
 						var tbnum = e.data.tabNumber;
-						var tbtitle = editor.getLang('ekiline_tinymce.tabtitle');
-						var tbcontent = editor.getLang('ekiline_tinymce.tabcont');
+						// var tbtitle = editor.getLang('ekiline_tinymce.tabtitle');
+						// var tbcontent = editor.getLang('ekiline_tinymce.tabcont');
+						var tbtitle = ekiTinyL10n.tabtitle;
+						var tbcontent = ekiTinyL10n.tabcont;
 						//genero el loop
 						for (i = 0; i < tbnum; i++) {
 						    //tab += 'tab num ' + i + '<br><br>';

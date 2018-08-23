@@ -29,8 +29,10 @@
         editor.addButton('custom_mce_button10', {
             //icon: false,
             // title : 'Entries module',
-            title : editor.getLang('ekiline_tinymce.modcat'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-insert.png',
+            // title : editor.getLang('ekiline_tinymce.modcat'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-insert.png',
+            title : ekiTinyL10n.modcat,
+            image: ekiTinyL10n.themePath+'/img/ico-insert.png',
             onclick: function (e) {
             	
             	// console.log(my_plugin);
@@ -38,7 +40,8 @@
 
                 editor.windowManager.open({
                 	
-                    title: editor.getLang('ekiline_tinymce.modcat'),
+                    // title: editor.getLang('ekiline_tinymce.modcat'),
+                    title: ekiTinyL10n.modcat,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -47,7 +50,8 @@
 				            type   : 'label',
 				            name   : 'description',
 				            // text   : 'Choose category and format to show a list of entries.'
-				            text   : editor.getLang('ekiline_tinymce.modcatdesc')
+				            // text   : editor.getLang('ekiline_tinymce.modcatdesc')
+				            text   : ekiTinyL10n.modcatdesc
 						},                    
 	                    {
 	                    	type   : 'listbox', 
@@ -61,17 +65,20 @@
 	                        'values': [
 								{
 		                        	// text	: 'Default list',
-		                        	text	: editor.getLang('ekiline_tinymce.default'),
+		                        	// text	: editor.getLang('ekiline_tinymce.default'),
+		                        	text	: ekiTinyL10n.default,
 		                        	value	: ''
 		                    	},
 								{
 		                        	// text	: 'Block modules',
-		                        	text	: editor.getLang('ekiline_tinymce.block'),
+		                        	// text	: editor.getLang('ekiline_tinymce.block'),
+		                        	text	: ekiTinyL10n.block,
 		                        	value	: ' format="block"'
 			                    },
 								{
 		                        	// text	: 'Carousel slider',
-		                        	text	: editor.getLang('ekiline_tinymce.carousel'),
+		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
+		                        	text	: ekiTinyL10n.carousel,
 		                        	value	: ' format="carousel"'
 		                    	}
 	                        ]   			    
@@ -81,7 +88,8 @@
 				            name   : 'amount',
 				            value  : 5,
 				            // label   : 'Set the amount of posts'
-				            label   : editor.getLang('ekiline_tinymce.amount')
+				            // label   : editor.getLang('ekiline_tinymce.amount')
+				            label   : ekiTinyL10n.amount
 						},                    
 
                 	],                    	

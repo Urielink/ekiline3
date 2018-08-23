@@ -29,8 +29,10 @@
         editor.addButton('custom_mce_button11', {
             //icon: false,
             // title : 'Custom fields',
-            title : editor.getLang('ekiline_tinymce.helpterms'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-help.png',
+            // title : editor.getLang('ekiline_tinymce.helpterms'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-help.png',
+            title : ekiTinyL10n.helpterms,
+            image: ekiTinyL10n.themePath+'/img/ico-help.png',
             onclick: function (e) {
             	
             	// console.log(my_plugin);
@@ -38,7 +40,8 @@
 
                 editor.windowManager.open({
                 	
-                    title: editor.getLang('ekiline_tinymce.helpterms'),
+                    // title: editor.getLang('ekiline_tinymce.helpterms'),
+                    title: ekiTinyL10n.helpterms,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -47,7 +50,8 @@
 				            type   : 'label',
 				            name   : 'description',
 				            // text   : 'Choose and copy the value that help to modify a custom field in your website'
-				            text   : editor.getLang('ekiline_tinymce.helpdesc')
+				            // text   : editor.getLang('ekiline_tinymce.helpdesc')
+				            text   : ekiTinyL10n.helpdesc
 						},                    
 	                    {
 	                    	type   : 'listbox', 
@@ -55,22 +59,26 @@
 	                        'values': [
 								{
 		                        	// text	: 'Custom title',
-		                        	text	: editor.getLang('ekiline_tinymce.ctitle'),
+		                        	// text	: editor.getLang('ekiline_tinymce.ctitle'),
+		                        	text	: ekiTinyL10n.ctitle,
 		                        	value	: 'custom_title'
 			                    },
 								{
 		                        	// text	: 'Custom meta description',
-		                        	text	: editor.getLang('ekiline_tinymce.cmdes'),
+		                        	// text	: editor.getLang('ekiline_tinymce.cmdes'),
+		                        	text	: ekiTinyL10n.cmdes,
 		                        	value	: 'custom_meta_description'
 			                    },
 								{
 		                        	// text	: 'Custom css style',
-		                        	text	: editor.getLang('ekiline_tinymce.ccss'),
+		                        	// text	: editor.getLang('ekiline_tinymce.ccss'),
+		                        	text	: ekiTinyL10n.ccss,
 		                        	value	: 'custom_css_style'
 		                    	},
 								{
 		                        	// text	: 'Custom js script',
-		                        	text	: editor.getLang('ekiline_tinymce.cjs'),
+		                        	// text	: editor.getLang('ekiline_tinymce.cjs'),
+		                        	text	: ekiTinyL10n.cjs,
 		                        	value	: 'custom_js_script'
 		                    	}
 	                        ]   			    
@@ -79,7 +87,8 @@
                 	],                    	
                     onsubmit: function (e) {
                     	// text	: 'Set custom field with:',
-                        editor.insertContent( editor.getLang('ekiline_tinymce.addcfname') +'&nbsp;'+ e.data.customfields +'<br><br>' );
+                        // editor.insertContent( editor.getLang('ekiline_tinymce.addcfname') +'&nbsp;'+ e.data.customfields +'<br><br>' );
+                        editor.insertContent( ekiTinyL10n.addcfname +'&nbsp;'+ e.data.customfields +'<br><br>' );
                     }
                     
                 }); //editor.windowManager.open

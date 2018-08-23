@@ -117,6 +117,7 @@ function ekiline_tinymce_translation() {
 	// '' => __('','ekiline')
     );
     $locale = _WP_Editors::$mce_locale;
+    // $locale = _WP_Editors::get_mce_locale();
     $translated = 'tinyMCE.addI18n("' . $locale . '.ekiline_tinymce", ' . json_encode( $strings ) . ");\n";
 
      return $translated;

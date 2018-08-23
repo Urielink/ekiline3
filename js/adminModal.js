@@ -19,8 +19,10 @@
             //icon: false,
             //title : 'Modal box',
             //text: 'Modal box',
-            title : editor.getLang('ekiline_tinymce.addmodal'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-modal.png',
+            // title : editor.getLang('ekiline_tinymce.addmodal'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-modal.png',
+            title : ekiTinyL10n.addmodal,
+            image: ekiTinyL10n.themePath+'/img/ico-modal.png',
             onclick: function (e) {
             	
             	//1) inicio la seleccion del objeto
@@ -29,7 +31,8 @@
                 editor.windowManager.open({
                 	
                     //title: 'Create a modalbox with custom content',
-		            title : editor.getLang('ekiline_tinymce.modaltitle'),
+		            // title : editor.getLang('ekiline_tinymce.modaltitle'),
+		            title : ekiTinyL10n.modaltitle,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -37,12 +40,14 @@
 						{
                         	type	: 'label',
 		                    //text: 'Assign modal on selected item, set title and edit content',
-                        	text	: editor.getLang('ekiline_tinymce.modaldesc'),
+                        	// text	: editor.getLang('ekiline_tinymce.modaldesc'),
+                        	text	: ekiTinyL10n.modaldesc,
                     	},
                     // item 1, titulo de modal, si no hay, no muestra header
 						{
 				            //label   : 'Set title to modal',
-				            label   : editor.getLang('ekiline_tinymce.mbxtitle'),
+				            // label   : editor.getLang('ekiline_tinymce.mbxtitle'),
+				            label   : ekiTinyL10n.mbxtitle,
                         	type	: 'textbox',
                         	name	: 'title',
                         	value 	: '',
@@ -50,13 +55,15 @@
                     // item 2, Contenido
 						{
 				            //label   : 'Set modal content, text, images hard code HTML.',
-				            label   : editor.getLang('ekiline_tinymce.mbxdesc'),
+				            // label   : editor.getLang('ekiline_tinymce.mbxdesc'),
+				            label   : ekiTinyL10n.mbxdesc,
                         	type	: 'textbox',
 	                        multiline: true,
 	                        minWidth: 500,
 	                        minHeight: 100,
 	                        //placeholder: 'Add your text',
-	                        placeholder: editor.getLang('ekiline_tinymce.ttplace'),
+	                        // placeholder: editor.getLang('ekiline_tinymce.ttplace'),
+	                        placeholder: ekiTinyL10n.ttplace,
                         	name	: 'desc',
                         	value 	: '',
                     	},

@@ -23,8 +23,10 @@
             //icon: false,
             //title : 'Tooltips',
             //text: 'Tooltips',
-            title : editor.getLang('ekiline_tinymce.addtooltips'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tooltip.png',
+            // title : editor.getLang('ekiline_tinymce.addtooltips'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tooltip.png',
+            title : ekiTinyL10n.addtooltips,
+            image: ekiTinyL10n.themePath+'/img/ico-tooltip.png',
             onclick: function (e) {
             	
             	//1) inicio la seleccion del objeto
@@ -33,7 +35,8 @@
                 editor.windowManager.open({
                 	
                     //title: 'Create a tooltip or popover item',
-		            title : editor.getLang('ekiline_tinymce.ttiptitlex'),
+		            // title : editor.getLang('ekiline_tinymce.ttiptitlex'),
+		            title : ekiTinyL10n.ttiptitlex,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -41,12 +44,14 @@
 						{
                         	type	: 'label',
 		                    //text: 'By default you set a tooltip adding only title and position. If you fill all fields tooltip transforms to popover.',
-                        	text	: editor.getLang('ekiline_tinymce.ttipdesc'),
+                        	// text	: editor.getLang('ekiline_tinymce.ttipdesc'),
+                        	text	: ekiTinyL10n.ttipdesc,
                     	},
                     // item 1, titulo de tooltip
 						{
 				            //label   : 'Set title to item',
-				            label   : editor.getLang('ekiline_tinymce.tttitle'),
+				            // label   : editor.getLang('ekiline_tinymce.tttitle'),
+				            label   : ekiTinyL10n.tttitle,
                         	type	: 'textbox',
                         	name	: 'title',
                         	value 	: '',
@@ -54,20 +59,23 @@
                     // item 2, si tiene descripcion entonces es un popover
 						{
 				            //label   : 'Set description to item',
-				            label   : editor.getLang('ekiline_tinymce.ttdesc'),
+				            // label   : editor.getLang('ekiline_tinymce.ttdesc'),
+				            label   : ekiTinyL10n.ttdesc,
                         	type	: 'textbox',
 	                        multiline: true,
 	                        minWidth: 500,
 	                        minHeight: 100,
 	                        //placeholder: 'Add your text',
-	                        placeholder: editor.getLang('ekiline_tinymce.ttplace'),
+	                        // placeholder: editor.getLang('ekiline_tinymce.ttplace'),
+	                        placeholder: ekiTinyL10n.ttplace,
                         	name	: 'desc',
                         	value 	: '',
                     	},
                     // item 3, Si tiene etiquetas HTML entonces es un popover enriquecido
 						{
 				            label   : 'Allow HTML content',
-				            label   : editor.getLang('ekiline_tinymce.ttcheck'),
+				            // label   : editor.getLang('ekiline_tinymce.ttcheck'),
+				            label   : ekiTinyL10n.ttcheck,
                         	type	: 'checkbox',
                         	name	: 'richpop',
                         	value	: '',
@@ -75,28 +83,33 @@
                     // item 4, posision para mostrar
 						{
 				            //label   : 'Set position to show pop item',
-				            label   : editor.getLang('ekiline_tinymce.ttpos'),
+				            // label   : editor.getLang('ekiline_tinymce.ttpos'),
+				            label   : ekiTinyL10n.ttpos,
                         	type	: 'listbox',
                         	name	: 'show',
 	                        'values': [
 								{
 		                        	// text	: 'Top',
-		                        	text	: editor.getLang('ekiline_tinymce.top'),
+		                        	// text	: editor.getLang('ekiline_tinymce.top'),
+		                        	text	: ekiTinyL10n.top,
 		                        	value	: 'top'
 		                    	},
 								{
 		                        	// text	: 'Right',
-		                        	text	: editor.getLang('ekiline_tinymce.right'),
+		                        	// text	: editor.getLang('ekiline_tinymce.right'),
+		                        	text	: ekiTinyL10n.right,
 		                        	value	: 'right'
 		                    	},
 								{
 		                        	// text	: 'Bottom',
-		                        	text	: editor.getLang('ekiline_tinymce.bottom'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bottom'),
+		                        	text	: ekiTinyL10n.bottom,
 		                        	value	: 'bottom'
 		                    	},
 								{
 		                        	// text	: 'Left',
-		                        	text	: editor.getLang('ekiline_tinymce.left'),
+		                        	// text	: editor.getLang('ekiline_tinymce.left'),
+		                        	text	: ekiTinyL10n.left,
 		                        	value	: 'left'
 		                    	}
 	                        ]                        	

@@ -23,13 +23,16 @@
         editor.addButton('custom_mce_button9', {
             //icon: false,
             // title : 'Extra shortocodes',
-            title : editor.getLang('ekiline_tinymce.share'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-share.png',
+            // title : editor.getLang('ekiline_tinymce.share'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-share.png',
+            title : ekiTinyL10n.share,
+            image: ekiTinyL10n.themePath+'/img/ico-share.png',
             onclick: function (e) {
             	
                 editor.windowManager.open({
                 	
-                    title: editor.getLang('ekiline_tinymce.share'),
+                    // title: editor.getLang('ekiline_tinymce.share'),
+                    title: ekiTinyL10n.share,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -38,18 +41,22 @@
 				            type   : 'label',
 				            name   : 'description',
 				            // text   : 'Choose a shortcode to enhance your page, '
-				            text   : editor.getLang('ekiline_tinymce.sharetext')
+				            // text   : editor.getLang('ekiline_tinymce.sharetext')
+				            text   : ekiTinyL10n.sharetext
 						},                    
 	                    {
 	                    	type: 'listbox', 
 	                    	name: 'tools', 
 						      values: [
 						      //Your social links nav
-        						  { text: editor.getLang('ekiline_tinymce.socialnet'), value: '[socialmenu]' },
+        						  // { text: editor.getLang('ekiline_tinymce.socialnet'), value: '[socialmenu]' },
+        						  { text: ekiTinyL10n.socialnet, value: '[socialmenu]' },
 						      //Share nav for visitors
-        						  { text: editor.getLang('ekiline_tinymce.socialshare'), value: '[socialsharemenu]' },
+        						  // { text: editor.getLang('ekiline_tinymce.socialshare'), value: '[socialsharemenu]' },
+        						  { text: ekiTinyL10n.socialshare, value: '[socialsharemenu]' },
 						      //Insert a login form
-        						  { text: editor.getLang('ekiline_tinymce.loginform'), value: '[loginform]' },
+        						  // { text: editor.getLang('ekiline_tinymce.loginform'), value: '[loginform]' },
+        						  { text: ekiTinyL10n.loginform, value: '[loginform]' },
 						      ]
 	                	},
                 	],

@@ -25,29 +25,29 @@
         editor.addButton('custom_mce_button16', {
             //icon: false,
             // title : 'Get more',
-            title : editor.getLang('ekiline_tinymce.getMore'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-ekiline.png',
+            title : ekiTinyL10n.getMore,
+            image: ekiTinyL10n.themePath+'/img/ico-ekiline.png',
             onclick: function (e) {
             	
             		var notification = '<div style="text-align:center;">';
-            			notification +='<h1 style="font-size: 24px;text-align: center;">'+ editor.getLang('ekiline_tinymce.getMoreTitle') +'</h1>';
-            			notification +='<p style="text-align: center;padding: 8px 0px;font-size: 16px;">'+ editor.getLang('ekiline_tinymce.getMoreDesc') +'</p>';
+            			notification +='<h1 style="font-size: 24px;text-align: center;">'+ ekiTinyL10n.getMoreTitle +'</h1>';
+            			notification +='<p style="text-align: center;padding: 8px 0px;font-size: 16px;">'+ ekiTinyL10n.getMoreDesc +'</p>';
             			notification +='<p style="text-align: center;padding: 8px 0px;margin-bottom:14px;font-size: 16px;background-color: #f0f0f0;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-grid.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-cols.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-bg.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tabs.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-toggle.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-tooltip.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-modal.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-insert.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-layout.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-custom.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-gmap.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-share.png" style="margin-right:10px;">';
-            			notification +='<img src="'+editor.getLang('ekiline_tinymce.themePath')+'/img/ico-faw.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-grid.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-cols.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-bg.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-tabs.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-toggle.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-tooltip.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-modal.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-insert.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-layout.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-custom.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-gmap.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-share.png" style="margin-right:10px;">';
+            			notification +='<img src="'+ekiTinyL10n.themePath+'/img/ico-faw.png" style="margin-right:10px;">';
             			notification +='</p><p style="text-align: center;">';
-            			notification +='<a class="button button-primary button-hero" href="http://ekiline.com/compra/" target="_blank">'+ editor.getLang('ekiline_tinymce.getMoreBuy') +'</a>';
+            			notification +='<a class="button button-primary button-hero" href="http://ekiline.com/compra/" target="_blank">'+ ekiTinyL10n.getMoreBuy +'</a>';
         				notification +='<p/>';
     					notification +='</div>';
 
@@ -55,7 +55,7 @@
 	                editor.windowManager.open({
 	                	
 			            // title : 'Get more',
-	                    title: editor.getLang('ekiline_tinymce.getMore'),
+	                    title: ekiTinyL10n.getMore,
 	                    minWidth: 500,
 	                    minHeight: 100,
 	

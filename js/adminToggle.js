@@ -23,13 +23,16 @@
         editor.addButton('custom_mce_button7', {
             //icon: false,
             //title : 'Toggle item',
-            title : editor.getLang('ekiline_tinymce.addtoggle'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-toggle.png',
+            // title : editor.getLang('ekiline_tinymce.addtoggle'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-toggle.png',
+            title : ekiTinyL10n.addtoggle,
+            image: ekiTinyL10n.themePath+'/img/ico-toggle.png',
             onclick: function (e) {            	
                 editor.windowManager.open({
                 	
                     //title: 'Toggle Item',
-		            title : editor.getLang('ekiline_tinymce.addtoggle'),
+		            // title : editor.getLang('ekiline_tinymce.addtoggle'),
+		            title : ekiTinyL10n.addtoggle,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -37,14 +40,16 @@
 						{
                         	type	: 'label',
                         	//text	: 'Insert a single toggle item o multiple accordion items',
-                        	text	: editor.getLang('ekiline_tinymce.togdesc'),
+                        	// text	: editor.getLang('ekiline_tinymce.togdesc'),
+                        	text	: ekiTinyL10n.togdesc,
                     	},
                     // item 1, numbe of items
 						{
                         	type	: 'textbox',
                         	name	: 'toggNumber',
                         	//label	: 'Set number',
-                        	label	: editor.getLang('ekiline_tinymce.togset'),
+                        	// label	: editor.getLang('ekiline_tinymce.togset'),
+                        	label	: ekiTinyL10n.togset,
                     	},	                          	
                 	],                    	
                     onsubmit: function (e) {
@@ -54,8 +59,10 @@
 						var i;
 						var tgnum = e.data.toggNumber;
 						var tgid = Math.floor(Math.random() * 100) + 1; // unique id
-						var tgtitle = editor.getLang('ekiline_tinymce.togtitle'); //Title this toggle item
-						var tgcontent = editor.getLang('ekiline_tinymce.togcont'); //Add any content with format, text, images, galleries.
+						// var tgtitle = editor.getLang('ekiline_tinymce.togtitle'); //Title this toggle item
+						// var tgcontent = editor.getLang('ekiline_tinymce.togcont'); //Add any content with format, text, images, galleries.
+						var tgtitle = ekiTinyL10n.togtitle; //Title this toggle item
+						var tgcontent = ekiTinyL10n.togcont; //Add any content with format, text, images, galleries.
 						
 						//genero el loop; necesito diferenciar cada tab para el ejemplo.
 						for (i = 0; i < tgnum; i++) {

@@ -11,12 +11,14 @@
         editor.addButton('custom_mce_button15', {
             //icon: false,
             title : 'FontAwesome',
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-faw.png',
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-faw.png',
+            image: ekiTinyL10n.themePath+'/img/ico-faw.png',
             onclick: function (e) {
             	
 //mi html previo CSS y HTML
 				// var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" type="text/css" media="all" />'; 
-				var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" media="all" />'; 
+				// var	uiCss = '<link rel="stylesheet" href="'+editor.getLang('ekiline_tinymce.themePath')+'/css/fontawesome-all.min.css" media="all" />'; 
+				var	uiCss = '<link rel="stylesheet" href="'+ekiTinyL10n.themePath+'/css/fontawesome-all.min.css" media="all" />'; 
 					// uiCss += '<style type="text/css">';
 					uiCss += '<style>';
 					uiCss += '.mce-window.mce-container.mce-fontawesome-panel .mce-container-body.mce-abs-layout{overflow: hidden;}';
@@ -63,7 +65,8 @@
 
                 editor.windowManager.open({
                 	
-                    title: editor.getLang('ekiline_tinymce.addfaw'),
+                    // title: editor.getLang('ekiline_tinymce.addfaw'),
+                    title: ekiTinyL10n.addfaw,
                     // minWidth: 420,
                     // maxWidth: 840,
                     // minHeight: 400,

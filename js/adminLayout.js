@@ -16,12 +16,15 @@
             //icon: false,
             //text: 'Quick designs',
             // title : 'Quick designs',
-            title : editor.getLang('ekiline_tinymce.addlays'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-layout.png',
+            // title : editor.getLang('ekiline_tinymce.addlays'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-layout.png',
+            title : ekiTinyL10n.addlays,
+            image: ekiTinyL10n.themePath+'/img/ico-layout.png',
             onclick: function (e) {
             
 	            //llamar el catalogo de diseños
-	        	$.get(editor.getLang('ekiline_tinymce.themePath')+'/inc/adminLibrary.php', function(laysrc){
+	        	// $.get(editor.getLang('ekiline_tinymce.themePath')+'/inc/adminLibrary.php', function(laysrc){
+	        	$.get(ekiTinyL10n.themePath+'/inc/adminLibrary.php', function(laysrc){
 					
 					// crear variable para cadena de JSON											
 				    jsonObj = [];
@@ -44,7 +47,8 @@
 					//ejecutar el editor								
 	                editor.windowManager.open({
 	                	
-	                    title: editor.getLang('ekiline_tinymce.addlays'),
+	                    // title: editor.getLang('ekiline_tinymce.addlays'),
+	                    title: ekiTinyL10n.addlays,
 	                    minWidth: 500,
 	                    minHeight: 100,
 	
@@ -54,9 +58,11 @@
 					            type   : 'label',
 					            name   : 'description',
 					            //label  : 'HTML presets',
-					            label  : editor.getLang('ekiline_tinymce.laylab'),
+					            // label  : editor.getLang('ekiline_tinymce.laylab'),
+					            label  : ekiTinyL10n.laylab,
 					            // text   : 'Choose a design to create an amazing publication'
-					            text   : editor.getLang('ekiline_tinymce.laytext')
+					            // text   : editor.getLang('ekiline_tinymce.laytext')
+					            text   : ekiTinyL10n.laytext
 							},   
 		                    {
 		                    	type: 'listbox', 
@@ -69,7 +75,8 @@
 					            type   : 'label',
 					            name   : 'invitation',
 					            // text   : 'If you buy the definitive version of Ekiline you will have access to more designs!'
-					            text   : editor.getLang('ekiline_tinymce.laymark')
+					            // text   : editor.getLang('ekiline_tinymce.laymark')
+					            text   : ekiTinyL10n.laymark
 							},   		                	
 	                	],
 	                	

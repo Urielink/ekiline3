@@ -36,8 +36,10 @@
             //icon: false,
             //text: 'B4 Cols',
             //title : 'Add background',
-            title : editor.getLang('ekiline_tinymce.addbackground'),
-            image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-bg.png',
+            // title : editor.getLang('ekiline_tinymce.addbackground'),
+            // image: editor.getLang('ekiline_tinymce.themePath')+'/img/ico-bg.png',
+            title : ekiTinyL10n.addbackground,
+            image: ekiTinyL10n.themePath+'/img/ico-bg.png',
             onclick: function (e) {
             	
             	// reconocer el objeto seleccionado.
@@ -92,7 +94,8 @@
                 editor.windowManager.open({
                 	
                     //title: 'Choose a background color or set an image',
-		            title : editor.getLang('ekiline_tinymce.choosebgcolor'),
+		            // title : editor.getLang('ekiline_tinymce.choosebgcolor'),
+ 		            title : ekiTinyL10n.choosebgcolor,
                     minWidth: 500,
                     minHeight: 100,
 
@@ -151,7 +154,8 @@
                         	type	: 'button',
                         	name	: 'image',
                         	//text	: 'Image',
-				            text : editor.getLang('ekiline_tinymce.image'),                        	
+				            // text : editor.getLang('ekiline_tinymce.image'),                        	
+				            text : ekiTinyL10n.image,                        	
                         	onclick	: function(e) {
 
 	                            jQuery( function($){
@@ -170,10 +174,12 @@
 	                                // Create a new media frame
 	                                frame = wp.media({
 	                                    //title	: 'Choose background image',
-	                                    title	: editor.getLang('ekiline_tinymce.choosebgimg'),
+	                                    // title	: editor.getLang('ekiline_tinymce.choosebgimg'),
+	                                    title	: ekiTinyL10n.choosebgimg,
 	                                    button	: {
 	                                      //text	: 'Choose'
-	                                      text	: editor.getLang('ekiline_tinymce.choose')
+	                                      // text	: editor.getLang('ekiline_tinymce.choose')
+	                                      text	: ekiTinyL10n.choose
 	                                    },
 	                                    multiple: false  // Set to true to allow multiple files to be selected
 	                                });
@@ -201,26 +207,31 @@
 	                        type: 'listbox', 
 	                        name: 'bgRep', 
 	                        //label: 'Background repeat', 
-	                        label: editor.getLang('ekiline_tinymce.bgrLab'),
+	                        // label: editor.getLang('ekiline_tinymce.bgrLab'),
+	                        label: ekiTinyL10n.bgrLab,
 	                        'values': [
 								{
 		                        	// text	: 'Default (repeat)',
-		                        	text	: editor.getLang('ekiline_tinymce.bgrDef'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgrDef'),
+		                        	text	: ekiTinyL10n.bgrDef,
 		                        	value	: ''
 		                    	},
 								{
 		                        	// text	: 'Horizontal',
-		                        	text	: editor.getLang('ekiline_tinymce.bgrHor'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgrHor'),
+		                        	text	: ekiTinyL10n.bgrHor,
 		                        	value	: 'repeat-x'
 		                    	},
 								{
 		                        	// text	: 'Vertical',
-		                        	text	: editor.getLang('ekiline_tinymce.bgrVer'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgrVer'),
+		                        	text	: ekiTinyL10n.bgrVer,
 		                        	value	: 'repeat-y'
 		                    	},
 								{
 		                        	// text	: 'No repeat',
-		                        	text	: editor.getLang('ekiline_tinymce.bgrNo'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgrNo'),
+		                        	text	: ekiTinyL10n.bgrNo,
 		                        	value	: 'no-repeat'
 		                    	},
 	                        ]
@@ -229,51 +240,61 @@
 	                        type: 'listbox', 
 	                        name: 'bgPos', 
 	                        //label: 'Background position', 
-	                        label: editor.getLang('ekiline_tinymce.bgpLab'),
+	                        // label: editor.getLang('ekiline_tinymce.bgpLab'),
+	                        label: ekiTinyL10n.bgpLab,
 	                        'values': [
 								{
 		                        	// text	: 'top left',
-		                        	text	: editor.getLang('ekiline_tinymce.bgptlp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgptlp'),
+		                        	text	: ekiTinyL10n.bgptlp,
 		                        	value	: 'top left'
 		                    	},
 								{
 		                        	// text	: 'top center',
-		                        	text	: editor.getLang('ekiline_tinymce.bgptcp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgptcp'),
+		                        	text	: ekiTinyL10n.bgptcp,
 		                        	value	: 'top center'
 		                    	},
 								{
 		                        	// text	: 'top right',
-		                        	text	: editor.getLang('ekiline_tinymce.bgptrp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgptrp'),
+		                        	text	: ekiTinyL10n.bgptrp,
 		                        	value	: 'top right'
 		                    	},
 								{
 		                        	// text	: 'center left',
-		                        	text	: editor.getLang('ekiline_tinymce.bgplcp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgplcp'),
+		                        	text	: ekiTinyL10n.bgplcp,
 		                        	value	: 'center left'
 		                    	},
 								{
 		                        	// text	: 'center center',
-		                        	text	: editor.getLang('ekiline_tinymce.bgpccp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgpccp'),
+		                        	text	: ekiTinyL10n.bgpccp,
 		                        	value	: 'center center'
 		                    	},
 								{
 		                        	// text	: 'center right',
-		                        	text	: editor.getLang('ekiline_tinymce.bgpcrp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgpcrp'),
+		                        	text	: ekiTinyL10n.bgpcrp,
 		                        	value	: 'center right'
 		                    	},
 								{
 		                        	// text	: 'bottom left',
-		                        	text	: editor.getLang('ekiline_tinymce.bgpblp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgpblp'),
+		                        	text	: ekiTinyL10n.bgpblp,
 		                        	value	: 'bottom left'
 		                    	},
 								{
 		                        	// text	: 'bottom center',
-		                        	text	: editor.getLang('ekiline_tinymce.bgpbcp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgpbcp'),
+		                        	text	: ekiTinyL10n.bgpbcp,
 		                        	value	: 'bottom center'
 		                    	},
 								{
 		                        	// text	: 'bottom right',
-		                        	text	: editor.getLang('ekiline_tinymce.bgpbrp'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgpbcp'),
+		                        	text	: ekiTinyL10n.bgpbcp,
 		                        	value	: 'bottom right'
 		                    	},
 							]
@@ -282,16 +303,19 @@
 	                        type: 'listbox', 
 	                        name: 'bgAtt', 
 	                        //label: 'Background attachment', 
-	                        label: editor.getLang('ekiline_tinymce.bgaLab'),
+	                        // label: editor.getLang('ekiline_tinymce.bgaLab'),
+	                        label: ekiTinyL10n.bgaLab,
 	                        'values': [
 								{
 		                        	// text	: 'Default (scroll)',
-		                        	text	: editor.getLang('ekiline_tinymce.bgaDef'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgaDef'),
+		                        	text	: ekiTinyL10n.bgaDef,
 		                        	value	: ''
 		                    	},
 								{
 		                        	// text	: 'Fixed',
-		                        	text	: editor.getLang('ekiline_tinymce.bgaFix'),
+		                        	// text	: editor.getLang('ekiline_tinymce.bgaFix'),
+		                        	text	: ekiTinyL10n.bgaFix,
 		                        	value	: 'fixed'
 		                    	},
 	                        ]
@@ -300,9 +324,11 @@
 	                        type: 'checkbox', 
 	                        name: 'bgXt', 
 	                        //label: 'Parallax', 
-	                        label: editor.getLang('ekiline_tinymce.bgxLab'),
+	                        // label: editor.getLang('ekiline_tinymce.bgxLab'),
+	                        label: ekiTinyL10n.bgxLab,
 		                    //text: 'Add parallax effect to full width images',
-		                    text: editor.getLang('ekiline_tinymce.bgxDesc'),
+		                    // text: editor.getLang('ekiline_tinymce.bgxDesc'),
+		                    text: ekiTinyL10n.bgxDesc,
 	                        checked : false
 	                    },    
 	                    
