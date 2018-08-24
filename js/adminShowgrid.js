@@ -41,6 +41,11 @@
         		 * **https://stackoverflow.com/questions/3279947/how-to-check-classes-of-node-inside-tinymce
         		 * 
         		 */
+
+                // var trackitem =  tinymce.activeEditor.selection.getNode();
+                // console.log($( trackitem ).parent());
+                // var trackitemParent = $( trackitem ).parent();
+        		
 				tinymce.activeEditor.dom.toggleClass( tinymce.activeEditor.dom.select('#tinymce'), 'wf-ekiline');
 
 				showf = tinymce.activeEditor.dom.select('#tinymce');
