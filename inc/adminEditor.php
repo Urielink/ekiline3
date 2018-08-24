@@ -1370,7 +1370,7 @@ if( false === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) return;
 	// llamar los datos si tinymce se infvoca en el front.
 	if( !is_admin() ){
 	    add_action( 'wp_head', 'my_admin_head' );	
-	    add_action( "admin_head-$hook", 'ekiline_tinylang' );		 
+	    add_action( 'wp_head', 'ekiline_tinylang' );		 
 	}	
 
 
@@ -1393,3 +1393,4 @@ function wp_mce_table_btn( $plugins ) {
     return $plugins;
 }
 add_filter( 'mce_external_plugins', 'wp_mce_table_btn' );
+
