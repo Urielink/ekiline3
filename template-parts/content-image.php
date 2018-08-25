@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	
 	<?php if ( !is_home() && ! is_front_page() ) : ?> 
 		

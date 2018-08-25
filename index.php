@@ -18,7 +18,13 @@ get_header();
 $colSet = get_theme_mod('ekiline_Columns'); 
 $cssCols = '';
 $cssToCol = '';
-if ($colSet != '0') { $cssCols = ' row'; $cssToCol = ' col-md-12'; }
+if ($colSet != '0') $cssCols = ' row'; $cssToCol = ' col-md-12'; 
+//Modulo bloque
+$colClass='col-12';
+$colCount='0';
+if ($colSet == '1') { $colClass='col-md-6'; $colCount='2'; }
+elseif ($colSet == '2') { $colClass='col-md-4'; $colCount='3'; }
+elseif ($colSet == '3') { $colClass='col-md-3'; $colCount='4'; }
 
 ?>
 
@@ -45,14 +51,16 @@ if ($colSet != '0') { $cssCols = ' row'; $cssToCol = ' col-md-12'; }
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
 					//get_template_part( 'template-parts/content', get_post_format() );
-
-                if ($colSet == '1' ) : $colCount='2'; elseif ($colSet == '2' ) : $colCount='3'; elseif ($colSet == '3' ) : $colCount='4'; else : $colCount='3'; endif;                       
+                
+                if ($colSet > '0' ) echo '<div class="'.$colClass.'">';
                  
-                if ($colSet == '0') {                    
-                    get_template_part( 'template-parts/content', get_post_format() );                    
-                } else if ($colSet != '0' ) {                                            
-                    get_template_part( 'template-parts/content', 'block' );                     
-                } 	
+	                if ($colSet == '0') {                    
+	                    get_template_part( 'template-parts/content', get_post_format() );                    
+	                } else if ($colSet > '0' ) {
+	                	get_template_part( 'template-parts/content', 'block' );                     
+	                } 	
+
+                if ($colSet > '0' ) echo '</div>';
                 
                 if ($count == $colCount ) : echo '<div class="col-divider"></div>'; $count = 0;  endif;									
 					

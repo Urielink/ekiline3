@@ -99,8 +99,8 @@ function ekiline_addpostlist($atts, $content = null) {
                         
                             while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
                             
-                                $count++;                               
-                                
+                                $count++;                                                               
+//mejorar alternativa                                            
                                 get_template_part( 'template-parts/content', 'block' );
                                 
                                 // por cada 3 posts agrega un divisor, necesario para mantener alineaciones
