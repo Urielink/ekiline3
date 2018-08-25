@@ -9,14 +9,13 @@
 
 //update: 29 08 2017 columns
 $colSet = get_theme_mod('ekiline_Columns'); 
+ $colClass='col-12';
  if ($colSet == '1' ) {
      $colClass='col-md-6';
  } elseif ($colSet == '2' ) {
      $colClass='col-md-4';
  } elseif ($colSet == '3' ) {
      $colClass='col-md-3';
- } else {
-     $colClass='col-md-4';
  }
 ?>
 

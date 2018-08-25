@@ -377,7 +377,7 @@ function ekiline_posts_navigation( $args = array() ) {
             $navigation .= '<li class="next page-item page-link">' . $next_link . '</li>';
         }
         
-        $navigation = '<nav id="page-navigation" class="small" aria-label="Page navigation"><ul class="pagination justify-content-center">'.$navigation.'</ul></nav>';
+        $navigation = '<nav id="page-navigation" class="d-flex justify-content-center w-100" aria-label="Page navigation"><ul class="pagination justify-content-center">'.$navigation.'</ul></nav>';
  
         $navigation = _navigation_markup( $navigation, 'posts-navigation', $args['screen_reader_text'] );
     }
@@ -415,7 +415,7 @@ function ekiline_archive_pagination() {
         
         $current_page = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
         
-        $pagination .= '<nav id="page-navigation" class="small" aria-label="Page navigation"><ul class="pagination">';
+        $pagination .= '<nav id="page-navigation" class="d-flex justify-content-center w-100" aria-label="Page navigation"><ul class="pagination">';
         
         foreach ($pages as $i => $page) {
             //27 10 17 add CSS B4 pagination

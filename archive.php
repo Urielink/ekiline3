@@ -65,7 +65,7 @@ if ($colSet != '0') { $cssCols = ' row'; $cssToCol = ' col-md-12'; }
                     get_template_part( 'template-parts/content', 'block' );                     
                 } 	
                 
-                if ($count == $colCount ) : echo '<div class="clearfix middle"></div>'; $count = 0;  endif;									
+                if ($count == $colCount ) : echo '<div class="col-divider"></div>'; $count = 0;  endif;									
 					
 				?>
 

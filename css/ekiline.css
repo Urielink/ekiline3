@@ -246,6 +246,9 @@ video#bgvid{transition:1s opacity;}
 .wf-ekiline [class*="col"]:hover::before,.wf-ekiline .container:hover::before,.wf-ekiline nav .container:hover::before,.wf-ekiline .row:hover::before{font-size:14px;color:#fff;background-color:#494974;}
 .wf-ekiline [class*="col"]:hover,.wf-ekiline .container:hover,.wf-ekiline nav .container:hover,.wf-ekiline .row:hover{border-color:#494974;}
 
+/*utilidades*/
+.col-divider{width: 100%;padding-top: 1px;}
+
 /*--------------------------------------------------------------------------------
  * CSS RESPONSIVO: Método Escritorio a movil || Desktop First Method
  *-------------------------------------------------------------------------------- 

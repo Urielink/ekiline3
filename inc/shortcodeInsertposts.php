@@ -104,8 +104,8 @@ function ekiline_addpostlist($atts, $content = null) {
                                 get_template_part( 'template-parts/content', 'block' );
                                 
                                 // por cada 3 posts agrega un divisor, necesario para mantener alineaciones
-                                //if ($count == 3) : echo '<div class="clearfix middle"></div>'; $count = 0;  endif;
-                                if ($count == $colCount ) : echo '<div class="clearfix middle"></div>'; $count = 0;  endif;
+                                //if ($count == 3) : echo '<div class="col-divider"></div>'; $count = 0;  endif;
+                                if ($count == $colCount ) : echo '<div class="col-divider"></div>'; $count = 0;  endif;
                                                                 
                             endwhile;
                                 
