@@ -80,6 +80,18 @@
 		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
 		                        	text	: ekiTinyL10n.carousel,
 		                        	value	: ' format="carousel"'
+		                    	},
+								{
+		                        	// text	: 'Carousel slider',
+		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
+		                        	text	: 'Cards',
+		                        	value	: ' format="cards"'
+		                    	},
+								{
+		                        	// text	: 'Carousel slider',
+		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
+		                        	text	: 'Image cards',
+		                        	value	: ' format="imagecards"'
 		                    	}
 	                        ]   			    
 	                	},
@@ -90,11 +102,34 @@
 				            // label   : 'Set the amount of posts'
 				            // label   : editor.getLang('ekiline_tinymce.amount')
 				            label   : ekiTinyL10n.amount
-						},                    
+						},
+						{
+	                    	type   : 'listbox', 
+	                    	name   : 'columns',
+				            label   : 'Divide Block content in columns?',
+	                        'values': [
+								{
+		                        	text	: ekiTinyL10n.default,
+		                        	value	: ''
+		                    	},
+								{
+		                        	text	: '2',
+		                        	value	: ' columns="2"'
+		                    	},
+								{
+		                        	text	: '3',
+		                        	value	: ' columns="3"'
+		                    	},
+		                    	{
+		                        	text	: '4',
+		                        	value	: ' columns="4"'
+		                    	},
+	                        ]   			    
+	                	},						                    
 
                 	],                    	
                     onsubmit: function (e) {
-                        editor.insertContent(' [modulecategoryposts catid="'+ e.data.catids +'" limit="'+ e.data.amount +'"'+ e.data.format +']<br><br>' );
+                        editor.insertContent(' [modulecategoryposts catid="'+ e.data.catids +'" limit="'+ e.data.amount +'"'+ e.data.format + e.data.columns +']<br><br>' );
                     }
                     
                 }); //editor.windowManager.open

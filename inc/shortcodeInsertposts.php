@@ -28,7 +28,7 @@
 
 function ekiline_addpostlist($atts, $content = null) {
     
-    extract(shortcode_atts(array('catid'=>'','limit'=>'5', 'format'=>'default', 'sort'=>'DES'), $atts));
+    extract(shortcode_atts(array('catid'=>'','limit'=>'5', 'format'=>'default', 'sort'=>'DES', 'columns'=>''), $atts));
 	
 	//Enero 2018, existe un roblema cuando este modulo se inserta en un mismo articulo de una misma categoría.
 	//Debe excluirse del loop para que no se cicle: post__not_in : https://codex.wordpress.org/Class_Reference/WP_Query
@@ -82,31 +82,65 @@ function ekiline_addpostlist($atts, $content = null) {
                 
                 } else if ($format == 'block'){
                             
-                       //update: 29 08 2017 columns
-                        $colSet = get_theme_mod('ekiline_Columns'); 
-                         if ($colSet == '1' ) {
+                         $colCount='';
+						 $colClass='';
+						 $container='';
+						
+                         if ($columns == '2' ) {
+	                     	 $format .= ' row';
                              $colCount='2';
-                         } elseif ($colSet == '2' ) {
+							 $colClass='col-md-6';
+                         } elseif ($columns == '3' ) {
+	                     	 $format .= ' row';
                              $colCount='3';
-                         } elseif ($colSet == '3' ) {
+							 $colClass='col-md-4';
+                         } elseif ($columns == '4' ) {
+	                     	 $format .= ' row';
                              $colCount='4';
-                         } else {
-                             $colCount='3';
-                         }                       
+							 $colClass='col-md-3';
+                         }
                     
                                                                                                     
-                        echo '<div class="row clearfix modpostlist-'.$format.'">'; 
+                        echo '<div class="clearfix modpostlist-'.$format.'">'; 
                         
                             while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
                             
-                                $count++;                                                               
-//mejorar alternativa                                            
+                            $count++;
+
+                			if ($columns > '1' && $columns < '5') echo '<div class="'.$colClass.'">';
+
                                 get_template_part( 'template-parts/content', 'block' );
+
+                			if ($columns > '1' && $columns < '5') echo '</div>';
                                 
                                 // por cada 3 posts agrega un divisor, necesario para mantener alineaciones
                                 //if ($count == 3) : echo '<div class="col-divider"></div>'; $count = 0;  endif;
                                 if ($count == $colCount ) : echo '<div class="col-divider"></div>'; $count = 0;  endif;
                                                                 
+                            endwhile;
+                                
+                        echo '</div>';
+                    
+                } else if ($format == 'cards'){
+                            						 
+                        echo '<div class="clearfix modpostlist-'.$format.' card-columns">'; 
+                        
+                            while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
+
+                                get_template_part( 'template-parts/content', 'card' );
+
+                            endwhile;
+                                
+                        echo '</div>';
+                    
+                } else if ($format == 'imagecards'){
+                            						 
+                        echo '<div class="clearfix modpostlist-'.$format.' card-columns">'; 
+                        
+                            while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
+
+                                get_template_part( 'template-parts/content', 'overcard' );
+
                             endwhile;
                                 
                         echo '</div>';
