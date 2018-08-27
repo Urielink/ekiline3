@@ -405,9 +405,10 @@ function ekiline_theme_customizer( $wp_customize ) {
                 'section' => 'ekiline_vista_section',
                 'choices' => array(
                     '0' => __( 'Default', 'ekiline' ),
-                    '1' => __( '2 columnas', 'ekiline' ),
-                    '2' => __( '3 columnas', 'ekiline' ),
-                    '3' => __( '4 columnas', 'ekiline' ),   
+                    '1' => __( '2 columns', 'ekiline' ),
+                    '2' => __( '3 columns', 'ekiline' ),
+                    '3' => __( '4 columns', 'ekiline' ),   
+                    '4' => __( 'Cards grid', 'ekiline' ),   
                 ),
             )
         );                 

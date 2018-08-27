@@ -12,15 +12,14 @@ get_header();
 //update: 29 08 2017 columns
 $colSet = get_theme_mod('ekiline_Columns'); 
 $cssCols = '';
-$cssToCol = '';
-if ($colSet != '0') $cssCols = ' row'; $cssToCol = ' col-md-12'; 
+if ($colSet != '0') $cssCols = ' row';
 //Modulo bloque
 $colClass='col-12';
 $colCount='0';
 if ($colSet == '1') { $colClass='col-md-6'; $colCount='2'; }
 elseif ($colSet == '2') { $colClass='col-md-4'; $colCount='3'; }
 elseif ($colSet == '3') { $colClass='col-md-3'; $colCount='4'; }
-
+elseif ($colSet == '4') { $cssCols = ' card-columns'; }
 ?>
 		
 		<?php dynamic_sidebar( 'content-w1' ); ?>		
@@ -29,7 +28,7 @@ elseif ($colSet == '3') { $colClass='col-md-3'; $colCount='4'; }
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="entry-header<?php echo $cssToCol; ?>">
+			<header class="entry-header">
 				<?php
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
@@ -63,15 +62,21 @@ elseif ($colSet == '3') { $colClass='col-md-3'; $colCount='4'; }
 					 */
 					//get_template_part( 'template-parts/content', get_post_format() );
                  
-                if ($colSet > '0' ) echo '<div class="'.$colClass.'">';
+                if ($colSet > '0' && $colSet < '4') echo '<div class="'.$colClass.'">';
                  
 	                if ($colSet == '0') {                    
 	                    get_template_part( 'template-parts/content', get_post_format() );                    
-	                } else if ($colSet > '0' ) {
+	                } else if ($colSet <= '3' ) {
 	                	get_template_part( 'template-parts/content', 'block' );                     
+	                } else if ($colSet == '4' ) {
+						if ( has_post_format( 'image' )) {
+		                	get_template_part( 'template-parts/content', 'overcard' );    
+						} else {
+		                	get_template_part( 'template-parts/content', 'card' );    
+						}
 	                } 	
 
-                if ($colSet > '0' ) echo '</div>';
+                if ($colSet > '0' && $colSet < '4') echo '</div>';
                 
                 if ($count == $colCount ) : echo '<div class="col-divider"></div>'; $count = 0;  endif;									
 					

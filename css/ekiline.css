@@ -246,8 +246,9 @@ video#bgvid{transition:1s opacity;}
 .wf-ekiline [class*="col"]:hover::before,.wf-ekiline .container:hover::before,.wf-ekiline nav .container:hover::before,.wf-ekiline .row:hover::before{font-size:14px;color:#fff;background-color:#494974;}
 .wf-ekiline [class*="col"]:hover,.wf-ekiline .container:hover,.wf-ekiline nav .container:hover,.wf-ekiline .row:hover{border-color:#494974;}
 
-/*utilidades*/
+/*Utilidades para grid de listados*/
 .col-divider{width: 100%;padding-top: 1px;}
+.card-columns{-webkit-column-count: 4;-moz-column-count: 4;column-count: 4;}
 
 /*--------------------------------------------------------------------------------
  * CSS RESPONSIVO: Método Escritorio a movil || Desktop First Method
@@ -258,6 +259,8 @@ video#bgvid{transition:1s opacity;}
  -------------------------------------------------- */
 @media only screen and (max-width : 1200px) {
  .cover-container{width: 100%;}
+ /*Utilidades para grid de listados*/
+ .card-columns{-webkit-column-count: 3;-moz-column-count: 3;column-count: 3;}
 }
 @media only screen and (max-width : 992px) {
  .navbar-nav .show .dropdown-menu > li > a{white-space: normal;}	 	
@@ -285,11 +288,17 @@ video#bgvid{transition:1s opacity;}
  /*full modal específicos,image,iframe*/
  .modal-full .window-image .modal-body img,.modal-full .window-image .modal-body img.img-fluid{max-width:inherit;} 
  .modal-full .window-image,.modal-full .window-image .modal-dialog,.modal-full .window-image .modal-content,.modal-full .window-image .modal-body{height:100%;} 
+ /*Utilidades para grid de listados*/
+ .card-columns{-webkit-column-count: 2;-moz-column-count: 2;column-count: 2;}
+
 }
 
 /* TERCER CAMBIO: Bootstrap col-sm 576 ( tablet-ver/smarphone-hor )
  -------------------------------------------------- */
-@media only screen and (max-width: 576px) {}
+@media only screen and (max-width: 576px) {
+/*Utilidades para grid de listados*/
+.card-columns{-webkit-column-count: 1;-moz-column-count: 1;column-count: 1;}
+}
 
 @media only screen and (max-width : 480px) {
 /* Cover con video || If header has video */	
