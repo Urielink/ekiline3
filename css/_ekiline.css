@@ -120,7 +120,7 @@ video#bgvid{transition:1s opacity;}
 .carousel-thumbs .carousel-control-next{right:0;}
 /* Regla general: posición de objetos || Rule: object position */
 .carousel-multiple .carousel-inner .active.carousel-item-left,.carousel-multiple .carousel-inner .active.carousel-item-right{left:0%;-webkit-transition:all .6s ease 0s;-moz-transition:all .6s ease 0s;-o-transition:all .6s ease 0s;-ms-transition:all .6s ease 0s;transition:all .6s ease 0s;}
-.carousel-multiple .carousel-inner .carousel-item > *{display:inline-block;}
+.carousel-multiple .carousel-inner .carousel-item figure{display:inline-block;}
 /* variable por 2 thumbs (col-sm-6) || 2 thumbs */
 .carousel-multiple.x2 .carousel-inner .active.carousel-item-left{-webkit-transform:translate3d(-50%,0,0);-moz-transform:translate3d(-50%,0,0);-ms-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0);}
 .carousel-multiple.x2 .carousel-inner .active.carousel-item-right{-webkit-transform:translate3d(50%,0,0);-moz-transform:translate3d(50%,0,0);-ms-transform:translate3d(50%,0,0);transform:translate3d(50%,0,0);}
@@ -144,10 +144,10 @@ video#bgvid{transition:1s opacity;}
 /* Regla general: posición de objetos, después del clic || Objects after clic */  
 .carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left{left:0%;}
 .carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right{left:0%;}
-.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left > *{opacity:0;}
-.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left >*:last-child{opacity:1;}
-.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right >*{opacity:0;}
-.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right >*:first-child{opacity:1;}
+.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left div,.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left figure{opacity:0;}
+.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left div:last-child,.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left figure:last-child{opacity:1;}
+.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right div,.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right figure{opacity:0;}
+.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right div:first-child,.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right figure:first-child{opacity:1;}
 /* Personalización de controles de carrusel || Carousel controls */
 .carousel-control-prev-icon,.carousel-control-next-icon{background-size:15px;}
 /* Columnas auxiliares (intermedias) || Intermediate columns */
@@ -273,8 +273,8 @@ video#bgvid{transition:1s opacity;}
  #page-content-wrapper,.toggle-sidebars.left-on #primary{width:inherit;}
  #page-content-wrapper,.toggle-sidebars.right-on #primary{width:inherit;}*/
 /* Carrusel extendido || Carousel extended */
- .carousel-multiple .carousel-item > *:nth-child(n+2){display:none;}
- .carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left >*, .carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right >*{opacity:1;}
+ .carousel-multiple .carousel-item > div:nth-child(n+2),.carousel-multiple .carousel-item > figure:nth-child(n+2){display:none;}
+ .carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left div,.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right div,.carousel-multiple .carousel-inner .carousel-item-next.carousel-item-left figure,.carousel-multiple .carousel-inner .carousel-item-prev.carousel-item-right figure{opacity:1;}
  .carousel-multiple.x2 .carousel-inner .active.carousel-item-left,.carousel-multiple.x3 .carousel-inner .active.carousel-item-left,.carousel-multiple.x4 .carousel-inner .active.carousel-item-left,.carousel-multiple.x6 .carousel-inner .active.carousel-item-left{-webkit-transform:translate3d(-100%,0,0);-moz-transform:translate3d(-100%,0,0);-ms-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0);}
  .carousel-multiple.x2 .carousel-inner .active.carousel-item-right,.carousel-multiple.x3 .carousel-inner .active.carousel-item-right,.carousel-multiple.x4 .carousel-inner .active.carousel-item-right,.carousel-multiple.x6 .carousel-inner .active.carousel-item-right{-webkit-transform:translate3d(100%,0,0);-moz-transform:translate3d(100%,0,0);-ms-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0);} 
  .col-sm-1a5,.col-xs-1a5,.col-sm-1a7,.col-xs-1a7,.col-sm-1a8,.col-xs-1a8,.col-sm-1a9,.col-xs-1a9{width:100%;*width:100%;}

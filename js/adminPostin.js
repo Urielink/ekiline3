@@ -76,21 +76,41 @@
 		                        	value	: ' format="block"'
 			                    },
 								{
+		                        	text	: ekiTinyL10n.block + ' ' + ekiTinyL10n.showcol2,
+		                        	value	: ' format="block" columns="2"'
+			                    },
+								{
+		                        	text	: ekiTinyL10n.block + ' ' + ekiTinyL10n.showcol3,
+		                        	value	: ' format="block" columns="3"'
+			                    },
+								{
+		                        	text	: ekiTinyL10n.block + ' ' + ekiTinyL10n.showcol4,
+		                        	value	: ' format="block" columns="4"'
+			                    },			                    
+								{
 		                        	// text	: 'Carousel slider',
 		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
 		                        	text	: ekiTinyL10n.carousel,
 		                        	value	: ' format="carousel"'
 		                    	},
 								{
-		                        	// text	: 'Carousel slider',
-		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
-		                        	text	: 'Cards',
+		                        	text	: ekiTinyL10n.carousel + ' ' + ekiTinyL10n.showcol2,
+		                        	value	: ' format="carousel" columns="2"'
+			                    },			                    
+								{
+		                        	text	: ekiTinyL10n.carousel + ' ' + ekiTinyL10n.showcol3,
+		                        	value	: ' format="carousel" columns="3"'
+			                    },			                    
+								{
+		                        	text	: ekiTinyL10n.carousel + ' ' + ekiTinyL10n.showcol4,
+		                        	value	: ' format="carousel" columns="4"'
+			                    },			                    		                    	
+								{
+		                        	text	: ekiTinyL10n.showcards,
 		                        	value	: ' format="cards"'
 		                    	},
 								{
-		                        	// text	: 'Carousel slider',
-		                        	// text	: editor.getLang('ekiline_tinymce.carousel'),
-		                        	text	: 'Image cards',
+		                        	text	: ekiTinyL10n.showimagecards,
 		                        	value	: ' format="imagecards"'
 		                    	}
 	                        ]   			    
@@ -102,34 +122,11 @@
 				            // label   : 'Set the amount of posts'
 				            // label   : editor.getLang('ekiline_tinymce.amount')
 				            label   : ekiTinyL10n.amount
-						},
-						{
-	                    	type   : 'listbox', 
-	                    	name   : 'columns',
-				            label   : 'Divide Block content in columns?',
-	                        'values': [
-								{
-		                        	text	: ekiTinyL10n.default,
-		                        	value	: ''
-		                    	},
-								{
-		                        	text	: '2',
-		                        	value	: ' columns="2"'
-		                    	},
-								{
-		                        	text	: '3',
-		                        	value	: ' columns="3"'
-		                    	},
-		                    	{
-		                        	text	: '4',
-		                        	value	: ' columns="4"'
-		                    	},
-	                        ]   			    
-	                	},						                    
+						}						                    
 
                 	],                    	
                     onsubmit: function (e) {
-                        editor.insertContent(' [modulecategoryposts catid="'+ e.data.catids +'" limit="'+ e.data.amount +'"'+ e.data.format + e.data.columns +']<br><br>' );
+                        editor.insertContent(' [modulecategoryposts catid="'+ e.data.catids +'" limit="'+ e.data.amount +'"'+ e.data.format +']<br><br>' );
                     }
                     
                 }); //editor.windowManager.open

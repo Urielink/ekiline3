@@ -146,45 +146,60 @@ function ekiline_addpostlist($atts, $content = null) {
                         echo '</div>';
                     
                 } else if ($format == 'carousel'){
-                    
-                // Limpiar las comas de las categorias para asignar un ID general.    
-                // Clean ids commas to asign an id    
-                    $catid = ekiline_cleanspchar($catid);                 
-                
-                    echo '<div id="carousel-module-00'.$catid.'" class="modpostlist-'.$format.' carousel slide clearfix bg-dark" data-ride="carousel" data-interval="false"><div class="carousel-inner" role="listbox">';   
-                
-                // Indicadores  Bootstrap
-                    echo '<ol class="carousel-indicators">';
-                        while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();
-                            $count = $nuevoLoop->current_post + 0;
-                            if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif; 
-                            echo '<li data-target="#carousel-module-00'.$catid.'" data-slide-to="'.$count.'" class="'.$countclass.'"></li>';
-                        endwhile;
-                    echo '</ol>' ;                  
-                    
-                // ITEMS
-                    while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
-                        $count = $nuevoLoop->current_post + 0;
-                        if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif;                                 
-                            // trae la parte del template para personalizar
-                            echo '<div class="carousel-item '.$countclass.'">';
+
+					 $carShow = '';$colshow='';
+	                 if ($columns > '1') $carShow = ' carousel-multiple';   
+					 if ($columns == '2') : $colshow='col-sm-6'; elseif ($columns == '3') : $colshow='col-sm-4'; elseif ($columns == '4') : $colshow='col-sm-3'; endif;
+					 $modId = rand(10, 100);
+					                     
+	                // Limpiar las comas de las categorias para asignar un ID general.    
+	                // Clean ids commas to asign an id    
+	                    $catid = ekiline_cleanspchar($catid);                 
+	                
+	                    echo '<div id="carousel-module-'.$modId.'" class="modpostlist-'.$format.' carousel slide '.$carShow.'" data-interval="false">';
+	                
+	                // Indicadores  Bootstrap
+	                    echo '<ol class="carousel-indicators">';
+		                        while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();								
+	                            $count = $nuevoLoop->current_post + 0;
+	                            if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif; 
+		                            echo '<li data-target="#carousel-module-'.$modId.'" data-slide-to="'.$count.'" class="'.$countclass.'"></li>';									
+		                        endwhile;
+	                    echo '</ol>' ;  
+						                
+					// Contenedor de posts
+	                    echo '<div class="carousel-inner" role="listbox">';   
+	
+	                    
+	                // ITEMS
+	                    while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
+	                        $count = $nuevoLoop->current_post + 0;
+	                        if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif;                                 
+							
+	                            // trae la parte del template para personalizar
+	                            echo '<div class="carousel-item '. $countclass .'">';
+									// en caso de mostrar columnas abre nuevo div
+									if ($columns > '1') echo '<div class="'.$colshow.'">';
+									
                                 get_template_part( 'template-parts/content', 'carousel' );
-                            echo '</div>';
-                    endwhile;
-                                
-                                
-                // Controles        
-                    echo '</div>
-                          <a class="carousel-control-prev" href="#carousel-module-00'.$catid.'" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carousel-module-00'.$catid.'" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                          </a>
-                          </div>';                                      
-                        
+	                                
+									// en caso de mostrar columnas cierra nuevo div
+									if ($columns > '1') echo '</div>';
+									
+	                            echo '</div>';
+	                    endwhile;
+	
+	                // Controles        
+	                    echo '</div>
+	                          <a class="carousel-control-prev" href="#carousel-module-'.$modId.'" role="button" data-slide="prev">
+	                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                            <span class="sr-only">Previous</span>
+	                          </a>
+	                          <a class="carousel-control-next" href="#carousel-module-'.$modId.'" role="button" data-slide="next">
+	                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                            <span class="sr-only">Next</span>
+	                          </a>
+	                          </div>';                                                              
                 }
 
                 

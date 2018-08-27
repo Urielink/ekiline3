@@ -270,30 +270,31 @@ jQuery(document).ready(function($){
 	$('.carousel-multiple .carousel-item').each(function(){
 	    
 	    var cThumb = $(this).children();
-	                                                 
+		var slot;
+
 	    // Busca la clase que corresponda para determinar una variable de conteo y también que añada una clase al contenedor
 	      
 	    if ( cThumb.hasClass( 'col-sm-6' ) ){
-	    	
-	    		$('.carousel-multiple').addClass('x2');
-	    		var slot = 0;
 
-	        } else if ( cThumb.hasClass( 'col-sm-4' ) ){
-	        	
-	        	$('.carousel-multiple').addClass('x3');           	
-        		var slot = 2/2;
-	
-	        } else if ( cThumb.hasClass( 'col-sm-3' ) ){
-	
-	        	$('.carousel-multiple').addClass('x4');                
-	        	var slot = 2;
-	
-	        } else if ( cThumb.hasClass( 'col-sm-2' ) ){
-	
-	        	$('.carousel-multiple').addClass('x6');                
-	        	var slot = 2+2;
-	
-	        }
+    		$( this ).closest('.carousel-multiple').addClass('x2');
+    		slot = 0;
+
+        } else if ( cThumb.hasClass( 'col-sm-4' ) ){
+        	
+    		$( this ).closest('.carousel-multiple').addClass('x3');
+    		slot = 2/2;
+
+        } else if ( cThumb.hasClass( 'col-sm-3' ) ){
+
+    		$( this ).closest('.carousel-multiple').addClass('x4');
+        	slot = 2;
+
+        } else if ( cThumb.hasClass( 'col-sm-2' ) ){
+
+    		$( this ).closest('.carousel-multiple').addClass('x6');
+        	slot = 2+2;
+
+        }
 	
 	    // por cada objeto cuenta el priemro y clonalo para hacer el recorrido
 	    // ejercicio original: http://www.bootply.com/4eSuqiPRo2
@@ -341,7 +342,8 @@ jQuery(document).ready(function($){
 		        //Marz 2018 preparar el contenido por boton.			
 		          
 			    // Extraigo el src
-				    var gSrc = $(this).attr('href');		    
+				    var gSrc = $(this).attr('href');
+				    var setId;	    
 								
 					if ( $(this).hasClass('modal-inline') ){
 					    // crea nuevo id
@@ -360,7 +362,7 @@ jQuery(document).ready(function($){
 					    // modifico el src, convertir en #id, basado en la último parte de la url.	    
 					    var urlLast = gSrc.substring(gSrc.lastIndexOf("/") + 1, gSrc.length);	    
 					    // limpio caracteres
-					    var setId = urlLast.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+					    setId = urlLast.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
 					    // reemplazar el src
 					    $(this).attr('href', '#'+setId );								
 						
@@ -369,7 +371,7 @@ jQuery(document).ready(function($){
 						// agrego dato
 					    $(this).attr('data-src', gSrc );	 			    		
 					    // solo se limpiarán los caracteres
-					    var setId = gSrc.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+					    setId = gSrc.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
 					    // reemplazar el src
 					    $(this).attr('href', '#'+setId );				
 						
@@ -382,11 +384,11 @@ jQuery(document).ready(function($){
 	
 				// declaro el nombre del modal que se va abrir
 				var dataHref = $(this).attr('href') || null;
-		        
+		        var hrefToid;
 					// si hay href="#nombreIndicador" establecer una nueva variable
 					if ( dataHref != null ){
 						// quitar el hashtag a #contenido para generar un id="" nuevo en el modal.			
-						var hrefToid = dataHref.substr(1);
+						hrefToid = dataHref.substr(1);
 					}			        
 				
 				// por el tipo de clase CSS determino el recurso a utilizar
@@ -551,7 +553,7 @@ jQuery(document).ready(function($){
 	        var nc = $(this).closest( '.gallery-item' ).index();
 	        // console.log(nc);
 	        //Jun 5 ajuste cuando sea un carrusel
-	        if (isCarousel){ nc = '0'; };
+	        if (isCarousel){ nc = '0'; }
          	
 	        // Ejecuta las variables para activarse
 	        $('body').on('shown.bs.modal', function(){

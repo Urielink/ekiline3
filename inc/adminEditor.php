@@ -1278,13 +1278,18 @@ if( false === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) return;
 	        'socialnet' => __('Your social links nav','ekiline'),
 	        'socialshare' => __('Share nav for visitors','ekiline'),
 	        'loginform' => __('Insert a login form','ekiline'),
-	    //adminShare.js
+	    //adminPostin.js
 	        'modcat' => __('Entries module','ekiline'),
 	        'modcatdesc' => __('Choose category and format for show entries','ekiline'),
 	        'default' => __('Default','ekiline'),
 	        'block' => __('Block','ekiline'),
 	        'carousel' => __('Carousel','ekiline'),
 	        'amount' => __('Set the amount of posts','ekiline'),
+	        'showcol2' => __('2 columns','ekiline'),
+	        'showcol3' => __('3 columns','ekiline'),
+	        'showcol4' => __('4 columns','ekiline'),
+	        'showcards' => __('Cards','ekiline'),
+	        'showimagecards' => __('Image cards','ekiline'),
 	    //adminFields.js
 	        'helpterms' => __('Custom fields','ekiline'),
 	        'helpdesc' => __('Choose and copy the value that you need','ekiline'),
