@@ -209,7 +209,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 	                  <?php endif; ?>
 
 	                  <?php if ( $show_mycont ) : ?>
-                      	<?php ekiline_clean_images( get_the_content() );//echo $clearImages; ?>
+                      	<?php ekiline_clean_images( get_the_content() ); ?>
 	                  <?php endif; ?>
                       	
 		              <?php if ( $show_date ) : ?>
