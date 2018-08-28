@@ -30,13 +30,14 @@ if( false === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) return;
 	 */
 	// if ( is_plugin_active( 'plugin-directory/gutenberg.php' ) ) { }  
 
-	if ( in_array( 'gutenberg/gutenberg.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	// if ( in_array( 'gutenberg/gutenberg.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		// agregar estilos en gutenberg
 		function ekiline_gutenberg_styles() {
+		     // wp_enqueue_style( 'ekiline-gutenberg', get_stylesheet_directory() . '/editor-style.css', array(), '1', 'all' );
 		     wp_enqueue_style( 'ekiline-gutenberg', get_template_directory_uri() . '/editor-style.css', array(), '1', 'all' );
-		}
+ 		}
 		add_action( 'enqueue_block_editor_assets', 'ekiline_gutenberg_styles' ); 		
-	}	
+	// }	
 	
 	
 	/* Existe un problema en el editor, cachea el estilo, entonces es necesario forzar el refresh con este script:
