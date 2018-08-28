@@ -297,7 +297,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" /></p>
 
         <p>
-			<span style="display:inline-block;padding-right:4px;"><label for="<?php echo $this->get_field_id( 'widget_categories' ); ?>"><?php _e( 'Show :','ekiline' ); ?></label></span>
+			<span style="display:inline-block;padding-right:4px;"><label for="<?php echo $this->get_field_id( 'widget_categories' ); ?>"><?php _e( 'Show:','ekiline' ); ?></label></span>
 	
 			<span style="display:inline-block;padding-right:4px;"><input class="checkbox" type="checkbox"<?php checked( $show_xcrp ); ?> id="<?php echo $this->get_field_id( 'show_xcrp' ); ?>" name="<?php echo $this->get_field_name( 'show_xcrp' ); ?>" />
 			<label for="<?php echo $this->get_field_id( 'show_xcrp' ); ?>"><?php _e( 'Excerpt','ekiline' ); ?></label></span>
