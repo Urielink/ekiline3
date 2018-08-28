@@ -29,7 +29,7 @@ if( false === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) return;
 	 * https://github.com/WordPress/gutenberg/blob/master/lib/client-assets.php
 	 */
 	// if ( is_plugin_active( 'plugin-directory/gutenberg.php' ) ) { }  
-
+	// preguntar si el plugin existe impide que en multisitios se ejecuten los estilos correctamente.
 	// if ( in_array( 'gutenberg/gutenberg.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 		// agregar estilos en gutenberg
 		function ekiline_gutenberg_styles() {
