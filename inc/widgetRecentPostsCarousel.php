@@ -11,6 +11,11 @@
  * checklist de categorias: https://codex.wordpress.org/Function_Reference/wp_category_checklist
  * https://wordpress.stackexchange.com/questions/124772/using-wp-category-checklist-in-a-widget
  * 
+ * // Si quisieras crear un excerpt permitiendo HTML:
+ * $cutexcerpt = 20; // limite de palabras    
+ * $link = '<p><a href="'. get_permalink() . '" class="btn btn-primary">'.__('Read more','ekiline').'</a><p>'; // Enlace
+ * echo '<div>'.force_balance_tags( html_entity_decode( wp_trim_words( htmlentities( get_the_content() ), $cutexcerpt, $link ) ) ).'</div>'; // extracto
+ * // El riesgo es que al permitir todas las etiquetas de HTML, Gutenberg agrega comentarios, y estos pueden romper el formato.
  */
  
 // This is required to be sure Walker_Category_Checklist class is available
@@ -100,6 +105,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 			$number = 5;
 		}
 		$show_xcrp = isset( $instance['show_xcrp'] ) ? $instance['show_xcrp'] : false;
+		$show_mycont = isset( $instance['show_mycont'] ) ? $instance['show_mycont'] : false;
 		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 		
 //1400 llamar por categoria selecta: https://codex.wordpress.org/Class_Reference/WP_Query
@@ -201,6 +207,10 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 	                  <?php if ( $show_xcrp ) : ?>
                       	<?php the_excerpt(); ?>
 	                  <?php endif; ?>
+
+	                  <?php if ( $show_mycont ) : ?>
+                      	<?php the_content(); ?>
+	                  <?php endif; ?>
                       	
 		              <?php if ( $show_date ) : ?>
 		              	<small><?php the_time( get_option( 'date_format' ) ); ?></small>
@@ -250,6 +260,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['number'] = (int) $new_instance['number'];
 		$instance['show_xcrp'] = isset( $new_instance['show_xcrp'] ) ? (bool) $new_instance['show_xcrp'] : false; // Ver resumen // show summary
+		$instance['show_mycont'] = isset( $new_instance['show_mycont'] ) ? (bool) $new_instance['show_mycont'] : false; // Ver contenido // show content
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
 //1400
         $instance['widget_categories'] = $new_instance['widget_categories'];
@@ -268,6 +279,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
 		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
 		$show_xcrp = isset( $instance['show_xcrp'] ) ? (bool) $instance['show_xcrp'] : false ; 
+		$show_mycont = isset( $instance['show_mycont'] ) ? (bool) $instance['show_mycont'] : false ; 
 		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false ;
         $defaults = array( 'widget_categories' => array() );
         $instance = wp_parse_args( (array) $instance, $defaults );    
@@ -284,18 +296,25 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:','ekiline' ); ?></label>
 		<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" /></p>
 
+        <p>
+			<span style="display:inline-block;padding-right:4px;"><label for="<?php echo $this->get_field_id( 'widget_categories' ); ?>"><?php _e( 'Show :','ekiline' ); ?></label></span>
+	
+			<span style="display:inline-block;padding-right:4px;"><input class="checkbox" type="checkbox"<?php checked( $show_xcrp ); ?> id="<?php echo $this->get_field_id( 'show_xcrp' ); ?>" name="<?php echo $this->get_field_name( 'show_xcrp' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'show_xcrp' ); ?>"><?php _e( 'Excerpt','ekiline' ); ?></label></span>
+	
+			<span style="display:inline-block;padding-right:4px;"><input class="checkbox" type="checkbox"<?php checked( $show_mycont ); ?> id="<?php echo $this->get_field_id( 'show_mycont' ); ?>" name="<?php echo $this->get_field_name( 'show_mycont' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'show_mycont' ); ?>"><?php _e( 'Content','ekiline' ); ?></label></span>
+	
+			<span style="display:inline-block;"><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Date','ekiline' ); ?></label></span>
+		</p>	
+
 		<!-- Formulario 14:00 -->
 		<p><label for="<?php echo $this->get_field_id( 'widget_categories' ); ?>"><?php _e( 'Filter categories:','ekiline' ); ?></label></p>
         <?php echo '<ul class="categorychecklist" style="height:180px;overflow-y:scroll;border:solid 1px #ddd;padding:4px;">';
         wp_category_checklist( 0, 0, $instance['widget_categories'], FALSE, $walker, FALSE );
         echo '</ul>'; ?>
-
-		<p><input class="checkbox" type="checkbox"<?php checked( $show_xcrp ); ?> id="<?php echo $this->get_field_id( 'show_xcrp' ); ?>" name="<?php echo $this->get_field_name( 'show_xcrp' ); ?>" />
-		<label for="<?php echo $this->get_field_id( 'show_xcrp' ); ?>"><?php _e( 'Show summary?','ekiline' ); ?></label></p>
-
-		<p><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Show post date?','ekiline' ); ?></label></p>
-						
+        		
 <?php
 	}
 }
