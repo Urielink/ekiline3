@@ -793,3 +793,13 @@ function ekiline_load_first_image() {
 	echo $image_url;	
             
 } 
+
+/**
+ * Limpiar las imagenes de algún contenido
+ */
+function ekiline_clean_images($contentData) {
+	$tags = array('/<img[^>]+./','/<figure[^>]*>.*?<\/figure>/i');
+	$replace = '';
+  	$clearImages = preg_replace( $tags, $replace, $contentData ); 
+  	echo $clearImages;
+}
