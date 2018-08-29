@@ -183,7 +183,11 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                 <?php // conteo de posts
                         $count = $r->current_post + 0;
                         // marcar el post 0 como el principal, para generar una clase CSS active
-                        if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; ?>                                              
+                        if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; 
+                        $category = get_the_category();
+						$countclass .= ' '.$category[0]->slug;
+                        
+                        ?>                                              
                 <div class="carousel-item <?php echo $countclass; ?>">
                 	
                     <article<?php if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>>
@@ -263,8 +267,9 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		$instance['show_mycont'] = isset( $new_instance['show_mycont'] ) ? (bool) $new_instance['show_mycont'] : false; // Ver contenido // show content
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
 //1400
-        $instance['widget_categories'] = $new_instance['widget_categories'];
-
+        // $instance['widget_categories'] = $new_instance['widget_categories'];
+        $instance['widget_categories'] = isset( $new_instance['widget_categories'] ) ? $new_instance['widget_categories'] : '';
+        
 		return $instance;
 	}
 
