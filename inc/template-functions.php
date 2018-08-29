@@ -819,7 +819,12 @@ function create_responsive_image( $img ) {
   // $img_srcset = wp_get_attachment_image_srcset( $img_id );
   // $img_sizes = wp_get_attachment_image_sizes( $img_id );
   //return '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
-  $img = wp_get_attachment_image_url( $img_id, 'horizontal-slide' );
+  // si la imagen está en el sistema, entonces tiene ID, si no, solo manten la URL.  
+  if( $img_id != 0){
+	  $img = wp_get_attachment_image_url( $img_id, 'horizontal-slide' );
+  } else {
+  	  $img = $img;
+  }
   return $img;
 }
 
