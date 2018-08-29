@@ -35,9 +35,9 @@ function ekiline_cleanspchar($text) {
  */
 add_action( 'after_setup_theme', 'ekiline_theme_setup' );
 function ekiline_theme_setup() {
-    add_image_size( 'horizontal-slide', 960, 540, array( 'left', 'top' ) );
-    add_image_size( 'vertical-slide', 540, 960, array( 'center', 'top' ) );
-    add_image_size( 'square', 540, 540, array( 'center', 'top' ) );
+    add_image_size( 'horizontal-slide', 480, 270, array( 'left', 'top' ) ); //16:9=960x540
+    add_image_size( 'vertical-slide', 270, 480, array( 'center', 'top' ) ); //16:9
+    add_image_size( 'square', 270, 270, array( 'center', 'top' ) );//1:1
 }
  
 add_filter( 'image_size_names_choose', 'ekiline_custom_sizes' );
@@ -759,6 +759,7 @@ add_filter( 'the_password_form', 'ekiline_password_form' );
 /*
  * Obtener la primer imagen de cada post
  * tal y como aparece, reemplazando el tag.
+ * otro ejercio; https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
  */
 function ekiline_load_first_image() {
             
@@ -789,10 +790,39 @@ function ekiline_load_first_image() {
     // if( empty($image_url) ){
         // $image_url = get_theme_mod( 'ekiline_getthumbs' );
     // } 
-	
+
+	$image_url = create_responsive_image($image_url); // filtrar la imagen para hacerla responsiva.
+        	
 	echo $image_url;	
             
 } 
+
+/**
+ * Obtener la primer imagen responsiva.
+ * Filtrarlo.
+ * // https://stackoverflow.com/questions/45504077/wordpress-adding-srcset-and-sizes-attributes-to-image-from-customizer
+ * Otro ejercicico, cambiando el final del archivo con base a los tamaños definidos, el riesgo es con las imagenes que no tienen la extensión:
+ * // https://wordpress.stackexchange.com/questions/138327/getting-custom-size-image-url
+ * Uno mejor, fue utilizar la funcion de buscar el id:
+ * // https://rudrastyh.com/wordpress/responsive-images.html
+ */
+
+// function create_responsive_image( $img ) {
+  // $img_id = attachment_url_to_postid( $img );
+  // $img_srcset = wp_get_attachment_image_srcset( $img_id );
+  // $img_sizes = wp_get_attachment_image_sizes( $img_id );
+  // return '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+// }
+
+function create_responsive_image( $img ) {
+  $img_id = attachment_url_to_postid( $img );
+  // $img_srcset = wp_get_attachment_image_srcset( $img_id );
+  // $img_sizes = wp_get_attachment_image_sizes( $img_id );
+  //return '<img src="' . $img . '" srcset="' . esc_attr( $img_srcset ) . '" sizes="' . esc_attr( $img_sizes ) . '">';
+  $img = wp_get_attachment_image_url( $img_id, 'horizontal-slide' );
+  return $img;
+}
+
 
 /**
  * Limpiar las imagenes de algún contenido
