@@ -35,7 +35,7 @@ function ekiline_cleanspchar($text) {
  */
 add_action( 'after_setup_theme', 'ekiline_theme_setup' );
 function ekiline_theme_setup() {
-    add_image_size( 'horizontal-slide', 480, 270, array( 'left', 'top' ) ); //16:9=960x540
+    add_image_size( 'horizontal-slide', 960, 540, array( 'left', 'top' ) ); //16:9=960x540
     add_image_size( 'vertical-slide', 270, 480, array( 'center', 'top' ) ); //16:9
     add_image_size( 'square', 270, 270, array( 'center', 'top' ) );//1:1
 }
