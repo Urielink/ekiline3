@@ -277,7 +277,7 @@ function ekiline_theme_customizer( $wp_customize ) {
 	    new ekiline_controlMultipleSelect (
 	        $wp_customize, 'ekiline_featuredcategories', array(
 	            'settings' => 'ekiline_featuredcategories',
-	            'label'    => 'Featured category',
+	            'label'    => __( 'Featured category', 'ekiline' ),
 	            'section'  => 'static_front_page',
 	            'type'     => 'multiple-select',
 	            'choices' => ekiline_list_categories()

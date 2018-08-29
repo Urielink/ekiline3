@@ -43,6 +43,7 @@
     		<?php
     			// En caso de que el cliente quiera recortar su texto de manera personalizada
 			    if( strpos( $post->post_content, '<!--more-->' ) ) {
+					// ekiline_clean_images( get_the_content() );
 			        the_content();
 			    } else {
 			        the_excerpt();

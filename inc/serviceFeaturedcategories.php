@@ -30,6 +30,7 @@ function ekiline_frontpage_featured( $query ) {
 	$seleccion =  get_theme_mod('ekiline_featuredcategories');
 	// print_r($seleccion);
 	// crear un string con lo seleccionado
+	$str = array();
 	$str = implode(',', $seleccion);
 	
 	if ( $query->is_home() && $query->is_main_query() ) {
