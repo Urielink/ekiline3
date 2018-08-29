@@ -238,7 +238,7 @@ function ekiline_excerpt_button() {
     return '<p><a class="read-more btn btn-primary" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Read more', 'ekiline' ) . '</a></p>';
 }
 add_filter( 'excerpt_more', 'ekiline_excerpt_button' );
-add_filter('the_content_more_link', 'ekiline_excerpt_button', 10, 2);
+//add_filter('the_content_more_link', 'ekiline_excerpt_button', 10, 2);
 
 /**
  * Theming: Use a loader.
