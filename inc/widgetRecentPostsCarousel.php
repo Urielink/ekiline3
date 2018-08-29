@@ -164,20 +164,20 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 
 <!-- inicia carrusel -->
 		
-            <div id="<?php echo $uniqueId; ?>" class="widget-carousel carousel slide bg-dark" data-ride="carousel" data-interval="false">
-            
+            <div id="<?php echo $uniqueId; ?>" class="widget-carousel carousel slide" data-ride="carousel" data-interval="false">
+
+            <ol class="carousel-indicators">
+            <?php while( $r->have_posts() ) : $r->the_post();?> 
+            <?php // conteo de posts
+                    $count = $r->current_post + 0;
+                    if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif; 
+                    ?>                                                        
+                <li data-target="#<?php echo $uniqueId; ?>" data-slide-to="<?php echo $count; ?>" class="<?php echo $countclass; ?>"></li>
+            <?php endwhile;?>
+            </ol> <!-- // fin de .carousel-indicators -->      
+                            
               <div class="carousel-inner" role="listbox">
-                  
-                <ol class="carousel-indicators">
-                <?php while( $r->have_posts() ) : $r->the_post();?> 
-                <?php // conteo de posts
-                        $count = $r->current_post + 0;
-                        if ($count == '0') : $countclass = 'active' ; elseif ($count !='0') : $countclass = '' ; endif; 
-                        ?>                                                        
-                    <li data-target="#<?php echo $uniqueId; ?>" data-slide-to="<?php echo $count; ?>" class="<?php echo $countclass; ?>"></li>
-                <?php endwhile;?>
-                </ol> <!-- // fin de .carousel-indicators -->                      
-                  
+
                 <?php while( $r->have_posts() ) : $r->the_post();?>      
                 	             
                 <?php // conteo de posts
@@ -186,11 +186,13 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                         if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; 
                         $category = get_the_category();
 						$countclass .= ' '.$category[0]->slug;
+						$thumbClass = ''; if ( !has_post_thumbnail() ) $thumbClass = 'no-thumb';
                         
                         ?>                                              
                 <div class="carousel-item <?php echo $countclass; ?>">
                 	
-                    <article<?php if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>>
+                    <!--article<?php // if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>-->
+                    <div id="post-<?php the_ID(); ?>" <?php post_class( 'bg-dark '.$thumbClass ); ?>>
                     
 				    <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
 				    
@@ -204,26 +206,26 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 				        
 				    <?php } ?>  				    
 				    				    
-                    <div class="carousel-caption">
-                    	
-					  <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-
-	                  <?php if ( $show_xcrp ) : ?>
-                      	<?php the_excerpt(); ?>
-	                  <?php endif; ?>
-
-	                  <?php if ( $show_mycont ) : ?>
-                      	<?php ekiline_clean_images( get_the_content() ); ?>
-	                  <?php endif; ?>
-                      	
-		              <?php if ( $show_date ) : ?>
-		              	<small><?php the_time( get_option( 'date_format' ) ); ?></small>
-		              <?php endif; ?>
-                      
-	                  
-                    </div>
+	                    <div class="carousel-caption">
+	                    	
+						  <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	
+		                  <?php if ( $show_xcrp ) : ?>
+	                      	<?php the_excerpt(); ?>
+		                  <?php endif; ?>
+	
+		                  <?php if ( $show_mycont ) : ?>
+	                      	<?php ekiline_clean_images( strip_shortcodes( get_the_content() ) ); ?>
+		                  <?php endif; ?>
+	                      	
+			              <?php if ( $show_date ) : ?>
+			              	<small><?php the_time( get_option( 'date_format' ) ); ?></small>
+			              <?php endif; ?>
+	                      
+		                  
+	                    </div>
                     
-                    </article>
+                    </div>
                     
                 </div> <!-- // fin de .item -->  
                 
