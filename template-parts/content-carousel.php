@@ -7,8 +7,8 @@
  *
  * @package ekiline
  */
- $thumbClass = '';
- if ( !has_post_thumbnail() ){ $thumbClass = 'no-thumb'; }
+ $thumbClass = 'no-thumb';
+ if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) $thumbClass = '';
 
 ?>
 

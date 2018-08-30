@@ -186,7 +186,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                         if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; 
                         $category = get_the_category();
 						$countclass .= ' '.$category[0]->slug;
-						$thumbClass = ''; if ( !has_post_thumbnail() ) $thumbClass = 'no-thumb';
+						$thumbClass = 'no-thumb'; if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) $thumbClass = '';
                         
                         ?>                                              
                 <div class="carousel-item <?php echo $countclass; ?>">
