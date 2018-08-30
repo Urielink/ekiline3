@@ -379,6 +379,7 @@ require get_template_directory() . '/inc/widgetNavHor.php';
 require get_template_directory() . '/inc/widgetRecentPostsCarousel.php';
 require get_template_directory() . '/inc/widgetBreadcrumb.php';
 require get_template_directory() . '/inc/widgetOptions.php';
+require get_template_directory() . '/inc/widgetEkilineComments.php';
 
 // theme custom shortcodes
 require get_template_directory() . '/inc/shortcodeAll.php';
