@@ -698,6 +698,7 @@ add_action( 'admin_notices', 'ekiline_docs_feed' );
 function ekiline_docs_feed_set() {
 global $pagenow;
 $pages = array('index.php','edit.php','post.php','themes.php','tools.php');
+//$pages = array('index.php','themes.php','tools.php');
 if ( in_array( $pagenow, $pages, true ) ) { ?>	
 	
 <script>
