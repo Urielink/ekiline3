@@ -862,6 +862,9 @@ msgstr "Cerrar"
 msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
 msgstr "<cite class=\"fn\">%s</cite> <span class=\"says\">dice:</span>"
 
+msgid "%1$s at %2$s"
+msgstr "%1$s a %2$s"
+
 # @ ekiline
 #: header.php
 msgid "Loading..."

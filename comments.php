@@ -160,7 +160,7 @@ function ekilineCommentsExtended($comment, $args, $depth) {
             	<?php
                 /* translators: 1: date, 2: time */
                 printf( 
-                    __('%1$s at %2$s'), 
+                    __('%1$s at %2$s','ekiline'), 
                     get_comment_date(),  
                     get_comment_time() 
                 ); ?>
