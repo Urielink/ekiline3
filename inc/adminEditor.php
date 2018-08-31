@@ -1291,6 +1291,7 @@ if( false === get_theme_mod( 'ekiline_bootstrapeditor', true ) ) return;
 	        'showcol4' => __('4 columns','ekiline'),
 	        'showcards' => __('Cards','ekiline'),
 	        'showimagecards' => __('Image cards','ekiline'),
+	        'noformat' => __('No format','ekiline'),
 	    //adminFields.js
 	        'helpterms' => __('Custom fields','ekiline'),
 	        'helpdesc' => __('Choose and copy the value that you need','ekiline'),

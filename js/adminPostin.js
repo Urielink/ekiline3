@@ -112,6 +112,10 @@
 								{
 		                        	text	: ekiTinyL10n.showimagecards,
 		                        	value	: ' format="imagecards"'
+		                    	},
+								{
+		                        	text	: ekiTinyL10n.noformat,
+		                        	value	: ' format="none"'
 		                    	}
 	                        ]   			    
 	                	},

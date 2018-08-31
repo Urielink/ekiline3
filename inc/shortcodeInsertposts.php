@@ -199,7 +199,16 @@ function ekiline_addpostlist($atts, $content = null) {
 	                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                            <span class="sr-only">Next</span>
 	                          </a>
-	                          </div>';                                                              
+	                          </div>';
+							  
+                } else if ($format == 'none'){
+                            						 
+                        while( $nuevoLoop->have_posts() ) : $nuevoLoop->the_post();                                 
+
+                            get_template_part( 'template-parts/content', 'clean' );
+
+                        endwhile;
+                    
                 }
 
                 
