@@ -20,12 +20,12 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area bg-light p-2 clearfix">
+<div id="comments" class="comments-area clearfix">
     
 	<?php // You can start editing here -- including this comment! ?>
 
 	<?php if ( have_comments() ) : ?>
-		<button class="btn btn-sm btn-secondary float-right" data-toggle="collapse" data-target="#comments-activity"><?php echo __('Show comments','ekiline'); ?> <i class="fas fa-comments"></i></button>    
+		<button class="btn btn-link btn-sm text-secondary float-right" data-toggle="collapse" data-target="#comments-activity"><?php echo __('Hide comments','ekiline'); ?> <i class="fas fa-comments"></i></button>    
 		<p class="comments-title text-secondary mb-2 pb-2 pt-1 border-bottom">
 			<?php
 				printf( // WPCS: XSS OK.
@@ -36,42 +36,31 @@ if ( post_password_required() ) {
 			?>
 		</p>
     
-    <div id="comments-activity" class="collapse">
-	    
-		
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-above" class="navigation comment-navigation">
-			<h2 class="screen-reader-text"><?php echo esc_html__( 'Comment navigation', 'ekiline' ); ?></h2>
-			<div class="nav-links">
+    <div id="comments-activity" class="bg-light p-2 mb-3 collapse show">
 
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'ekiline' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'ekiline' ) ); ?></div>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+		<nav id="comment-nav-above" class="navigation comment-navigation border-bottom">
+			<h2 class="screen-reader-text"><?php echo esc_html__( 'Comment navigation', 'ekiline' ); ?></h2>
+			<div class="small nav-links d-flex justify-content-end">
+
+				<div class="nav-previous btn-sm"><?php previous_comments_link( '<span class="fa fa-chevron-left"></span> '.esc_html__( 'Older Comments', 'ekiline' ) ); ?></div>
+				<div class="nav-next btn-sm"><?php next_comments_link( esc_html__( 'Newer Comments', 'ekiline' ).' <span class="fa fa-chevron-right"></span>' ); ?></div>
 
 			</div><!-- .nav-links -->
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
-		<ol class="comment-list">
+		<ol class="comment-list list-unstyled m-0">
 			<?php
 				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
 					'class'      => 'border',
+					'callback'   => 'ekilineCommentsExtended',
+					'avatar_size'       => 64
 				) );
 			?>
 		</ol><!-- .comment-list -->
-
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
-		<nav id="comment-nav-below" class="navigation comment-navigation">
-			<h2 class="screen-reader-text"><?php echo esc_html__( 'Comment navigation', 'ekiline' ); ?></h2>
-			<div class="nav-links">
-
-				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'ekiline' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'ekiline' ) ); ?></div>
-
-			</div><!-- .nav-links -->
-		</nav><!-- #comment-nav-below -->
-		<?php endif; // Check for comment navigation. ?>
 		
     </div><!-- #comments-activity -->
 	<?php endif; // Check for have_comments(). ?>
@@ -84,8 +73,120 @@ if ( post_password_required() ) {
 	<?php endif; ?>
 
 <?php 
+/* 
+ * Personalizar el formulario, desglosar los elmentos de los comentarios.
+ */
+function ekilineCommentsSimple($comment, $args, $depth) {
+	
+    if ( 'div' === $args['style'] ) {
+        $tag       = 'div';
+        $add_below = 'comment';
+    } else {
+        $tag       = 'li';
+        $add_below = 'div-comment';
+    }?>
+    
+    <<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID() ?>">
+    
+    <?php if ( 'div' != $args['style'] ) { ?>    	
+        <div id="div-comment-<?php comment_ID() ?>" class="comment-body row mb-2 px-md-3">
+    <?php } ?>
+    
+    		<div class="col col-md-1 col-sm-2 col-3 text-center">    
+	        <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'rounded-circle img-fluid')  ); ?>
+	        </div>
 
-/* Personalizar el formulario, con verificador de campos y alertas (theme.js)
+			<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
+		        <?php comment_text(); ?>
+	
+	        	<?php comment_reply_link( array_merge( $args, array( 
+	        					// 'before' => '<div class="btn btn-danger">',
+	        					// 'after' => '</div>',
+	                            // 'reply_text' => __('Reply','ekiline'),
+	                            'add_below' => $add_below, 
+	                            'depth'     => $depth, 
+	                            'max_depth' => $args['max_depth']
+	                        ))); ?>
+			</div>
+
+        
+        <?php if ( 'div' != $args['style'] ) { ?>
+        	
+        </div>
+        
+        <?php }
+		
+}
+
+function ekilineCommentsExtended($comment, $args, $depth) {
+	
+    if ( 'div' === $args['style'] ) {
+        $tag       = 'div';
+        $add_below = 'comment';
+    } else {
+        $tag       = 'li';
+        $add_below = 'div-comment';
+    }?>
+    
+    <<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID() ?>">
+    
+    <?php if ( 'div' != $args['style'] ) { ?>    	
+        <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+    <?php } ?>
+    
+        <div class="comment-author vcard row">
+        	
+        	<div class="col col-md-1 col-sm-2 col-3 text-center">
+		        <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'img-fluid mt-2')  ); ?>
+        		<?php //if ( $args['avatar_size'] != 0 ) { echo get_avatar( $comment, $args['avatar_size'] ); }  ?>
+        	</div>
+        	
+        	<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
+		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+		        
+		        <?php if ( $comment->comment_approved == '0' ) { ?>
+		            <em class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.','ekiline' ); ?></em><br/>
+		        <?php } ?>
+
+		        <?php comment_text(); ?>
+        		
+        	</div>        	
+            
+        </div>
+        
+        <div class="d-flex justify-content-between small bg-light">
+        <div class="comment-meta commentmetadata">
+            <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
+            	<?php
+                /* translators: 1: date, 2: time */
+                printf( 
+                    __('%1$s at %2$s'), 
+                    get_comment_date(),  
+                    get_comment_time() 
+                ); ?>
+            </a>
+            <?php edit_comment_link( __( '(Edit)','ekiline' ), '  ', '' ); ?>
+        </div>
+
+        <div class="reply text-right">
+        	<?php comment_reply_link( array_merge( $args, array( 
+                            'add_below' => $add_below, 
+                            'depth'     => $depth, 
+                            'max_depth' => $args['max_depth'] 
+                        ))); ?>
+        </div>
+        </div>
+        
+        <?php if ( 'div' != $args['style'] ) { ?>
+        	
+        </div>
+        
+        <?php }
+		
+}
+
+/* 
+ * Personalizar el formulario, con validaciones de campos y alertas (theme.js)
  * Custom form, add js verification and alerts with bootstrap modals (theme.js)
  * https://developer.wordpress.org/reference/functions/comment_form/
  * https://premium.wpmudev.org/blog/customizing-wordpress-comment-form/?npp=b&utm_expid=3606929-84.YoGL0StOSa-tkbGo-lVlvw.1&utm_referrer=https%3A%2F%2Fwww.google.com.mx%2F

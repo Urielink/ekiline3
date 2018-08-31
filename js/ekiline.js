@@ -249,15 +249,15 @@ jQuery(document).ready(function($){
 	$( '.widget_recent_comments ul' ).addClass('list-group');
 	$( '.widget_recent_comments ul li' ).addClass( 'list-group-item');		
 	$( '.widget_recent_comments ul li' ).addClass( 'list-group-item');		
-	$( '.nav-links' ).addClass( 'pager');		
-	$( '.nav-links .nav-next' ).addClass( 'next');		
-	$( '.nav-links .nav-previous' ).addClass( 'previous');		
-	$( '.caption-button > a' ).addClass( 'btn btn-secondary');		
-	
-	// Videos embedados responsivos
-    if ( $('.embed-responsive').length ) {	
-         $('.embed-responsive').find('iframe').addClass('embed-responsive-item'); 
-    }	
+	// $( '.nav-links' ).addClass( 'pager');		
+	// $( '.nav-links .nav-next' ).addClass( 'next');		
+	// $( '.nav-links .nav-previous' ).addClass( 'previous');		
+	// $( '.caption-button > a' ).addClass( 'btn btn-secondary');		
+// 	
+	// // Videos embedados responsivos
+    // if ( $('.embed-responsive').length ) {	
+         // $('.embed-responsive').find('iframe').addClass('embed-responsive-item'); 
+    // }	
 	
 	
 	
