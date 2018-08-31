@@ -52,8 +52,8 @@ class Ekiline_Comments extends WP_Widget {
 	    $args = array(
 	        'before_widget' => '<section id="'. $args['widget_id'] .'" class="'. $css_style .' widget '. $args['widget_id'] .'">',
 	        'after_widget'  => '</section>',
-	        'before_title'  => $args['before_title'],
-	        'after_title'  => $args['after_title']
+	        'before_title'  => '<h3 class="widget-title">',//$args['before_title'],
+	        'after_title'  => '</h3>',//$args['after_title']
 	    );  		
 		
 		echo $args['before_widget'];
@@ -65,9 +65,11 @@ class Ekiline_Comments extends WP_Widget {
 		
 		// echo esc_html__( 'Hello, World!', 'ekiline' );
 		// llamar la función que crea el widget.
-		$showfrom = apply_filters( 'widget_title', $instance['showfrom'] );
-		$comnum = apply_filters( 'widget_title', $instance['comnum'] );
-		echo createwidget_ekilineComments($showfrom,$comnum);
+		$showfrom = $instance['showfrom'];
+		$comnum = $instance['comnum'];
+		$design = $instance['design']; print_r($design);
+		
+		echo createwidget_ekilineComments($showfrom,$comnum,$design);
 		
 		echo $args['after_widget'];
 	}
@@ -85,7 +87,9 @@ class Ekiline_Comments extends WP_Widget {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '' ; // esc_html__( 'Add title', 'ekiline' ) ;
 		// de donde mostrar los comentarios y límite
 		$showfrom = ! empty( $instance['showfrom'] ) ? $instance['showfrom'] : 0 ;
-		$comnum = ! empty( $instance['comnum'] ) ? $instance['comnum'] : 5 ;
+		$comnum = ! empty( $instance['comnum'] ) ? $instance['comnum'] : 5 ;		
+		$design = ! empty( $instance['design'] ) ? $instance['design'] : 1 ;		
+
 ?>
 	<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'ekiline' ); ?></label> 
@@ -99,7 +103,11 @@ class Ekiline_Comments extends WP_Widget {
 		<label for="<?php echo esc_attr( $this->get_field_id( 'comnum' ) ); ?>"><?php esc_attr_e( 'Limit comments:', 'ekiline' ); ?></label> 
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'comnum' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'comnum' ) ); ?>" type="number" value="<?php echo esc_attr( $comnum ); ?>">
 	</p>
-	
+	<p>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>"><?php esc_attr_e( 'Design:', 'ekiline' ); ?></label> 
+		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'design' ) ); ?>" type="number" value="<?php echo esc_attr( $design ); ?>">
+	</p>
+
 <?php 
 	}
 
@@ -118,6 +126,7 @@ class Ekiline_Comments extends WP_Widget {
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
 		$instance['showfrom'] = ( ! empty( $new_instance['showfrom'] ) ) ? sanitize_text_field( $new_instance['showfrom'] ) : '';
 		$instance['comnum'] = ( ! empty( $new_instance['comnum'] ) ) ? sanitize_text_field( $new_instance['comnum'] ) : '';
+		$instance['design'] = ( ! empty( $new_instance['design'] ) ) ? sanitize_text_field( $new_instance['design'] ) : '';
 
 		return $instance;
 	}
@@ -139,12 +148,16 @@ add_action( 'widgets_init', 'register_ekiline_comments' );
 /**
  * 6) Crear una función para ejecutar el widget.
  */
-function createwidget_ekilineComments($showfrom,$comnum){
+function createwidget_ekilineComments($showfrom,$comnum,$design){
 // Pasar argumentos para ejecutar widget	 
 ?>	
 <style>.mod-ekiline-comments{max-height: 400px;overflow-x: hidden;overflow-y: scroll;}.mod-ekiline-comments li{list-style: none;}</style>
 <ul class="commentlist mod-ekiline-comments list-unstyled">
 <?php
+
+	if($design=='1') {$design = 'style_ekilineCommentsSimple';} 
+	elseif ($design=='2') {$design = 'style_ekilineCommentsExtended';}
+
 	//print_r($showfrom);
 	//Gather comments for a specific page/post 
 	$comments = get_comments(array(
@@ -157,7 +170,7 @@ function createwidget_ekilineComments($showfrom,$comnum){
 	wp_list_comments(array(
         //'style'				=> 'ol', //Formato ul,ol,div
 		'per_page'			=> $comnum, //10, //Allow comment pagination
-		'callback'          => 'style_ekilineCommentsSimple', // darle estilo a los comentarios con ayuda de una función.
+		'callback'          => $design, // darle estilo a los comentarios con ayuda de una función.
 		'avatar_size'       => 64,
 		'reverse_top_level' => false //Show the oldest comments at the top of the list
 	), $comments);
@@ -250,13 +263,13 @@ function style_ekilineCommentsSimple($comment, $args, $depth) {
 	        <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'rounded-circle img-fluid')  ); ?>
 	        </div>
 
-			<div class="rounded bg-white col-md-11 col-sm-10 col-9">
+			<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
 		        <?php comment_text(); ?>
 	
 	        	<?php comment_reply_link( array_merge( $args, array( 
 	        					// 'before' => '<div class="btn btn-danger">',
 	        					// 'after' => '</div>',
-	                            // 'reply_text' => __('Respondele!','ekiline'),
+	                            // 'reply_text' => __('Responder','ekiline'),
 	                            'add_below' => $add_below, 
 	                            'depth'     => $depth, 
 	                            'max_depth' => $args['max_depth']
