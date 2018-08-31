@@ -52,24 +52,24 @@ class Ekiline_Comments extends WP_Widget {
 	    $args = array(
 	        'before_widget' => '<section id="'. $args['widget_id'] .'" class="'. $css_style .' widget '. $args['widget_id'] .'">',
 	        'after_widget'  => '</section>',
-	        'before_title'  => '<h3 class="widget-title">',//$args['before_title'],
-	        'after_title'  => '</h3>',//$args['after_title']
+	        'before_title'  => '<h3 class="widget-title">',
+	        'after_title'  => '</h3>',
 	    );  		
 		
 		echo $args['before_widget'];
 		
-		// condicion: si el titulo está vacio no mostrar HTML
-		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
-		}
-		
-		// echo esc_html__( 'Hello, World!', 'ekiline' );
-		// llamar la función que crea el widget.
-		$showfrom = $instance['showfrom'];
-		$comnum = $instance['comnum'];
-		$design = $instance['design']; print_r($design);
-		
-		echo createwidget_ekilineComments($showfrom,$comnum,$design);
+			// condicion: si el titulo está vacio no mostrar HTML
+			if ( ! empty( $instance['title'] ) ) {
+				echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			}
+			
+			// echo esc_html__( 'Hello, World!', 'ekiline' );
+			// llamar la función que crea el widget.
+			$showfrom = $instance['showfrom'];
+			$comnum = $instance['comnum'];
+			$design = $instance['design']; print_r($design);
+			
+				echo createwidget_ekilineComments( $showfrom, $comnum, $design );
 		
 		echo $args['after_widget'];
 	}
@@ -105,7 +105,10 @@ class Ekiline_Comments extends WP_Widget {
 	</p>
 	<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>"><?php esc_attr_e( 'Design:', 'ekiline' ); ?></label> 
-		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'design' ) ); ?>" type="number" value="<?php echo esc_attr( $design ); ?>">
+		<select name="<?php echo esc_attr( $this->get_field_name( 'design' ) ); ?>">
+		    <option value="1" <?php if ( $design == 1 ) echo 'selected="selected"'; ?>><?php esc_attr_e( 'Simple', 'ekiline' ); ?></option>
+		    <option value="2" <?php if ( $design == 2 ) echo 'selected="selected"'; ?>><?php esc_attr_e( 'Advanced', 'ekiline' ); ?></option>
+		</select>		
 	</p>
 
 <?php 
@@ -122,6 +125,7 @@ class Ekiline_Comments extends WP_Widget {
 	 * @return array Updated safe values to be saved.
 	 */
 	public function update( $new_instance, $old_instance ) {
+		
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
 		$instance['showfrom'] = ( ! empty( $new_instance['showfrom'] ) ) ? sanitize_text_field( $new_instance['showfrom'] ) : '';
