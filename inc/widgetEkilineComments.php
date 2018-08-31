@@ -11,6 +11,8 @@
  * Crear un widget .
  * https://codex.wordpress.org/Widgets_API
  * https://www.cssigniter.com/extending-wordpress-core-3rd-party-widgets/
+ * Usar los formularios:
+ * https://codex.wordpress.org/Function_Reference/selected
  *
  */
 
@@ -23,7 +25,7 @@ class Ekiline_Comments extends WP_Widget {
 		parent::__construct(
 			'ekiline_comments', // Base ID
 			esc_html__( 'Ekiline comments', 'ekiline' ), // Name
-			array( 'description' => esc_html__( 'Enhanced comments filter it and show', 'ekiline' ), ) // Args
+			array( 'description' => esc_html__( 'Enhanced comments filter it and choose design', 'ekiline' ), ) // Args
 		);
 	}
 
@@ -67,7 +69,7 @@ class Ekiline_Comments extends WP_Widget {
 			// llamar la función que crea el widget.
 			$showfrom = $instance['showfrom'];
 			$comnum = $instance['comnum'];
-			$design = $instance['design']; print_r($design);
+			$design = $instance['design']; 
 			
 				echo createwidget_ekilineComments( $showfrom, $comnum, $design );
 		
@@ -96,7 +98,7 @@ class Ekiline_Comments extends WP_Widget {
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 	</p>
 	<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'showfrom' ) ); ?>"><?php esc_attr_e( 'Show from post id, comma separated:', 'ekiline' ); ?></label> 
+		<label for="<?php echo esc_attr( $this->get_field_id( 'showfrom' ) ); ?>"><?php esc_attr_e( 'Enter post IDs, comma separated:', 'ekiline' ); ?></label> 
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'showfrom' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'showfrom' ) ); ?>" type="text" value="<?php echo esc_attr( $showfrom ); ?>">
 	</p>
 	<p>
@@ -104,7 +106,7 @@ class Ekiline_Comments extends WP_Widget {
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'comnum' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'comnum' ) ); ?>" type="number" value="<?php echo esc_attr( $comnum ); ?>">
 	</p>
 	<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>"><?php esc_attr_e( 'Design:', 'ekiline' ); ?></label> 
+		<label for="<?php echo esc_attr( $this->get_field_id( 'design' ) ); ?>"><?php esc_attr_e( 'Choose design:', 'ekiline' ); ?></label> 
 		<select name="<?php echo esc_attr( $this->get_field_name( 'design' ) ); ?>">
 		    <option value="1" <?php if ( $design == 1 ) echo 'selected="selected"'; ?>><?php esc_attr_e( 'Simple', 'ekiline' ); ?></option>
 		    <option value="2" <?php if ( $design == 2 ) echo 'selected="selected"'; ?>><?php esc_attr_e( 'Advanced', 'ekiline' ); ?></option>
@@ -156,7 +158,7 @@ function createwidget_ekilineComments($showfrom,$comnum,$design){
 // Pasar argumentos para ejecutar widget	 
 ?>	
 <style>.mod-ekiline-comments{max-height: 400px;overflow-x: hidden;overflow-y: scroll;}.mod-ekiline-comments li{list-style: none;}</style>
-<ul class="commentlist mod-ekiline-comments list-unstyled">
+<ul class="commentlist mod-ekiline-comments list-unstyled m-0">
 <?php
 
 	if($design=='1') {$design = 'style_ekilineCommentsSimple';} 
@@ -181,7 +183,15 @@ function createwidget_ekilineComments($showfrom,$comnum,$design){
 		
 ?>
 </ul>
+
 <?php
+// Comentarios totales
+$args = array(
+	'post__in' => $showfrom, // use post_id, not post_ID
+        'count' => true //return only the count
+);
+$comments = get_comments($args);
+printf( '<p class="bg-dark text-light small p-1 text-right">' . esc_html__( '%1$s Comments of %2$s', 'ekiline' ) . '</p> ', $comnum, $comments );
 }
 
 /**
@@ -203,22 +213,28 @@ function style_ekilineCommentsExtended($comment, $args, $depth) {
         <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
     <?php } ?>
     
-        <div class="comment-author vcard">
-        <?php if ( $args['avatar_size'] != 0 ) {
-                echo get_avatar( $comment, $args['avatar_size'] ); 
-            } 
-            printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+        <div class="comment-author vcard row">
+        	
+        	<div class="col col-md-1 col-sm-2 col-3 text-center">
+		        <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'img-fluid mt-2')  ); ?>
+        		<?php //if ( $args['avatar_size'] != 0 ) { echo get_avatar( $comment, $args['avatar_size'] ); }  ?>
+        	</div>
+        	
+        	<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
+		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+		        
+		        <?php if ( $comment->comment_approved == '0' ) { ?>
+		            <em class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.','ekiline' ); ?></em><br/>
+		        <?php } ?>
+
+		        <?php comment_text(); ?>
+        		
+        	</div>        	
             
         </div>
         
-        <?php if ( $comment->comment_approved == '0' ) { ?>
-            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em><br/>
-        <?php } ?>
-
-        <?php comment_text(); ?>
-        
-        <div class="row">
-        <div class="comment-meta commentmetadata col small">
+        <div class="row small bg-light">
+        <div class="comment-meta commentmetadata col">
             <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
             	<?php
                 /* translators: 1: date, 2: time */
@@ -228,10 +244,10 @@ function style_ekilineCommentsExtended($comment, $args, $depth) {
                     get_comment_time() 
                 ); ?>
             </a>
-            <?php edit_comment_link( __( '(Edit)' ), '  ', '' ); ?>
+            <?php edit_comment_link( __( '(Edit)','ekiline' ), '  ', '' ); ?>
         </div>
 
-        <div class="reply text-right col small">
+        <div class="reply text-right col">
         	<?php comment_reply_link( array_merge( $args, array( 
                             'add_below' => $add_below, 
                             'depth'     => $depth, 
@@ -239,6 +255,7 @@ function style_ekilineCommentsExtended($comment, $args, $depth) {
                         ))); ?>
         </div>
         </div>
+        
         <?php if ( 'div' != $args['style'] ) { ?>
         	
         </div>
@@ -273,7 +290,7 @@ function style_ekilineCommentsSimple($comment, $args, $depth) {
 	        	<?php comment_reply_link( array_merge( $args, array( 
 	        					// 'before' => '<div class="btn btn-danger">',
 	        					// 'after' => '</div>',
-	                            // 'reply_text' => __('Responder','ekiline'),
+	                            // 'reply_text' => __('Reply','ekiline'),
 	                            'add_below' => $add_below, 
 	                            'depth'     => $depth, 
 	                            'max_depth' => $args['max_depth']

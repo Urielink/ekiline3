@@ -891,7 +891,40 @@ msgid "Show breadcrumb"
 msgstr "Mostrar breadcrumb"
 
 msgid "Add bootstrap breadcrumb"
-msgstr "Indica la ruta de navegaciób en tus páginas"
+msgstr "Indica la ruta de navegación en tus páginas"
+
+msgid "Ekiline comments"
+msgstr "Ekiline comentarios"
+
+msgid "Enhanced comments filter it and choose design"
+msgstr "Comentarios mejorados, con filtros y diseño"
+
+msgid "Title:"
+msgstr "Título:"
+
+msgid "Enter post IDs, comma separated:"
+msgstr "Ingresa IDs de publicación, separadas con coma"
+
+msgid "Limit comments:"
+msgstr "Límite de comentarios"
+
+msgid "Choose design:"
+msgstr "Elige diseño"
+
+msgid "Simple"
+msgstr "Simple"
+
+msgid "Advanced"
+msgstr "Avanzado"
+
+msgid "Your comment is awaiting moderation."
+msgstr "Tu comentario aguarda visto bueno."
+
+msgid "(Edit)"
+msgstr "(Editar)"
+
+msgid "Reply"
+msgstr "Responder"
 
 msgid "Archive by category %s"
 msgstr "Archivo por categoría %s"
