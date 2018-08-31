@@ -221,7 +221,7 @@ function style_ekilineCommentsExtended($comment, $args, $depth) {
         	</div>
         	
         	<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
-		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>','ekiline' ), get_comment_author_link() ); ?>
 		        
 		        <?php if ( $comment->comment_approved == '0' ) { ?>
 		            <em class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.','ekiline' ); ?></em><br/>

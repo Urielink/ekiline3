@@ -142,7 +142,7 @@ function ekilineCommentsExtended($comment, $args, $depth) {
         	</div>
         	
         	<div class="rounded bg-white col-md-11 col-sm-10 col-9 py-2">
-		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+		        <?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>','ekiline' ), get_comment_author_link() ); ?>
 		        
 		        <?php if ( $comment->comment_approved == '0' ) { ?>
 		            <em class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.','ekiline' ); ?></em><br/>
@@ -201,7 +201,7 @@ $args = array(
 	'comment_field' => '<div class="comment-form-comment">' .
 	'<label for="comment">' . __( 'Comment', 'ekiline' ) . '</label>' .
 	( $req ? '<span class="required">*</span>' : '' ) .
-	'<textarea id="comment" name="comment" class="form-control" aria-required="true"></textarea></div>',
+	'<textarea id="comment" name="comment" class="form-control mb-2" aria-required="true"></textarea></div>',
 
   	'fields' => apply_filters( 'comment_form_default_fields', array(
 	    'author' =>
@@ -228,7 +228,7 @@ $args = array(
 	  
     // las clases de manera independiente:
     'class_form'           => 'comment-form form',
-    'class_submit' => 'submit btn btn-sm btn-secondary float-right'  
+    'class_submit' => 'submit btn btn-sm btn-secondary float-right mb-2'  
 	
 );
 
