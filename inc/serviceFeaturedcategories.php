@@ -16,7 +16,8 @@ function ekiline_list_categories() {
   $cats = array();
   $cats[0] = __('All','ekiline');
   foreach ( get_categories() as $categories => $category ) {
-    $cats[$category->term_id] = $category->name;
+    $cats[$category->term_id] = $category->name .' '. $category->term_id;
+    // $cats[$category->term_id] = $category->name;
   }
   return $cats;
 }
@@ -26,13 +27,16 @@ function ekiline_list_categories() {
  */
 
 function ekiline_frontpage_featured( $query ) {
-	if (!is_home()) return;
+
 	$seleccion =  get_theme_mod('ekiline_featuredcategories');
-	// print_r($seleccion);
 	// crear un string con lo seleccionado
-	$str = array();
-	$str = implode(',', $seleccion);
-	
+	$str=0;
+	// Al instalar el tema por primera vez reacciona la falta de validar el campo por eso este if.
+	if( $seleccion != '' ){
+		$str = array();
+		$str = implode(',', $seleccion);
+	}
+		
 	if ( $query->is_home() && $query->is_main_query() ) {
 	 	 $query->set( 'cat', $str ); 
 	} 
@@ -60,7 +64,8 @@ if (class_exists('WP_Customize_Control')){
 		        <select <?php $this->link(); ?> multiple="multiple" size="10">
 		            <?php
 		                foreach ( $this->choices as $value => $label ) {
-		                    $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+		                    // $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+		                    $selected = ( !empty( $this->value() ) && in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
 		                    echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
 		                }
 		            ?>
