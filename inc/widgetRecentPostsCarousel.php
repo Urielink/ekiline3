@@ -192,7 +192,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                 <div class="carousel-item <?php echo $countclass; ?>">
                 	
                     <!--article<?php // if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>-->
-                    <div id="post-<?php the_ID(); ?>" <?php post_class( 'bg-dark '.$thumbClass ); ?>>
+                    <div id="post-<?php the_ID(); ?>" <?php post_class( $thumbClass ); ?>>
                     
 				    <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
 				    

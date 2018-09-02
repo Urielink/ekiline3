@@ -157,7 +157,7 @@ add_action( 'widgets_init', 'register_ekiline_comments' );
 function createwidget_ekilineComments($showfrom,$comnum,$design){
 // Pasar argumentos para ejecutar widget	 
 ?>	
-<style>.mod-ekiline-comments{max-height: 400px;overflow-x: hidden;overflow-y: scroll;}.mod-ekiline-comments li{list-style: none;}</style>
+<style>.mod-ekiline-comments{max-height: 400px;overflow-x: hidden;overflow-y: scroll;-webkit-overflow-scrolling: touch;}.mod-ekiline-comments li{list-style: none;}</style>
 <ul class="commentlist mod-ekiline-comments list-unstyled m-0">
 <?php
 
