@@ -101,7 +101,7 @@ function ekiline_widgetView( $widget , $return , $instance ){
         <label for="<?php echo $widget->get_field_id('viewFormat'); ?>"><?php echo __( 'Format','ekiline' ) ?></label>
         
         <select id="<?php echo $widget->get_field_id('viewFormat'); ?>" name="<?php echo $widget->get_field_name('viewFormat'); ?>">
-            <option <?php selected($instance['viewFormat'], 'none');?> value="none"><?php echo __( 'None','ekiline' ) ?></option>
+            <option <?php selected($instance['viewFormat'], 'none');?> value="none"><?php echo __( 'Default','ekiline' ) ?></option>
             <option <?php selected($instance['viewFormat'], 'dropdown');?>value="dropdown"><?php echo __( 'Dropdown','ekiline' ) ?></option>
             <option <?php selected($instance['viewFormat'], 'modal');?> value="modal"><?php echo __( 'Modal','ekiline' ) ?></option>
         </select>
