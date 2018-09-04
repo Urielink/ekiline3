@@ -51,3 +51,4 @@ Ekiline includes tools that works with bootstrap: galleries, images, tooltips, p
 * Font Awesome Free 5.0.6 by @fontawesome - http://fontawesome.com License - http://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
 * Bootstrap Navwalker [GPLv3 or later] https://github.com/twittem/wp-bootstrap-navwalker
 * Wordpress tools: https://codex.wordpress.org/Theme_Unit_Test
+** Sintetizado.
