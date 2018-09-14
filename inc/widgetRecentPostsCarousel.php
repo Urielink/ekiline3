@@ -213,7 +213,6 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		                  <?php endif; ?>
 	
 		                  <?php if ( $show_mycont ) : ?>
-	                      	<?php // ekiline_clean_images( strip_shortcodes( get_the_content() ) ); ?>
 	                      	<?php 
 				    			// En caso de que el cliente quiera recortar su texto de manera personalizada
 							    if( has_excerpt() ) {
