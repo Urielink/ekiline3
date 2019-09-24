@@ -183,14 +183,16 @@ class ekiline_recent_posts_carousel extends WP_Widget {
                 <?php // conteo de posts
                         $count = $r->current_post + 0;
                         // marcar el post 0 como el principal, para generar una clase CSS active
-                        if ($count == '0') : $countclass = ' active'; elseif ($count !='0') : $countclass = '' ; endif; 
+                        if ($count == '0') : $countclass = 'active'; elseif ($count !='0') : $countclass = '' ; endif; 
                         $category = get_the_category();
 						$countclass .= ' '.$category[0]->slug;
 						$thumbClass = 'no-thumb'; if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) $thumbClass = '';
                         
                         ?>                                              
-
-                    <div id="post-<?php the_ID(); ?>" <?php post_class( $thumbClass . ' carousel-item' . $countclass ); ?>>
+                <div class="carousel-item <?php echo $countclass; ?>">
+                	
+                    <!--article<?php // if ( !has_post_thumbnail() ) echo ' class="no-thumb"';?>-->
+                    <div id="post-<?php the_ID(); ?>" <?php post_class( $thumbClass ); ?>>
                     
 				    <?php if ( has_post_thumbnail() || get_theme_mod( 'ekiline_getthumbs' ) == true ) { ?>
 				    
@@ -213,14 +215,7 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		                  <?php endif; ?>
 	
 		                  <?php if ( $show_mycont ) : ?>
-	                      	<?php 
-				    			// En caso de que el cliente quiera recortar su texto de manera personalizada
-							    if( has_excerpt() ) {
-							        the_excerpt();
-							    } else {
-							        ekiline_clean_images( strip_shortcodes( get_the_content() ) );
-							    }							
-	                      	?>
+	                      	<?php ekiline_clean_images( strip_shortcodes( get_the_content() ) ); ?>
 		                  <?php endif; ?>
 	                      	
 			              <?php if ( $show_date ) : ?>
@@ -230,8 +225,10 @@ class ekiline_recent_posts_carousel extends WP_Widget {
 		                  
 	                    </div>
                     
-                    </div><!-- // fin de .carousel-item -->
-
+                    </div>
+                    
+                </div> <!-- // fin de .item -->  
+                
                 <?php endwhile;?>   
 
               </div> <!-- // fin de .carousel-inner -->
